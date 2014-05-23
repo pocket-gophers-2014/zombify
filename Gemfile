@@ -7,6 +7,7 @@ gem 'rails', '3.2.14'
 
 gem 'pg'
 gem 'skeleton-rails'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 
 # Gems used only for assets and not required
