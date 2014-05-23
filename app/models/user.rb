@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   def password
   end
+
 end
