@@ -30,19 +30,22 @@ ActiveRecord::Schema.define(:version => 20140523031106) do
   end
 
   create_table "games", :force => true do |t|
-    t.string   "city"
-    t.string   "state"
-    t.string   "title"
+    t.string   "city",        :default => "San Francisco"
+    t.string   "game_code"
+    t.string   "state",       :default => "California"
+    t.string   "title",       :default => "Zombie Apocalypse"
+    t.boolean  "game_active", :default => false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "messages", :force => true do |t|
     t.string  "title"
     t.string  "description"
     t.string  "audience"
+    t.boolean "has_been_called", :default => false
     t.integer "event_id"
   end
 
@@ -51,10 +54,11 @@ ActiveRecord::Schema.define(:version => 20140523031106) do
     t.string  "phone_number"
     t.string  "password_digest"
     t.string  "handle"
-    t.string  "infected"
-    t.integer "points"
-    t.integer "cures"
-    t.integer "infections"
+    t.boolean "can_cure",        :default => false
+    t.boolean "infected",        :default => false
+    t.integer "points",          :default => 0
+    t.integer "cures",           :default => 0
+    t.integer "infections",      :default => 0
     t.integer "mod"
     t.integer "game_id"
   end

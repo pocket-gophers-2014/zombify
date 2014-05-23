@@ -5,10 +5,11 @@ class CreateUsers < ActiveRecord::Migration
   		t.string :phone_number
   		t.string :password_digest
   		t.string :handle
-  		t.string :infected
-  		t.integer :points
-  		t.integer :cures
-  		t.integer :infections
+      t.boolean :can_cure, :default => false
+  		t.boolean :infected, :default => false 
+  		t.integer :points, :default => 0
+  		t.integer :cures, :default => 0
+  		t.integer :infections, :default => 0
   		t.integer :mod
   		t.belongs_to :game
   	end
