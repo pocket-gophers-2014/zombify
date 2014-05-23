@@ -10,20 +10,22 @@ $( document ).ready(function() {
 
 function initiateLogIn() {
   $.ajax({
-    url: ,
+    url: '/sessions/new',
     method: 'get'
   })
-  .done(appendLogInForm)
+  .done(appendForm)
 }
 
-function initiateLogIn() {
+function initiateSignUp() {
   $.ajax({
-    url: ,
+    url: '/users/new',
     method: 'get'
   })
   .done(appendForm)
 }
 
 function appendForm(response) {
-
+  console.log("yay")
+  $('#login_signup').remove()
+  $('.header').append(response)
 }
