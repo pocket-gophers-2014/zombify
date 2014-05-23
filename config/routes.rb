@@ -2,6 +2,9 @@ Zombify::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   root :to => "users#index"
+  resources :users
+  resources :sessions
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
