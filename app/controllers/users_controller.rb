@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       redirect_to user_path(@user)
     else
-      render :text => @user.errors.full_messages.join(", "), :status => :unprocessable_entity
+      redirect_to root_path
     end
   end
 
