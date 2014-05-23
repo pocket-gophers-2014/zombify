@@ -2,30 +2,34 @@
 // All this logic will automatically be available in application.js.
 
 $( document ).ready(function() {
-  $('#login').on('click', initiateLogIn);
-  $('#signup').on('click', initiateSignUp);
+    new userAuthenticationEventListeners()
 });
 
+function userAuthenticationEventListeners() {
+  $('#login').on('click', UserAuthenticationAjax.initiateLogIn);
+  $('#signup').on('click', UserAuthenticationAjax.initiateSignUp);
+}
 
+UserAuthenticationAjax = {
 
-function initiateLogIn() {
+  initiateLogIn: function() {
   $.ajax({
     url: '/sessions/new',
     method: 'get'
   })
-  .done(appendForm)
-}
+  .done(UserAuthenticationAjax.appendForm)
+  },
 
-function initiateSignUp() {
-  $.ajax({
-    url: '/users/new',
-    method: 'get'
-  })
-  .done(appendForm)
-}
+  initiateSignUp: function() {
+    $.ajax({
+      url: '/users/new',
+      method: 'get'
+    })
+    .done(UserAuthenticationAjax.appendForm)
+  },
 
-function appendForm(response) {
-  console.log("yay")
-  $('#login_signup').remove()
-  $('.header').append(response)
+  appendForm: function(response) {
+    $('#login_signup').remove()
+    $('.header').append(response)
+  }
 }
