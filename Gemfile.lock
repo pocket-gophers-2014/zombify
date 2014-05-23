@@ -131,6 +131,7 @@ GEM
       websocket (~> 1.0.4)
     shoulda-matchers (2.6.1)
       activesupport (>= 3.0.0)
+    skeleton-rails (0.1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -168,4 +169,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   selenium-webdriver
   shoulda-matchers
+  skeleton-rails
   uglifier (>= 1.0.3)
