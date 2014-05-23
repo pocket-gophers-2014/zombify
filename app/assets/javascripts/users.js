@@ -1,23 +1,17 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$( document ).ready(function() {
-    new userAuthenticationEventListeners()
-});
-
-function userAuthenticationEventListeners() {
-  $('#login').on('click', UserAuthenticationAjax.initiateLogIn);
-  $('#signup').on('click', UserAuthenticationAjax.initiateSignUp);
-}
-
-UserAuthenticationAjax = {
-
+var UserAuthenticationAjax = {
+  bindEvents: function() {
+    $('#login').on('click', UserAuthenticationAjax.initiateLogIn);
+    $('#signup').on('click', UserAuthenticationAjax.initiateSignUp);
+  },
   initiateLogIn: function() {
-  $.ajax({
-    url: '/sessions/new',
-    method: 'get'
-  })
-  .done(UserAuthenticationAjax.appendForm)
+    $.ajax({
+      url: '/sessions/new',
+      method: 'get'
+    })
+    .done(UserAuthenticationAjax.appendForm)
   },
 
   initiateSignUp: function() {
@@ -33,3 +27,8 @@ UserAuthenticationAjax = {
     $('.header').append(response)
   }
 }
+
+$( document ).ready(function() {
+  UserAuthenticationAjax.bindEvents();
+});
+
