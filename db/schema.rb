@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20140523031106) do
   end
 
   create_table "messages", :force => true do |t|
-    t.string  "title"
-    t.string  "description"
+    t.text    "title"
+    t.text    "description"
     t.string  "audience"
     t.boolean "has_been_called", :default => false
     t.integer "event_id"
