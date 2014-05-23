@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
 
 	validates :password_digest, length: { in: 6..20 }
 
+  def password
+  end
+
 end
