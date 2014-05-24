@@ -5,11 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    p "======================================="
-    p params
-    p params[:user]
     @user = User.new(params[:user])
-    p @user
     if @user.save
       session[:id] = @user.id
       p "created user!"
@@ -22,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
   end
 
   def new
