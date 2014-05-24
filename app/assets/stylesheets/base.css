@@ -51,7 +51,9 @@
 /* #Basic Styles
 ================================================== */
 	body {
-		background: #fff;
+		background-image: url("Zombie_1.jpg");
+		background-repeat: no-repeat;
+		background-position: center 50px;
 		font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		color: #444;
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */

@@ -9,7 +9,10 @@
 
 #body {
 	height: 100%;
-	width: 100%
+	width: 100%;
+	background-image: url("Zombie_1.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 
 #header {
@@ -28,7 +31,6 @@
 }
 
 #center {
-	background-color: white;
 	margin-top: 6%;
 	height: 80%;
 	width: 100%;
