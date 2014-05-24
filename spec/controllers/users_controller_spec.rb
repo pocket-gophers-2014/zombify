@@ -13,7 +13,7 @@ describe UsersController do
   context "create" do
     it "enters a valid user into the database" do
       User.destroy_all
-      params = { user: { email: "awesome" , password: "awesome" } }
+      params = { user: { email: "awesome@gmail.com" , password: "awesome@gmail.com" } }
       get :create, params
       expect(User.all.count).to eq(1)
     end

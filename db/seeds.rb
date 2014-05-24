@@ -1,5 +1,13 @@
 #encoding: utf-8
 
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+
 cure_ingredients = {1 => "air", 2 => "earth", 3 => "wind", 4 => "water", 5 => "heart"}
 locations = {1 => "Market and Fifth", 2 => "Fourth and King", 3 => "MoMa", 4 => "Yerba Buena, behind the waterfall", 5 => "633 Folsom"}
 
