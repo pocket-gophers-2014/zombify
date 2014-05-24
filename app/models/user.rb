@@ -13,4 +13,9 @@ class User < ActiveRecord::Base
   def password
   end
 
+  def should_be_infected
+    num = (1..100).to_a.sample
+    num > 75 
+  end
+
 end

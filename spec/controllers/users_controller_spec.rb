@@ -24,6 +24,19 @@ describe UsersController do
       get :create, params
       expect(User.all.count).to eq(0)
     end
+
+    it "create a zombie 25% of the time" do
+    # better test wanted - perhaps with seed
+      100.times{
+        user = User.create(email: Faker::Internet.email, password_digest: Faker::Number.number(6))
+        num = (1..100).to_a.sample
+        user.infected = true if num > 75 
+        user.save
+      }
+      total = User.where(infected: true).count
+      (20..30).to_a.should include(total)
+    end
+
   end
 end
 
