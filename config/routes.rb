@@ -5,6 +5,7 @@ Zombify::Application.routes.draw do
   root :to => "users#index"
   resources :users
   resources :sessions
+  resources :pages
 
 
   # The priority is based upon order of creation:
