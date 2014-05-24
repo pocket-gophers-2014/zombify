@@ -28,7 +28,7 @@ describe UsersController do
     it "create a zombie 25% of the time" do
     # better test wanted - perhaps with seed
       100.times{
-        user = User.create(email: Faker::Internet.email, password_digest: Faker::Number.number(6))
+        user = User.create(email: Faker::Internet.email, password: Faker::Number.number(6))
         num = (1..100).to_a.sample
         user.infected = true if num > 75 
         user.save

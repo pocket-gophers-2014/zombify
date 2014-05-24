@@ -5,20 +5,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    p "======================================="
-    p params
-    p params[:user]
     @user = User.new(params[:user])
-    p @user
-    
+
     if @user.save
       session[:id] = @user.id
-      p "created user!"
 
-      if user.should_be_infected ###TEST ONCE CREATE CONTROLLER WORKING
-        user.infected = true
-        user.save
+      if @user.should_be_infected ###TEST ONCE CREATE CONTROLLER WORKING
+        @user.infected = true
+        @user.save
       end
+      
       redirect_to user_path(@user)
     else
       p "failed to create user"

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :phone_number, :password
+	attr_accessible :email, :phone_number, :password, :infected
   belongs_to :game
 
   validates :email, presence: true
