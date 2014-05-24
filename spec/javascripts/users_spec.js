@@ -1,8 +1,6 @@
 describe("UserAuthenticationAjax", function () {
   describe("bindEvents", function() {
-
-
-    xit("binds aclick event on login", function() {
+    it("binds a click event on login", function() {
       spyOn(UserAuthenticationAjax, 'initiateLogIn');
       loadFixtures('login.html');
       $('#login').click()
