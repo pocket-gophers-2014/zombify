@@ -24,7 +24,8 @@ var UserAuthenticationAjax = {
 
   appendForm: function(response) {
     $('#login_signup').remove()
-    $('.header').append(response)
+    $('p').remove()
+    $('#center').append(response)
   }
 }
 
