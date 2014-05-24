@@ -18,15 +18,33 @@
   height:20%;
   background-color:#142900;
   width: 100%;
-  min-height: 20%
+  min-height: 20%;
+}
+
+#title {
+	margin-top: 1%;
+	margin-left: 43%;
+	color: white;
 }
 
 #center {
-	margin-left: 45%;
 	background-color: white;
-	margin-top: 8%;
+	margin-top: 6%;
 	height: 80%;
 	width: 100%;
+}
+
+#about_game {
+	margin-left: 30%;
+	margin-top: 1%;
+	width: 50%;
+	color: white;
+}
+
+#login, #signup {
+	margin-top: 4%;
+	margin-left: 45%;
+	width: 10%;
 }
 
 #footer {
