@@ -1,15 +1,59 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+#body {
+	height: 100%;
+	width: 100%;
+	background-image: url("Zombie_1.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
 
 #header {
-  position:fixed;
+	position: fixed;
+	top: 0px;
   height:20%;
-  background-color:blue;
+  background-color:#142900;
+  width: 100%;
+  min-height: 20%;
+}
+
+#title {
+	margin-top: 1%;
+	margin-left: 43%;
+	color: white;
+}
+
+#center {
+	margin-top: 20%;
+	height: 80%;
+	width: 100%;
+}
+
+#about_game {
+	margin-left: 30%;
+	margin-top: 1%;
+	width: 50%;
+	color: white;
+}
+
+#login, #signup {
+	margin-top: 4%;
+	margin-left: 45%;
+	width: 10%;
 }
 
 #footer {
-  position: fixed;
+	position: fixed;
+	bottom: 0px;
   height: 20%;
-  background_color:green;
+  background-color:#142900;
+  width: 100%;
 }
+
