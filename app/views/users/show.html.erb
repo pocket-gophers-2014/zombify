@@ -9,6 +9,7 @@
 <%= link_to "logout", session_path(@user), :method => 'DELETE' %>
 
 <div id="feed">
+<%= render partial: "events/event", collection: @events %>
 
 </div>
 
