@@ -5,11 +5,17 @@ class UsersController < ApplicationController
   end
 
   def create
+    p "======================================="
+    p params
+    p params[:user]
     @user = User.new(params[:user])
+    p @user
     if @user.save
       session[:id] = @user.id
+      p "created user!"
       redirect_to user_path(@user)
     else
+      p "failed to create user"
       redirect_to root_path
     end
   end
