@@ -1,5 +1,6 @@
 Zombify::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  mount JasmineFixtureServer => '/spec/javascripts/fixtures' if defined?(JasmineRails)
 
   root :to => "users#index"
   resources :users
