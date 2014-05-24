@@ -50,15 +50,65 @@
 
 /* #Basic Styles
 ================================================== */
+	html,body {
+		height: 100%;
+	}
+
 	body {
-		background-image: url("Zombie_1.jpg");
-		background-repeat: no-repeat;
-		background-position: center;
 		font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 		color: #444;
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;
  }
+
+ .header {
+  width: 100%;
+  background-color: blue;
+  position: fixed;
+  top: 0;
+  height: 60px;
+}
+
+.content {
+	background-image: url("Zombie_1.jpg");
+	background-repeat: no-repeat;
+	background-position: absolute;
+	position:relative;
+	height:100%;
+	width:80%;
+	padding: 60px 0 30px 0;
+}
+
+.sidebar1, .sidebar2 {
+	/*top: 60px;*/
+	bottom: 30px;
+	width:20%;
+	position:absolute;
+	background-color: yellow;
+}
+
+.sidebar1 { left:0;}
+.sidebar2 {right:0;}
+
+#feed {
+	height:100%;
+	min-width:300px;
+	margin-left:100px;
+	margin-right:100px;
+	overflow:auto;
+	opacity: 0.6;
+	background-color: #ccc;
+}
+
+.event {
+	padding: 20px;
+	margin: 30px;
+	border: 5px solid blue;
+	border-radius:20px;
+	background-color: yellow;
+
+}
+
 
 
 /* #Typography
