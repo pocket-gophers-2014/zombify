@@ -2,9 +2,9 @@ class Game < ActiveRecord::Base
 	has_many :users
 	has_many :messages
 
-	attr_accessible :start_time
+	attr_accessible :start_time, :game_active
 
-	after_initialize :set_code_and_times
+	# after_initialize :set_code_and_times
 
 	# def set_code
 	# 	game_code = self.game_code = SecureRandom.hex(3)
@@ -14,13 +14,22 @@ class Game < ActiveRecord::Base
 	# 	game_code
 	# end
 
-	def set_code_and_times
-		self.start_time ||= Time.now + 345600000
-		self.end_time ||= Time.now + 86400000
+	def set_code_and_times 
+		self.start_time = DateTime.current 
+		self.end_time = DateTime.current + 0.0080
+		self.save
 	end
 
 	def show_first_messages # Game.first MVP ONLY BUG BUG BUG
 		find_message("First Announcement")
+	end
+
+	def show_first_location_message
+		find_message("First Location Announcement")
+	end
+
+	def show_second_location_message
+		find_message("Second Location Announcement")
 	end
 
 	# def show_first_location_message
