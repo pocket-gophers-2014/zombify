@@ -28,7 +28,7 @@ pollingController.prototype = {
 			}.bind(this))
 
 			updateFeedAndStats.fail(function(results){
-				debugger
+
 			})
 		}
 	},

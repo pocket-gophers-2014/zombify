@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     p @user.infected
     if @user.infected == true
       @events = Post.latest_zombie_posts
-      p "zombie posts is" 
+      p "zombie posts is"
       stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
     elsif @user.infected == false
       @events = Post.latest_human_posts

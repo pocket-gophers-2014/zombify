@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :phone_number, :password, :infected
+	attr_accessible :email, :phone_number, :password, :infected, :name
   belongs_to :game
 
   validates :email, presence: true
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   def should_be_infected
     num = (1..100).to_a.sample
-    num > 75 
+    num > 75
   end
 
 end
