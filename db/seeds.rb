@@ -8,8 +8,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-cure_ingredients = {1 => "air", 2 => "earth", 3 => "wind", 4 => "water", 5 => "heart"}
-locations = {1 => "Market and Fifth", 2 => "Fourth and King", 3 => "MoMa", 4 => "Yerba Buena, behind the waterfall", 5 => "633 Folsom"}
+cure_ingredients = ["air", "earth", "wind", "water", "heart"]
+locations = ["Market and Fifth", "Fourth and King", "MoMa", "Yerba Buena, behind the waterfall", "633 Folsom"]
 
 zombie_messages = [
 	["First Announcement","I am the hive-mind. You and all of my zombie children are an extension of my own self - my eyes and ears, my hands and feet. I will speak to you from time to time to tell you of events that affect the zombie horde.Your primary goal is to grow the zombie horde by consuming humans. Each human you convert increases the strength of the horde."],

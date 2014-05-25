@@ -8,7 +8,6 @@ class CreateGames < ActiveRecord::Migration
       t.boolean :game_active, :default => false
   		t.datetime :start_time
       t.datetime :end_time
-  		t.datetime :end_time
   		t.timestamps
   	end
   end
