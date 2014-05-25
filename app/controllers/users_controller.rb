@@ -6,15 +6,23 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+
     if @user.save
       handle = @user.generate_handle
       @user.update_attributes(handle: handle)
       session[:id] = @user.id
-      p "created user!"
+      cookies[:user_id] = { value: @user.id, expires: 6.days.from_now }
+
+
+      if @user.should_be_infected ###TEST ONCE CREATE CONTROLLER WORKING
+        @user.infected = true
+        @user.save
+      end
       redirect_to user_path(@user)
     else
       redirect_to root_path
     end
+
   end
 
   def show
@@ -28,7 +36,22 @@ class UsersController < ApplicationController
   end
 
   def edit
-
+    @user = User.find_by_id(params[:id])
+    p @user.infected
+    if @user.infected == true
+      @events = Post.latest_zombie_posts
+      p "zombie posts is" 
+      stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
+    elsif @user.infected == false
+      @events = Post.latest_human_posts
+      p "these are posts"
+      p '-----------------------------'
+      stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
+    else
+      flash[:error] = @user.errors.full_messages[0]
+    end
+    @html_content = render_to_string :partial => "event", :collection => @events
+    render json:{"html_content" => @html_content, 'stats'=> stats}
   end
 
   def update
@@ -85,3 +108,5 @@ class UsersController < ApplicationController
 
 
 end
+
+

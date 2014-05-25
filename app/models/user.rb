@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :phone_number, :password, :handle
+	attr_accessible :email, :phone_number, :password, :handle, :infected
+
   belongs_to :game
   belongs_to :battle
 
@@ -13,8 +14,14 @@ class User < ActiveRecord::Base
   def password
   end
 
+
   def generate_handle
     rand(100000).to_s
+  end
+
+  def should_be_infected
+    num = (1..100).to_a.sample
+    num > 75 
   end
 
 end
