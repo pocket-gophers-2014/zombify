@@ -14,13 +14,13 @@ class Game < ActiveRecord::Base
 	# 	game_code
 	# end
 
-	def set_code_and_times 
-		self.start_time = DateTime.current 
+	def set_code_and_times
+		self.start_time = DateTime.current
 		self.end_time = DateTime.current + 0.0080
 		self.save
 	end
 
-	def show_first_messages # Game.first MVP ONLY BUG BUG BUG
+	def show_first_message # Game.first MVP ONLY BUG BUG BUG
 		find_message("First Announcement")
 	end
 
@@ -48,7 +48,7 @@ class Game < ActiveRecord::Base
 
 	def create_posts(messages)
 		messages.each do |message|
-			@post = Post.create(title: message[:title], body: message[:description], 
+			@post = Post.create(title: message[:title], body: message[:description],
 				audience: message[:audience])
 		end
 	end

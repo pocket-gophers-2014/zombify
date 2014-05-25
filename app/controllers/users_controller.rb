@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find_by_id(params[:id])
     if @user.infected == true
-      @events = Post.latest_zombie_posts 
+      @events = Post.latest_zombie_posts
       stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
     elsif @user.infected == false
       @events = Post.latest_human_posts
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     @winner = eval_string(params["result"])
     handle = parse_opponent_id(params["opponent"])
     @opponent = User.find_by_handle(handle) || "invalid"
-    return @result = "invalid user code" if @opponent == "invalid" 
+    return @result = "invalid user code" if @opponent == "invalid"
     @user = User.find(session[:id])
     return @result = "Bite yourself all you want, I guess..." if @opponent == @user
     if @user.infected && @opponent.infected
@@ -77,10 +77,10 @@ class UsersController < ApplicationController
       return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
     elsif @user.infected && !@winner ##zombie user misses human
       #@user.update_attributes(infected: false)
-      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... " 
+      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... "
     elsif @user_cure && @winner ##human cures zombie
       @opponent.update_attributes(infected: false)
-      return @result = "You have successfully applied the cure!" 
+      return @result = "You have successfully applied the cure!"
     elsif @user_cure && !@winner ##human fails zombie cure
       #@user.update_attributes(infected: true)
       return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
