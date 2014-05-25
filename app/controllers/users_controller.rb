@@ -67,6 +67,7 @@ class UsersController < ApplicationController
     elsif !@user.infected && !@opponent.infected
       return @result = "Why are you wasting precious cures?!"
     elsif @user.infected && @winner ##zombie user bites human
+      p @winner
       Post.new(body:"#{@user.name} has bitten #{@opponent.name}", title:"New Zombie", audience:"both")
       @user.update_attributes(points: @user.points += 300)
       @user.save
@@ -74,6 +75,7 @@ class UsersController < ApplicationController
       @opponent.save
       return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
     elsif @user.infected && !@winner ##zombie user misses human
+      p @winner
       Post.new(body:"#{@opponent.name} has escaped #{@user.name}", title:"Near Miss", audience:"both")
       @opponent.update_attributes(points: @opponent.points += 100)
       @opponent.save
