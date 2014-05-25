@@ -33,11 +33,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(session[:id])
-    p params
-    p "*"*25
     @result = verify_results(params)
-    p @result
-    #render result of verifyResults method
     render partial: 'battles/battle_results', :locals => { result: @result } #you are zombie.
   end
 
@@ -54,21 +50,26 @@ class UsersController < ApplicationController
       return @result = "Why are you biting each other, Children?"
     elsif !@user.infected && !@opponent.infected
       return @result = "Why are you wasting precious cures?!"
-    elsif @user.infected && @winner ## zombie user bites human
-      ##create 2 new posts
-      ##update both users
+    elsif @user.infected && @winner ##zombie user bites human
+      ##create 2 new posts, one with zombie audience, one with human audience
+      ##update both users if they have earned points
+      ##update people's secret codes?
       ##update session?
+      ##check the conditonals in the rest of the game logic
+      ##return text to render to the battle result page
       return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
     elsif @user.infected && !@winner ##zombie user misses human
       #@user.update_attributes(infected: false)
       return @result = "You are feeling dizzy. The human has escaped. You still crave brains... " 
-    elsif @user_cure && @winner ##human cures zombie
-      @opponent.update_attributes(infected: false)
+    elsif @user.can_cure && @winner ##human cures zombie
+      #@opponent.update_attributes(infected: false)
       return @result = "You have successfully applied the cure!" 
-    elsif @user_cure && !@winner ##human fails zombie cure
+    elsif @user.can_cure && !@winner ##human fails zombie cure
       #@user.update_attributes(infected: true)
       return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
-    else
+    elsif @user.can_cure == false
+      return @result = "You do not have the cure! What are you doing!?"
+    else      
       return @result = "Something has gone wrong."
     end
 
