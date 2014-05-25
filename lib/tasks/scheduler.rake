@@ -11,7 +11,7 @@ end
 
 task :start_game => :environment do
 	game = Game.first
-	if DateTime.current > game.start_time && DateTime.current < (game.start_time + 120)
+	if DateTime.current > game.start_time && DateTime.current < (game.start_time + 1200)
 		game.game_active = true
 		game.save
 		game.show_first_message
