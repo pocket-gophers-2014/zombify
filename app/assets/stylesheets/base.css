@@ -63,8 +63,10 @@
 
 
 .content {
-	background-color:orange;
+	background-image: url("Zombie_1.jpg");
+	background-repeat: no-repeat;
 	background-position: absolute;
+	background-size: 100%;
 	position:relative;
 	height:100%;
 	width:100%;

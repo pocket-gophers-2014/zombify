@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
-
+    if cookies[:user_id]
+      @user = User.find(cookies[:user_id])
+      redirect_to user_path(@user)
+    end
   end
 
   def create
@@ -17,6 +20,7 @@ class UsersController < ApplicationController
       end
       redirect_to user_path(@user)
     else
+      flash[:error] = @user.errors
       redirect_to root_path
     end
 
