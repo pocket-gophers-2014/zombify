@@ -18,7 +18,7 @@ task :start_game => :environment do
 		game.show_first_location_message
 	end
 
-	if DateTime.current >= game.start_time + 120 # 2 minutes
+	if DateTime.current >= game.start_time + 600 # 2 minutes
 		game.show_second_location_message
 	end
 end
