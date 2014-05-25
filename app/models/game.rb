@@ -2,6 +2,8 @@ class Game < ActiveRecord::Base
 	has_many :users
 	has_many :messages
 
+	attr_accessible :start_time
+
 	after_initialize :set_code_and_times
 
 	# def set_code
@@ -21,11 +23,14 @@ class Game < ActiveRecord::Base
 		find_message("First Announcement")
 	end
 
-	def show_first_location_message
-		if Time.now > Game.first.start_time + 180000
-			find_message("First Location Announcement")
-		end
-	end
+	# def show_first_location_message
+	# 	p Time.now
+	# 	p Game.first.start_time + 180
+	# 	p Time.now >= Game.first.start_time + 180000
+	# 	if Time.now >= Game.first.start_time + 180000
+	# 		find_message("First Location Announcement")
+	# 	end
+	# end
 
 	def find_message(title)
 		messages = Game.first.messages.where(title: title)
@@ -34,8 +39,10 @@ class Game < ActiveRecord::Base
 
 	def create_posts(messages)
 		messages.each do |message|
+			p "DOES IT REACH THIS POINT?"
 			@post = Post.create(title: message[:title], body: message[:description], 
 				audience: message[:audience])
+			p Post.all
 		end
 	end
 
