@@ -8,12 +8,10 @@ task :create_game => :environment do
 end
 
 task :start_game => :environment do
-	p DateTime.current
-	p Game.first.start_time
-	p "********************"
-	if DateTime.current > Game.first.start_time
-		Game.first.game_active = true
-		Game.first.save
+	game = Game.first
+	if DateTime.current > game.start_time
+		game.game_active = true
+		game.save
 		Game.first.show_first_message
 	end
 end

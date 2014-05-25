@@ -2,7 +2,7 @@ class Game < ActiveRecord::Base
 	has_many :users
 	has_many :messages
 
-	attr_accessible :start_time
+	attr_accessible :start_time, :game_active
 
 	# after_initialize :set_code_and_times
 
@@ -16,7 +16,7 @@ class Game < ActiveRecord::Base
 
 	def set_code_and_times
 		self.start_time = DateTime.current
-		self.end_time = DateTime.current + 90
+		self.end_time = DateTime.current + 0.0040
 		self.save
 	end
 
