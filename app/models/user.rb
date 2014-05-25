@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-	attr_accessible :email, :phone_number, :password, :handle, :infected, :name
+	attr_accessible :email, :phone_number, :password, :handle, :infected, :name, :points, :cures, :infections, :mod
 
   belongs_to :game
   belongs_to :battle

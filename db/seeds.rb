@@ -26,7 +26,7 @@ zombie_messages = [
 	["Fourth Cure ingredient gathered","Rauugh! The humans only lack one ingredient to complete their weapon. I order you to destroy them immediately!"],
 	["Fifth Cure ingredient gathered","Noooo! The humans have collected all of the ingredients they need. We can still destroy them before they destroy us. Kill them all quickly! For the good of the horde!"],
 	["Cure created","Nooooooooooooo! The humans have completed their vile brew. Kill them all before they can destroy us!"],
-	["All Humans converted","Rejoice my children! There are no humans remaining. Game Over."],
+	["All Humans converted","Rejoice my children! There are no humans remaining. Game Over."]
 ]
 
 human_messages = [
