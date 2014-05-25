@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
-
+    if cookies[:user_id]
+      @user = User.find(cookies[:user_id])
+      redirect_to user_path(@user)
+    end
   end
 
   def create
