@@ -9,9 +9,13 @@ pollingController.prototype = {
 		this.pollingTimerId = setInterval(this.pollAjax.bind(this), this.timer);
 	},
 
+	stopPolling: function() {
+		clearInterval(this.pollingTimerId)
+	},
+
 	pollAjax: function() {
 		if (false) {
-			clearInterval(this.pollingTimerId)
+			this.stopPolling()
 		} else {
 			console.log('about to run ajax')
 			updateFeedAndStats = $.ajax({
@@ -22,9 +26,7 @@ pollingController.prototype = {
 
 			updateFeedAndStats.done(function(results){
 				posts = results["html_content"]
-				$('#feed').empty()
-				$('#feed').prepend(posts)
-
+				this.appendFeed(posts)
 			}.bind(this))
 
 			updateFeedAndStats.fail(function(results){
@@ -34,8 +36,6 @@ pollingController.prototype = {
 
 	appendFeed: function(posts){
 		$('#feed').empty()
-		for (var i = 0; i < posts.length; i++) {
-			$('#feed').prepend(posts[i])
-		}
+		$('#feed').prepend(posts)
 	},
 }

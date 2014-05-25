@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def index
 
   end
@@ -12,8 +11,6 @@ class UsersController < ApplicationController
       @user.update_attributes(handle: handle)
       session[:id] = @user.id
       cookies[:user_id] = { value: @user.id, expires: 6.days.from_now }
-
-
       if @user.should_be_infected ###TEST ONCE CREATE CONTROLLER WORKING
         @user.infected = true
         @user.save
@@ -37,15 +34,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by_id(params[:id])
-    p @user.infected
     if @user.infected == true
-      @events = Post.latest_zombie_posts
-      p "zombie posts is" 
+      @events = Post.latest_zombie_posts 
       stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
     elsif @user.infected == false
       @events = Post.latest_human_posts
-      p "these are posts"
-      p '-----------------------------'
       stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
     else
       flash[:error] = @user.errors.full_messages[0]
@@ -105,8 +98,6 @@ class UsersController < ApplicationController
   def eval_string(boolean_string)
     boolean_string == 'true'
   end
-
-
 end
 
 
