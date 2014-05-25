@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
 
 	attr_accessible :start_time
 
-	after_initialize :set_code_and_times
+	# after_initialize :set_code_and_times
 
 	# def set_code
 	# 	game_code = self.game_code = SecureRandom.hex(3)
@@ -15,8 +15,9 @@ class Game < ActiveRecord::Base
 	# end
 
 	def set_code_and_times
-		self.start_time ||= Time.now + 345600000
-		self.end_time ||= Time.now + 86400000
+		self.start_time = DateTime.current
+		self.end_time = DateTime.current + 90
+		self.save
 	end
 
 	def show_first_message # Game.first MVP ONLY BUG BUG BUG
@@ -39,10 +40,8 @@ class Game < ActiveRecord::Base
 
 	def create_posts(messages)
 		messages.each do |message|
-			p "DOES IT REACH THIS POINT?"
 			@post = Post.create(title: message[:title], body: message[:description], 
 				audience: message[:audience])
-			p Post.all
 		end
 	end
 
