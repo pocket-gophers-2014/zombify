@@ -15,13 +15,38 @@
 	background-size: 100%;
 }
 
-#header {
-	position: fixed;
+.header {
+	position: absolute;
 	top: 0px;
   height:20%;
   background-color:#142900;
   width: 100%;
-  min-height: 20%;
+  // min-height: 20%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  height: 20%;
+  background-color:#142900;
+  width: 100%;
+
+}
+
+#footer {
+  position: fixed;
+  bottom: 0px;
+  height: 30%;
+  background-color:#142900;
+  width: 100%;
+}
+
+#center {
+  background-image: url("Zombie_1.jpg");
+  padding:0;
+  background-repeat: no-repeat;
+/*  background-position: fixed;
+  position:relative;*/
 }
 
 #title {
@@ -49,10 +74,3 @@
 	width: 10%;
 }
 
-#footer {
-	position: fixed;
-	bottom: 0px;
-  height: 20%;
-  background-color:#142900;
-  width: 100%;
-}
