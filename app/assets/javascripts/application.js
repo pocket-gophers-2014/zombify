@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require polling.js
 //= require users.js
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .

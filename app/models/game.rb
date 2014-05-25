@@ -20,7 +20,7 @@ class Game < ActiveRecord::Base
 		self.save
 	end
 
-	def show_first_message # Game.first MVP ONLY BUG BUG BUG
+	def show_first_messages # Game.first MVP ONLY BUG BUG BUG
 		find_message("First Announcement")
 	end
 

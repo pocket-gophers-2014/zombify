@@ -31,5 +31,7 @@ var UserAuthenticationAjax = {
 
 $( document ).ready(function() {
   UserAuthenticationAjax.bindEvents();
+  var polling = new pollingController();
+  polling.startPolling() 
 });
 
