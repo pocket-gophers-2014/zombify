@@ -9,16 +9,19 @@ task :create_game => :environment do
   game.set_code_and_times
 end
 
+# this whole task ought to be refactored.
 task :start_game => :environment do
 	game = Game.first
-	if DateTime.current > game.start_time && DateTime.current < (game.start_time + 1200)
+	if game.after_start_time && game.game_active == false
+
 		game.game_active = true
 		game.save
+
 		game.show_first_message
 		game.show_first_location_message
 	end
-
-	if DateTime.current >= game.start_time + 600 # 2 minutes
+	 
+	if DateTime.current >= game.start_time + 600 # 10 minutes
 		game.show_second_location_message
 	end
 end
