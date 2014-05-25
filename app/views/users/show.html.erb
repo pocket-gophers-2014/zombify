@@ -7,7 +7,7 @@
   <div class="twelve_columns" id="footer">
   <%= link_to "logout", session_path(@user), :method => 'DELETE' %>
     <ul>
-      <li><button id="confront">Battle!</button></li>
+      <li><button><%= link_to "Battle!", new_battle_path, id: "confront", remote: "true" %></button></li>
       <li><button id="rules">View Rules</button></li>
     </nav>
     </ul>
