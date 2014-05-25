@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       cookies[:user_id] = { value: @user.id, expires: 6.days.from_now }
       redirect_to user_path(@user)
     else
-      render :new
+      redirect_to root_path
     end
   end
 
