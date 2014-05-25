@@ -1,7 +1,7 @@
 
-  <div id="feed">
+  <div id="feed" data-user-infected = <%=@user.infected%>
+                 data-user-id = <%= @user.id %>>
   <%= render partial: "event", collection: @events %>
-
   </div>
   <!-- <div class="sidebar2"></div> -->
   <div class="twelve_columns" id="footer">

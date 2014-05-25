@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
 		self.end_time ||= Time.now + 86400000
 	end
 
-	def show_first_message # Game.first MVP ONLY BUG BUG BUG
+	def show_first_messages # Game.first MVP ONLY BUG BUG BUG
 		find_message("First Announcement")
 	end
 
@@ -39,10 +39,8 @@ class Game < ActiveRecord::Base
 
 	def create_posts(messages)
 		messages.each do |message|
-			p "DOES IT REACH THIS POINT?"
 			@post = Post.create(title: message[:title], body: message[:description], 
 				audience: message[:audience])
-			p Post.all
 		end
 	end
 

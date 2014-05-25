@@ -9,15 +9,15 @@ class Stats
 	end
 
 	def self.percent_zombies
-		self.total_zombies.to_f / User.all.count
+		self.total_zombies.to_f / self.total_players
 	end
 
 	def self.percent_humans
-		self.total_humans.to_f / User.all.count
+		self.total_humans.to_f / self.total_players
 	end
 
 	def self.total_players 
-		User.all
+		User.all.count
 	end
 
 end
