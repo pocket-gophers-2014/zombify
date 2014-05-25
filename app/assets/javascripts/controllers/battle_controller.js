@@ -18,8 +18,8 @@ var BattleController = {
   battleAjaxRequest: function(opponent, result){
     console.log("inferno")
     $.ajax({
-      url: 'update', 
-      type: 'PUT', 
+      url: 'update',
+      type: 'PUT',
       data: {opponent: opponent, result: result}
     })
 
@@ -35,4 +35,4 @@ var BattleController = {
 
 
 
-//enter number, check against database,  display result, send info to server, your view updates stats, 
+//enter number, check against database,  display result, send info to server, your view updates stats,

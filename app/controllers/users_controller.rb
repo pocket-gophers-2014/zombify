@@ -57,9 +57,17 @@ class UsersController < ApplicationController
 
   def verify_results(params)
     @winner = eval_string(params["result"])
+    p @winner
+    p "WINNER WOOOWOWOWOWOWOWOWOWWOWOWOWOW"
     handle = parse_opponent_id(params["opponent"])
     @opponent = User.find_by_handle(handle) || "invalid"
     return @result = "invalid user code" if @opponent == "invalid"
+    determine_response(@opponent, @winner)
+  end
+
+  def determine_response(opponent, winner)
+    @opponent = opponent
+    @winner = winner
     @user = User.find(session[:id])
     return @result = "Bite yourself all you want, I guess..." if @opponent == @user
     if @user.infected && @opponent.infected
@@ -67,7 +75,6 @@ class UsersController < ApplicationController
     elsif !@user.infected && !@opponent.infected
       return @result = "Why are you wasting precious cures?!"
     elsif @user.infected && @winner ##zombie user bites human
-      p @winner
       Post.new(body:"#{@user.name} has bitten #{@opponent.name}", title:"New Zombie", audience:"both")
       @user.update_attributes(points: @user.points += 300)
       @user.save
@@ -79,14 +86,14 @@ class UsersController < ApplicationController
       Post.new(body:"#{@opponent.name} has escaped #{@user.name}", title:"Near Miss", audience:"both")
       @opponent.update_attributes(points: @opponent.points += 100)
       @opponent.save
-      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... " 
+      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... "
     elsif @user.can_cure && @winner ##human cures zombie
       Post.new(body:"#{@opponent.name} has been cured by #{@user.name}", title:"Human Reversion", audience:"both")
       @user.update_attributes(points: @user.points += 500)
       @user.save
       @opponent.update_attributes(infected: false)
       @opponent.save
-      return @result = "You have successfully applied the cure!" 
+      return @result = "You have successfully applied the cure!"
     elsif @user.can_cure && !@winner ##human fails zombie cure
       Post.new(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
       Post.new(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
@@ -106,7 +113,7 @@ class UsersController < ApplicationController
       ##check the conditonals in the rest of the game logic
       ##return text to render to the battle result page
       return @result = "You do not have the cure! What are you doing!?"
-    else      
+    else
       return @result = "Something has gone wrong."
     end
     #check conditionals?

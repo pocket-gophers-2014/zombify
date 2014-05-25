@@ -5,12 +5,12 @@ Battle.prototype = {
     return Math.random();
   },
   determineFate: function(){
-    if (this.mixItUp < .5) {
+    if (this.mixItUp() < .5) {
       return true
     } else {
       return false
     }
 
   }
-  
+
 }
