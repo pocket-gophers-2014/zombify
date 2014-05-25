@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20140524214332) do
     t.string   "state",       :default => "California"
     t.string   "title",       :default => "Zombie Apocalypse"
     t.boolean  "game_active", :default => false
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
   end

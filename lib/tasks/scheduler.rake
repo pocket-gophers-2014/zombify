@@ -8,7 +8,7 @@ task :create_game => :environment do
 end
 
 task :start_game => :environment do
-	p DateTime.now
+	p DateTime.current
 	p Game.first.start_time
 	p "********************"
 	if DateTime.current > Game.first.start_time
