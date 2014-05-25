@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       end
       redirect_to user_path(@user)
     else
+      flash[:error] = @user.errors
       redirect_to root_path
     end
 

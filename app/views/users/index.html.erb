@@ -4,6 +4,14 @@
   </div>
   <div id ='center'>
   	<div id="login_signup">
+      <h4 class='error'>
+        <% if flash[:error] -%>
+          <% flash[:error].full_messages.each do |message| %>
+            <%= message %> <br>
+          <%end %>
+          Your SignIn Failed, try again.
+        <% end -%>
+      </h4>
   		<button id='login'>LogIn</button><br>
   		<button id='signup'>SignUp</button>
   	</div>
