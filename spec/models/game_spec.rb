@@ -9,6 +9,7 @@ describe Game do
 	end
 
 	it "show_first_message should show 1 message for zombies" do
+		@game.show_first_message
 		expect(Post.where(audience: "zombie").count).to eq(1)
 	end
 

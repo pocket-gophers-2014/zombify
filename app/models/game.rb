@@ -18,7 +18,7 @@ class Game < ActiveRecord::Base
 	end
 
 	def show_first_message # Game.first MVP ONLY BUG BUG BUG
-		find_message("First Annoucement")
+		find_message("First Announcement")
 	end
 
 	def show_first_location_message
