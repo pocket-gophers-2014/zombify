@@ -5,7 +5,7 @@ class AddMessages < ActiveRecord::Migration
       t.text :description
       t.string :audience
       t.boolean :has_been_called, :default => false
-      t.belongs_to :event
+      t.belongs_to :game
     end
   end
 end

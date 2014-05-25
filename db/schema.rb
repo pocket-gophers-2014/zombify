@@ -13,22 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20140524214332) do
 
-  create_table "events", :force => true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.string   "status"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "location_description"
-    t.string   "location_name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "zip"
-    t.string   "audience"
-    t.integer  "game_id"
-  end
-
   create_table "games", :force => true do |t|
     t.string   "city",        :default => "San Francisco"
     t.string   "game_code"
@@ -46,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20140524214332) do
     t.text    "description"
     t.string  "audience"
     t.boolean "has_been_called", :default => false
-    t.integer "event_id"
+    t.integer "game_id"
   end
 
   create_table "posts", :force => true do |t|
