@@ -1,4 +1,5 @@
 class Message < ActiveRecord::Base
-	belongs_to :event
 	attr_accessible :title, :description, :audience
+
+	belongs_to :game
 end
