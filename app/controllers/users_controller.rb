@@ -51,28 +51,47 @@ class UsersController < ApplicationController
     elsif !@user.infected && !@opponent.infected
       return @result = "Why are you wasting precious cures?!"
     elsif @user.infected && @winner ##zombie user bites human
+      Post.new(body:"#{@user.name} has bitten #{@opponent.name}", title:"New Zombie", audience:"both")
+      @user.update_attributes(points: @user.points += 300)
+      @user.save
+      @opponent.update_attributes(infected: true)
+      @opponent.save
+      return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
+    elsif @user.infected && !@winner ##zombie user misses human
+      Post.new(body:"#{@opponent.name} has escaped #{@user.name}", title:"Near Miss", audience:"both")
+      @opponent.update_attributes(points: @opponent.points += 100)
+      @opponent.save
+      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... " 
+    elsif @user.can_cure && @winner ##human cures zombie
+      Post.new(body:"#{@opponent.name} has been cured by #{@user.name}", title:"Human Reversion", audience:"both")
+      @user.update_attributes(points: @user.points += 500)
+      @user.save
+      @opponent.update_attributes(infected: false)
+      @opponent.save
+      return @result = "You have successfully applied the cure!" 
+    elsif @user.can_cure && !@winner ##human fails zombie cure
+      Post.new(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
+      Post.new(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
+      @user.update_attributes(infected: true)
+      @user.save
+      @opponent.update_attributes(points: @opponent.points += 100)
+      return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
+    elsif @user.can_cure == false
+      @opponent.update_attributes(points: @opponent.points += 100)
+      @user.save
+      @opponent.update_attributes(infected: false)
+      @opponent.save
       ##create 2 new posts, one with zombie audience, one with human audience
       ##update both users if they have earned points
       ##update people's secret codes?
       ##update session?
       ##check the conditonals in the rest of the game logic
       ##return text to render to the battle result page
-      return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
-    elsif @user.infected && !@winner ##zombie user misses human
-      #@user.update_attributes(infected: false)
-      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... " 
-    elsif @user.can_cure && @winner ##human cures zombie
-      #@opponent.update_attributes(infected: false)
-      return @result = "You have successfully applied the cure!" 
-    elsif @user.can_cure && !@winner ##human fails zombie cure
-      #@user.update_attributes(infected: true)
-      return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
-    elsif @user.can_cure == false
       return @result = "You do not have the cure! What are you doing!?"
     else      
       return @result = "Something has gone wrong."
     end
-
+    #check conditionals?
   end
 
   def parse_opponent_id(opponent)
