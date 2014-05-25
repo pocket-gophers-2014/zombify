@@ -14,14 +14,22 @@ class Game < ActiveRecord::Base
 	# 	game_code
 	# end
 
-	def set_code_and_times
-		self.start_time = DateTime.current
-		self.end_time = DateTime.current + 0.0040
+	def set_code_and_times 
+		self.start_time = DateTime.current 
+		self.end_time = DateTime.current + 0.0080
 		self.save
 	end
 
 	def show_first_message # Game.first MVP ONLY BUG BUG BUG
 		find_message("First Announcement")
+	end
+
+	def show_first_location_message
+		find_message("First Location Announcement")
+	end
+
+	def show_second_location_message
+		find_message("Second Location Announcement")
 	end
 
 	# def show_first_location_message
