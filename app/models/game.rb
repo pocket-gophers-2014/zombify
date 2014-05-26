@@ -15,7 +15,7 @@ class Game < ActiveRecord::Base
 	# end
 
 	def set_code_and_times
-		self.start_time = DateTime.current + 0.0069 # slightly under 10 minutes
+		self.start_time = DateTime.current #+ 0.0069 # slightly under 10 minutes
 		self.end_time = DateTime.current + 1 # 1 day
 		self.save
 	end
@@ -43,6 +43,9 @@ class Game < ActiveRecord::Base
 
 	def find_message(title)
 		messages = Game.first.messages.where(title: title)
+		messages = messages.select do |message|
+			message.has_been_called == false
+		end
 		create_posts(messages)
 	end
 
