@@ -25,6 +25,7 @@ class CheckinsController < ApplicationController
   end
 
   def distance(a, b)
+
     rad_per_deg = Math::PI/180  # PI / 180
     rkm = 6371                  # Earth radius in kilometers
     rm = rkm * 1000             # Radius in meters
