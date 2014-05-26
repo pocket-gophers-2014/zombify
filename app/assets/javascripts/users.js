@@ -30,8 +30,9 @@ var UserAuthenticationAjax = {
 }
 
 $( document ).ready(function() {
-  UserAuthenticationAjax.bindEvents();
-  var polling = new pollingController();
+  view = new View();
+  UserAuthenticationAjax.bindEvents(view);
+  var polling = new pollingController(view);
   polling.startPolling();
   BattleController.bindEvents(polling);
 });
