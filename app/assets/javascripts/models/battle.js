@@ -1,5 +1,6 @@
-var Battle = function(){
+var Battle = function() {
 }
+
 Battle.prototype = {
   mixItUp: function(){
     return Math.random();
