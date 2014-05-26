@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     if @user.infected == true
       @events = Post.latest_zombie_posts
-      
+
       stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
     elsif @user.infected == false
       @events = Post.latest_human_posts
@@ -142,8 +142,6 @@ class UsersController < ApplicationController
   end
 
   def remaining_stats(zombie_percentage)
-    p zombie_percentage
-    p "============================="
     zombie_messages = Message.zombie_messages
     human_messages = Message.human_messages
     case zombie_percentage
