@@ -5,7 +5,6 @@
   </div>
   <!-- <div class="sidebar2"></div> -->
   <div id="footer">
-
       <li><button><%= link_to "Battle!", new_battle_path, id: "confront", remote: "true" %></button></li>
       <li><button id="checkin"><a href="#">Send Location</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"
@@ -13,7 +12,6 @@
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
       <li><h2 id = 'handle'>Code: <%= @user.handle%></h2></li>
     </ul>
-
   </div>
 
 <!-- Hidden light box below -->
