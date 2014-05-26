@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20140526021125) do
   create_table "ingredients", :force => true do |t|
     t.string  "name"
     t.string  "code"
-    t.float   "lattitude"
-    t.float   "longituderake"
+    t.float   "latitude"
+    t.float   "longitude"
     t.boolean "discovered"
     t.boolean "harvested"
     t.string  "title"

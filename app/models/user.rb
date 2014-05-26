@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
 
   def generate_handle
-    rand(100000).to_s
+    self.id + 999
   end
 
   def should_be_infected
