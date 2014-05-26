@@ -27,10 +27,12 @@ var BattleController = {
     .done(this.renderBattleResults)
   },
   renderBattleResults: function(response){
-    console.log(response)
     $('#feed').empty()
     $('#feed').prepend(response)
-
+    $('.confirm').on('click', BattleController.returnToFeed)
+  },
+  returnToFeed: function() {
+    location.reload()
   }
 }
 
