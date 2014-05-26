@@ -10,6 +10,9 @@ var CheckinController = {
     console.log(e)
     var userLat = e.coords.latitude
     var userLong = e.coords.longitude
+    CheckinController.compareLocation(userLat, userLong)
+
+
   }, 
   handle_errors: function(error){
   switch(error.code)
@@ -26,6 +29,19 @@ var CheckinController = {
       default: alert("unknown error");
       break;
     }
+  }, 
+
+  compareLocation: function(lat, long){
+    var ajaxLoc = $.ajax({
+      url: '/checkins', 
+      type: 'POST', 
+      data: {userLat: lat, userLong: long}
+    })
+    .done(CheckinController.renderFeedback)
+  },
+    
+  renderFeedback: function(){
+    console.log("Yo")
   }
 
 }
