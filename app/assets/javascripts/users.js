@@ -26,13 +26,13 @@ var UserAuthenticationAjax = {
     $('#login_signup').remove()
     $('p').remove()
     $('#center').append(response)
-  }
+  },
 }
 
 $( document ).ready(function() {
   UserAuthenticationAjax.bindEvents();
   BattleController.bindEvents();
-  //var polling = new pollingController();
-  //polling.startPolling() 
+  var polling = new pollingController();
+  polling.startPolling();
 });
 
