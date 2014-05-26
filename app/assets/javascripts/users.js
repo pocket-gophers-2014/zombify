@@ -1,37 +1,38 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+function UserAuthenticationAjax(view) {
+  this.view = view
+}
 
-var UserAuthenticationAjax = {
+UserAuthenticationAjax.prototype = {
   bindEvents: function() {
-    $('#log_in').on('click', UserAuthenticationAjax.initiateLogIn);
-    $('#sign_up').on('click', UserAuthenticationAjax.initiateSignUp);
+    $(this.view.loginButton).on("click", this.initiateLogIn.bind(this))
+    $(this.view.signupButton).on("click", this.initiateSignUp.bind(this))
   },
+
   initiateLogIn: function() {
-    $.ajax({
+    getSignIn = $.ajax({
       url: '/sessions/new',
       method: 'get'
     })
-    .done(UserAuthenticationAjax.appendForm)
+    getSignIn.done(function(response){
+      this.view.appendForm(response)
+    }.bind(this))
   },
 
   initiateSignUp: function() {
-    $.ajax({
+    console.log(this.view)
+    getSignUp = $.ajax({
       url: '/users/new',
       method: 'get'
     })
-    .done(UserAuthenticationAjax.appendForm)
-  },
-
-  appendForm: function(response) {
-    $('#login_signup').remove()
-    $('p').remove()
-    $('#center').append(response)
+    getSignUp.done(function(results){
+      this.view.appendForm(results)}.bind(this))
   },
 }
 
 $( document ).ready(function() {
   view = new View();
-  UserAuthenticationAjax.bindEvents(view);
+  userAuth = new UserAuthenticationAjax(view)
+  userAuth.bindEvents();
   var polling = new pollingController(view);
   polling.startPolling();
   BattleController.bindEvents(polling);
