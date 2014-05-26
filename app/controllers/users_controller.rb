@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @human_stats = Stats.total_humans
+    @zombie_stats = Stats.total_zombies
     @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
   end
 
