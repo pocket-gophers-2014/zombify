@@ -35,8 +35,9 @@ $( document ).ready(function() {
   userAuth.bindEvents();
   var polling = new pollingController(view);
   polling.startPolling();
-  BattleController.bindEvents(polling);
-  UserAuthenticationAjax.bindEvents();
   CheckinController.bindEvents();
+  BattleController.bindEvents(polling);
+  userAuth.bindEvents();
+ 
 });
 
