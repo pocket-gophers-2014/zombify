@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-	attr_accessible :email, :phone_number, :password, :handle, :infected, :name
+	attr_accessible :email, :phone_number, :password, :handle, :infected, :name, :points, :cures, :infections, :mod
 
   belongs_to :game
   belongs_to :battle
@@ -24,5 +24,6 @@ class User < ActiveRecord::Base
     num = (1..100).to_a.sample
     num > 75
   end
+
 
 end
