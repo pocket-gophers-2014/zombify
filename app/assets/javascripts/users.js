@@ -7,7 +7,6 @@ var UserAuthenticationAjax = {
     $('#sign_up').on('click', UserAuthenticationAjax.initiateSignUp);
   },
   initiateLogIn: function() {
-    debugger
     $.ajax({
       url: '/sessions/new',
       method: 'get'
@@ -24,7 +23,6 @@ var UserAuthenticationAjax = {
   },
 
   appendForm: function(response) {
-    debugger
     $('#login_signup').remove()
     $('p').remove()
     $('#center').append(response)
@@ -35,7 +33,7 @@ $( document ).ready(function() {
   UserAuthenticationAjax.bindEvents();
   BattleController.bindEvents();
   CheckinController.bindEvents();
-  // var polling = new pollingController();
-  // polling.startPolling() 
+  var polling = new pollingController();
+  polling.startPolling() 
 });
 

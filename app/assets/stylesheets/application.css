@@ -54,7 +54,11 @@ html p {
  }
 
  html button {
-	background-color: #273519
+	background-color: #949470
+;
+    border-radius: 5px;
+    border: 2px solid #273519;
+    color: black;
 }
 
 html button:hover {
@@ -69,11 +73,12 @@ html ul {
 
 html li {
     float: right;
-    margin: 1%;
+    margin-right: 5%;
+    /*margin: 2%;*/
 }
 
 html ul li a {
-    color: white;
+    color: black;
 }
 
 /*.blue {
@@ -115,9 +120,9 @@ HOMEPAGE*/
     border-radius: 5px;
     border: 2px solid gray;
     background-color: #FF9900;
-    width: 50%;
+    width: 80%;
     text-align: center;
-    margin-left: 25%;
+    margin-left: 10%;
     margin-top: 2%;
 }
 
