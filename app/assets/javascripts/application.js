@@ -13,9 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require polling.js
-//= require users.js
-//= require_tree ../../../vendor/assets/javascripts/.
-//= require_tree .
+//= require view
+//= require polling
+//= require controllers/battle_controller
+//= require controllers/user_event_controller
+//= require models/battle
+//= require users
+//= require_self
 
-$(function(){ $(document).foundation(); });
+$(function() {
+  $(document).foundation();
+});
