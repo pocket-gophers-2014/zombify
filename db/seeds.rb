@@ -8,6 +8,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# locations = [[ 37.784173, -122.408087],[37.776645, -122.394187],[40.761835, -73.977303],[40.723255, -73.986153],[37.784816, -122.397387]]
+
 cure_ingredients = ["air", "earth", "wind", "water", "heart"]
 locations = ["Market and Fifth", "Fourth and King", "MoMa", "Yerba Buena, behind the waterfall", "633 Folsom"]
 
