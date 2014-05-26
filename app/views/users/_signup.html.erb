@@ -1,14 +1,16 @@
-<h1>signup</h1>
+<div class = "five columns offset-by-three"id = 'signup'>
+  <h1>Sign Up</h1>
 
-<%= form_for @user, :html => { :id => "sign_up" } do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field(:name, placeholder: 'First Last') %>
-  <%= f.label :phone_number %>
-  <%= f.telephone_field(:phone_number, placeholder: 'XXX-XXX-XXXX') %>
-  <%= f.label :email %>
-  <%= f.email_field(:email, placeholder: 'ex: joe@joe.com')  %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit("Sign Up") %>
-<% end %>
+  <%= form_for @user, :html => { :id => "sign_up" } do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field(:name, placeholder: 'First Last') %>
+    <%= f.label :phone_number %>
+    <%= f.telephone_field(:phone_number, placeholder: 'XXX-XXX-XXXX') %>
+    <%= f.label :email %>
+    <%= f.email_field(:email, placeholder: 'ex: joe@joe.com')  %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.submit("Sign Up") %>
+  <% end %>
+</div>
 

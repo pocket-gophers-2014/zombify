@@ -114,6 +114,14 @@ HOMEPAGE*/
 	padding-bottom: 20%;
 }
 
+#login {
+    margin-top: 15%;
+}
+
+#signup {
+    margin-top: 15%;
+}
+
 #title {
 	color: white;
 }
