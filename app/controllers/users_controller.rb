@@ -105,18 +105,20 @@ class UsersController < ApplicationController
     elsif @user.can_cure == false
       @opponent.update_attributes(points: @opponent.points += 100)
       @opponent.update_attributes(infected: false)
-      ##create 2 new posts, one with zombie audience, one with human audience
+      Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
+      Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
+      ##create new post, with audience of "both"
       ##update both users if they have earned points
       ##update people's secret codes?
       ##update session?
       ##check the conditonals in the rest of the game logic
       ##return text to render to the battle result page
       check_stats
-      return @result = "You do not have the cure! What are you doing!?"
+      return @result = "You do not have the cure! You have been bitten. Brainsssss...."
     else
       return @result = "Something has gone wrong."
     end
-    #check conditionals?
+    #check conditional stats in each if branch?
   end
 
   def parse_opponent_id(opponent)
