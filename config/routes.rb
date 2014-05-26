@@ -7,6 +7,7 @@ Zombify::Application.routes.draw do
   resources :sessions
   resources :pages
   resources :battles
+  resources :checkins
 
 
   # The priority is based upon order of creation:

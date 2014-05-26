@@ -13,11 +13,11 @@
  *= require_tree .
  */
 * {
-	font-family: 'Rock Salt', cursive; 
+  font-family: 'Rock Salt', cursive; 
 }
 
 html p {
-		font-family: tahoma;
+	font-family: tahoma;
 	}
 
 
@@ -54,8 +54,7 @@ html p {
  }
 
  html button {
-	background-color: #949470
-;
+	background-color: #949470;
     border-radius: 5px;
     border: 2px solid #273519;
     color: black;
@@ -67,11 +66,12 @@ html button:hover {
 }
 
 html ul {
-    list-style-type: none;
+    
     margin-right: 25%
 }
 
 html li {
+    list-style-type: none;
     float: right;
     margin-right: 5%;
     /*margin: 2%;*/
