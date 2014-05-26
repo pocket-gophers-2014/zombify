@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require polling.js
 //= require users.js
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
+
+$(function(){ $(document).foundation(); });

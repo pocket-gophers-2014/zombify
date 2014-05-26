@@ -1,25 +1,14 @@
-<div class=".content">
-  <div class='header'>
-  	<h1 id = 'title'>Zombify</h1>
-  </div>
-  <div id ='center'>
+  <div id = "center">
   	<div id="login_signup">
-      <h4 class='error'>
         <% if flash[:error] -%>
+         <h4 class='error'>
           <% flash[:error].full_messages.each do |message| %>
             <%= message %> <br>
           <%end %>
           Your SignIn Failed, try again.
+        </h4>
         <% end -%>
-      </h4>
-  		<button id='login'>LogIn</button><br>
-  		<button id='signup'>SignUp</button>
+  		<button id='log_in'>LogIn</button><br>
+  		<button id='sign_up'>SignUp</button>
   	</div>
   </div>
-  <div class='footer'>
-  	<div id="about_game">
-  		<p> Zombify is a real-time RPG that combines elements of scavenger hunting and Zombie madness!</p>
-  		<p>A new game starts every Friday at 5pm. Sign up now to join the next available game!<p>
-  	</div>
-  </div>
-</div>
