@@ -11,7 +11,7 @@
       <li><button id="rules" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
-      <li><h3 id="handle">Your Code: <%= @user.handle %> </h3></li>
+      <li><h2 id="handle">Code: <%= @user.handle%> </h2></li>
     </ul>
 
   </div>
@@ -20,7 +20,7 @@
   <div id="light" class="white_content"><h1>Rules</h1>
     <ul id = "rules_list">
       <li>1. Humans wear your bandana clearly visible on your arm or leg. Zombies wear your bandana clearly on your head.</li>
-      <li>2. If an opponent taps you to do battle, you must stop and allow him or her enter your code into their phone for battle. </li>
+      <li>2. If an opponent taps you to do battle, you must stop and allow him or her enter your code into their phone for battle. #</li>
       <li>3. Don't leave the city for the duration of the game</li>
       <li>4. Don't communicate your location to the opposite team</li>
     </ul>
