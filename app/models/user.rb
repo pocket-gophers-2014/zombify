@@ -25,4 +25,5 @@ class User < ActiveRecord::Base
     num > 75
   end
 
+
 end

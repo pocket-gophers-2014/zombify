@@ -41,7 +41,7 @@ describe UsersController do
       100.times{
         user = User.create(email: Faker::Internet.email, password: Faker::Number.number(6))
         num = (1..100).to_a.sample
-        user.infected = true if num > 75 
+        user.infected = true if num > 75
         user.save
       }
       total = User.where(infected: true).count
