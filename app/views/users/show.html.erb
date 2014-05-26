@@ -5,10 +5,11 @@
   </div>
   <!-- <div class="sidebar2"></div> -->
   <div class="twelve_columns" id="footer">
-  <%= link_to "logout", session_path(@user), :method => 'DELETE' %>
     <ul>
       <li><button><%= link_to "Battle!", new_battle_path, id: "confront", remote: "true" %></button></li>
+      <li><button id="checkin">Send Location</button></li>
       <li><button id="rules">View Rules</button></li>
-    </nav>
+      <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
     </ul>
+
   </div>
