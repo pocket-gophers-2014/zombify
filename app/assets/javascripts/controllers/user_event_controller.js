@@ -32,16 +32,10 @@ var CheckinController = {
   }, 
 
   compareLocation: function(lat, long){
-    var ajaxLoc = $.ajax({
-      url: '/checkins', 
-      type: 'POST', 
+    $.ajax({
+      url: '/checkins/new', 
+      type: 'GET', 
       data: {userLat: lat, userLong: long}
     })
-    .done(CheckinController.renderFeedback)
-  },
-    
-  renderFeedback: function(){
-    console.log("Yo")
   }
-
 }
