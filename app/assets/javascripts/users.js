@@ -31,7 +31,7 @@ UserAuthenticationAjax.prototype = {
 
 $( document ).ready(function() {
   view = new View();
-  userAuth = new UserAuthenticationAjax(view)
+  userAuth = new UserAuthenticationAjax(view);
   userAuth.bindEvents();
   var polling = new pollingController(view);
   polling.startPolling();
