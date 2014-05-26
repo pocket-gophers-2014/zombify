@@ -1,5 +1,6 @@
 var BattleController = {
-  bindEvents: function() {
+  bindEvents: function(polling) {
+    polling.stopPolling();
     $('#confront').on('ajax:success', this.renderBattleForm.bind(this));
     $('#feed').on('submit', 'form#new-battle', this.launchBattle.bind(this));
   },
@@ -29,6 +30,7 @@ var BattleController = {
     console.log(response)
     $('#feed').empty()
     $('#feed').prepend(response)
+
   }
 }
 
