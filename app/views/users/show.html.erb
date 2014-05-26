@@ -4,11 +4,12 @@
   <%= render partial: "event", collection: @events %>
   </div>
   <!-- <div class="sidebar2"></div> -->
-  <div class="twelve_columns" id="footer">
-    <ul>
+  <div id="footer">
+
       <li><button><%= link_to "Battle!", new_battle_path, id: "confront", remote: "true" %></button></li>
       <li><button id="checkin">Send Location</button></li>
-      <li><button id="rules" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">View Rules</button></li>
+      <li><button id="rules" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
     </ul>
 

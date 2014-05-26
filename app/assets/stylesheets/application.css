@@ -9,8 +9,148 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require base
- *= require layout
- *= require skeleton
+ *= require foundation_and_overrides
  *= require_tree .
  */
+* {
+	font-family: 'Rock Salt', cursive; 
+}
+
+html p {
+		font-family: tahoma;
+	}
+
+
+ html header {
+ 	background-color: #273519;
+ 	color: white;
+ 	text-align: center;
+ 	padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    height: 15%;
+ }
+
+ html h1, html h2, html h3  {
+ 	font-family: 'Rock Salt', cursive; 
+ 	margin: 0;
+    padding: 0;
+ }
+
+#footer {
+ 	background-color: #273519;
+ 	height: auto;
+    width: 100%;
+    position:fixed;
+    height: 15%;
+    bottom: 0px;
+ }
+
+ footer p {
+ 	font-size: 10px;
+ 	text-align: center;
+ 	margin: 0;
+ }
+
+ html button {
+	background-color: #273519
+}
+
+html button:hover {
+    background-color: #4D704D
+
+}
+
+html ul {
+    list-style-type: none;
+    margin-right: 25%
+}
+
+html li {
+    float: right;
+    margin: 1%;
+}
+
+html ul li a {
+    color: white;
+}
+
+/*.blue {
+	background-color: blue;
+}
+
+.left p {
+	color: red;
+}
+
+.right p {
+	color: green;
+}*/
+
+/*
+HOMEPAGE*/
+
+#login_signup {
+	background-image: url("Zombie_1.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 20%;
+	padding-bottom: 20%;
+}
+
+#title {
+	color: white;
+}
+
+/*/Users/*/
+
+#feed {
+    margin-top: 15%;
+}
+
+#post_container {
+    border-radius: 5px;
+    border: 2px solid gray;
+    background-color: #FF9900;
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+    margin-top: 2%;
+}
+
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+} 
+.white_content {
+		text-align: center;
+    display: none;
+    position: absolute;
+    top: 25%%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    padding: 16px;
+    border: 16px solid orange;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+}
+#hide_me {
+	margin: 20% auto 0 auto;
+}
+#rules_list {
+	margin-top: 5%;
+}

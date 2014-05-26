@@ -66,4 +66,36 @@ class Game < ActiveRecord::Base
 		DateTime.current > self.start_time
 	end
 
+	def alert_users(kind)
+  	User.all.each do |user|
+	  	puts "---------------------"
+	  	p "Would send alert to #{user.phone.to_s}"
+	  	account_sid = 'ACabd565c09d3a7ac29013e490baf50742'
+			auth_token = '64f02d85badd951102329f750bc0bc8e'
+			if kind == 'game_starting'
+				message = 'The game is starting! Log in to your account at zomb.herokuapp.com to play!'
+	  	else 
+	  		message = 'The game is over. Thanks for joining us. You can check your stats on the website for the next two hours before the game resets in preparation for next week.'
+	  	end
+
+			begin
+				client = Twilio::REST::Client.new account_sid, auth_token 
+
+				client.account.messages.create({
+					:from => '+13147363622', 
+					:to => @user.phone.to_s, 
+					:body => message,  
+				})
+			rescue Twilio::REST::RequestError => e
+				puts "Error: #{e.message}"
+			end
+		end
+	end
+
+
+
+
+
+
+
 end
