@@ -6,7 +6,10 @@ function pollingController(){
 pollingController.prototype = {
 	startPolling: function() {
 		console.log('creating timer')
+		if (document.location.href.indexOf("users") !== -1) {
+			console.log
 		this.pollingTimerId = setInterval(this.pollAjax.bind(this), this.timer);
+		}
 	},
 
 	stopPolling: function() {

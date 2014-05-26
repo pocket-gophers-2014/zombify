@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
-
+    if cookies[:user_id]
+      @user = User.find(cookies[:user_id])
+      redirect_to user_path(@user)
+    end
   end
 
   def create
@@ -37,6 +40,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     if @user.infected == true
       @events = Post.latest_zombie_posts
+      
       stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
     elsif @user.infected == false
       @events = Post.latest_human_posts
