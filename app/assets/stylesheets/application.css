@@ -81,6 +81,11 @@ html a {
     color: black;
 }
 
+html a:hover {
+    color: white;
+}
+
+
 /*
 HOMEPAGE*/
 
@@ -100,6 +105,10 @@ HOMEPAGE*/
 
 #sign_up, #log_in {
     opacity: .8;
+}
+
+#login, #signup {
+    margin-top: 15%;
 }
 
 /*/Users/*/
@@ -150,4 +159,8 @@ HOMEPAGE*/
 }
 #rules_list {
 	margin-top: 5%;
+}
+
+#handle {
+    color: white;
 }
