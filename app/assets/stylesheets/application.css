@@ -46,6 +46,10 @@ html p {
     color: white;
  }
 
+#handle {
+    color:white;
+ }
+
 #footer {
  	background-color: #273519;
  	height: auto;
