@@ -13,7 +13,7 @@
  *= require_tree .
  */
 * {
-  font-family: 'Rock Salt', cursive; 
+  font-family: 'Rock Salt', cursive;
 }
 
 html p {
@@ -33,9 +33,17 @@ html p {
  }
 
  html h1, html h2, html h3  {
- 	font-family: 'Rock Salt', cursive; 
+ 	font-family: 'Rock Salt', cursive;
  	margin: 0;
     padding: 0;
+ }
+
+ html a {
+    color: black;
+ }
+
+ html a:hover {
+    color: white;
  }
 
 #footer {
@@ -66,7 +74,7 @@ html button:hover {
 }
 
 html ul {
-    
+
     margin-right: 25%
 }
 
@@ -138,7 +146,7 @@ HOMEPAGE*/
     -moz-opacity: 0.8;
     opacity:.80;
     filter: alpha(opacity=80);
-} 
+}
 .white_content {
 		text-align: center;
     display: none;
