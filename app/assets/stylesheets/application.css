@@ -9,8 +9,57 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require base
- *= require layout
- *= require skeleton
+ *= require foundation_and_overrides
  *= require_tree .
  */
+
+ html header {
+ 	background-color: black;
+ 	color: white;
+ 	text-align: center;
+ 	padding: 10px;
+ }
+
+ html h1 {
+ 	font-family: 'Rock Salt', cursive; 
+ 	color: white;
+ 	margin: 0;
+ }
+
+ html footer {
+ 	background-color: gray;
+ 	height: auto;
+ }
+
+ footer p {
+ 	font-size: 10px;
+ 	text-align: center;
+ 	margin: 0;
+ }
+
+.blue {
+	background-color: blue;
+}
+
+.left p {
+	color: red;
+}
+
+.right p {
+	color: green;
+}
+
+/*
+HOMEPAGE*/
+
+#login_signup {
+	background-image: url("Zombie_1.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height: 100%;
+	text-align: center;
+	padding-top: 20%;
+	padding-bottom: 20%;
+}
+
+

@@ -7,6 +7,7 @@ var UserAuthenticationAjax = {
     $('#signup').on('click', UserAuthenticationAjax.initiateSignUp);
   },
   initiateLogIn: function() {
+    debugger
     $.ajax({
       url: '/sessions/new',
       method: 'get'
@@ -23,6 +24,7 @@ var UserAuthenticationAjax = {
   },
 
   appendForm: function(response) {
+    debugger
     $('#login_signup').remove()
     $('p').remove()
     $('#center').append(response)
