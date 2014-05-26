@@ -5,24 +5,23 @@
   </div>
   <!-- <div class="sidebar2"></div> -->
   <div id="footer">
-  <%= link_to "logout", session_path(@user), :method => 'DELETE' %>
-    <ul>
+
       <li><button><%= link_to "Battle!", new_battle_path, id: "confront", remote: "true" %></button></li>
+      <li><button id="checkin"><a href="#">Send Location</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
-    </nav>
+      <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
     </ul>
+
   </div>
 
 <!-- Hidden light box below -->
   <div id="light" class="white_content"><h1>Rules</h1>
     <ul id = "rules_list">
-      <li>1. Keep your tag visible at all times</li>
-      <li>2. If an opponent taps you to do battle, you must stop and allow him or her to read your tag #</li>
+      <li>1. Humans wear your bandana clearly visible on your arm or leg. Zombies wear your bandana clearly on your head.</li>
+      <li>2. If an opponent taps you to do battle, you must stop and allow him or her enter your code into their phone for battle. #</li>
       <li>3. Don't leave the city for the duration of the game</li>
       <li>4. Don't communicate your location to the opposite team</li>
-      <li>5. Zombies must wear their headbands on their heads</li>
-      <li>6. Humans must wear their headbands on their arms</li>
     </ul>
     <button id = "hide_me" href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';
     document.getElementById('fade').style.display='none'">I got it, thanks!</button>

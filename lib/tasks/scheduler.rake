@@ -14,7 +14,7 @@ task :create_game => :environment do
   game.set_code_and_times
 end
 
-# this whole task ought to be refactored.
+# this whole task ought to be refactored.  Message.has_been_called
 task :start_game => :environment do
 	game = Game.first
 	if game.after_start_time && game.game_active == false
