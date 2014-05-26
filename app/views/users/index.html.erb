@@ -1,15 +1,16 @@
+<div id = "center">
+ <div id="login_signup">
+  <% if flash[:error] -%>
+  <h4 class='error'>
+    <% flash[:error].full_messages.each do |message| %>
+    <%= message %> <br>
+    <%end %>
+    Your SignIn Failed, try again.
+  </h4>
+  <% end -%>
+  <button id='log_in'>LogIn</button><br>
+  <button id='sign_up'>SignUp</button>
+</div>
 
-  <div id = "center">
-  	<div id="login_signup">
-        <% if flash[:error] -%>
-         <h4 class='error'>
-          <% flash[:error].full_messages.each do |message| %>
-            <%= message %> <br>
-          <%end %>
-          Your SignIn Failed, try again.
-        </h4>
-        <% end -%>
-  		<button id='log_in'>LogIn</button><br>
-  		<button id='sign_up'>SignUp</button>
-  	</div>
-  </div>
+<div id="footer">
+</div>
