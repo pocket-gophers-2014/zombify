@@ -8,8 +8,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+
+locations_lats_long = [[ 37.784173, -122.408087],[37.776645, -122.394187],[40.761835, -73.977303],[40.723255, -73.986153],[37.784816, -122.397387]]
+
 cure_ingredients = ["air", "earth", "wind", "water", "heart"]
 locations = ["Market and Fifth", "Fourth and King", "MoMa", "Yerba Buena, behind the waterfall", "633 Folsom"]
+
+locations.each_with_index do |location, index|
+	Ingredient.create(name: cure_ingredients[index],  code: rand(1000000), latitude: locations_lats_long[index][0], longitude: locations_lats_long[index][1], discovered: false, harvested: false, title: location, counter: 0, city: 'San Francisco', state: 'California', zip: 94122 )
+end
 
 zombie_messages = [
 	["First Announcement","I am the hive-mind. You and all of my zombie children are an extension of my own self - my eyes and ears, my hands and feet. I will speak to you from time to time to tell you of events that affect the zombie horde.Your primary goal is to grow the zombie horde by consuming humans. Each human you convert increases the strength of the horde."],
@@ -26,7 +34,7 @@ zombie_messages = [
 	["Fourth Cure ingredient gathered","Rauugh! The humans only lack one ingredient to complete their weapon. I order you to destroy them immediately!"],
 	["Fifth Cure ingredient gathered","Noooo! The humans have collected all of the ingredients they need. We can still destroy them before they destroy us. Kill them all quickly! For the good of the horde!"],
 	["Cure created","Nooooooooooooo! The humans have completed their vile brew. Kill them all before they can destroy us!"],
-	["All Humans converted","Rejoice my children! There are no humans remaining. Game Over."],
+	["All Humans converted","Rejoice my children! There are no humans remaining. Game Over."]
 ]
 
 human_messages = [
