@@ -3,8 +3,8 @@
 
 var UserAuthenticationAjax = {
   bindEvents: function() {
-    $('#login').on('click', UserAuthenticationAjax.initiateLogIn);
-    $('#signup').on('click', UserAuthenticationAjax.initiateSignUp);
+    $('#log_in').on('click', UserAuthenticationAjax.initiateLogIn);
+    $('#sign_up').on('click', UserAuthenticationAjax.initiateSignUp);
   },
   initiateLogIn: function() {
     debugger

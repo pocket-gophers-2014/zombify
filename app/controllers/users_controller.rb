@@ -38,9 +38,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by_id(params[:id])
+    p @user
     if @user.infected == true
       @events = Post.latest_zombie_posts
-
       stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
     elsif @user.infected == false
       @events = Post.latest_human_posts
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
       flash[:error] = @user.errors.full_messages[0]
     end
     @html_content = render_to_string :partial => "event", :collection => @events
+    p @events
     render json:{"html_content" => @html_content, 'stats'=> stats}
   end
 
