@@ -37,7 +37,6 @@ $( document ).ready(function() {
   polling.startPolling();
   CheckinController.bindEvents();
   BattleController.bindEvents(polling);
-  userAuth.bindEvents();
  
 });
 
