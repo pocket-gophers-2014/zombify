@@ -26,11 +26,11 @@ describe Stats do
 	end
 
 	it "returns correct percentage of zombies" do
-		expect(Stats.percent_zombies).to eq(0.40)
+		expect(Stats.percent_zombies).to eq(40)
 	end	
 
 	it "returns correct percentage of humans" do
-		expect(Stats.percent_humans).to eq(0.60)
+		expect(Stats.percent_humans).to eq(60)
 	end
 
 end
