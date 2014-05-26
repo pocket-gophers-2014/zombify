@@ -1,5 +1,10 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :create_game => :environment do
+	Message.all.each do |message|
+		message.has_been_called = false
+		message.save
+	end
+
 	Game.destroy_all
 	Post.destroy_all
   puts "Instantiating game"
