@@ -3,7 +3,7 @@ class CheckinsController < ApplicationController
 
   def new
     @user = User.find(session[:id])
-    ingredient = Ingredient.where(discovered: true, harvested: false).first
+    ingredient = Ingredient.where(discovered: true, harvested: false).first #add error for ingredient == nil
 
     render :text => ingredient_in_range?(ingredient) ?  log_success(ingredient) : log_failure(ingredient)
   end
@@ -20,7 +20,7 @@ class CheckinsController < ApplicationController
     end
 
     def log_success(ingredient)
-      Checkin.log_individual_checkin
+      Checkin.log_individual_checkin(@user, ingredient)
       "You have harvested #{ingredient.name}"
     end
 
@@ -28,4 +28,5 @@ class CheckinsController < ApplicationController
       Post.create(body:"#{@user.name} has failed to harvest any #{ingredient.name}", title:"#{ingredient.name} not found", audience:"human")
         "Fire and desolation have affected this area. You cannot find the necessary type of #{ingredient.name}."
     end
+
 end
