@@ -11,18 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140526021125) do
+ActiveRecord::Schema.define(:version => 20140527002538) do
 
-  create_table "games", :force => true do |t|
-    t.string   "city",        :default => "San Francisco"
-    t.string   "game_code"
-    t.string   "state",       :default => "California"
-    t.string   "title",       :default => "Zombie Apocalypse"
-    t.boolean  "game_active", :default => false
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "status"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.string   "location_description"
+    t.string   "location_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.string   "audience"
+    t.integer  "game_id"
+  end
+
+  create_table "foos", :force => true do |t|
+    t.datetime "birthday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "games", :force => true do |t|
+    t.string   "city"
+    t.string   "state"
+    t.string   "title"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ingredients", :force => true do |t|
@@ -41,11 +61,10 @@ ActiveRecord::Schema.define(:version => 20140526021125) do
   end
 
   create_table "messages", :force => true do |t|
-    t.text    "title"
-    t.text    "description"
+    t.string  "title"
+    t.string  "description"
     t.string  "audience"
-    t.boolean "has_been_called", :default => false
-    t.integer "game_id"
+    t.integer "event_id"
   end
 
   create_table "posts", :force => true do |t|
@@ -57,16 +76,14 @@ ActiveRecord::Schema.define(:version => 20140526021125) do
   end
 
   create_table "users", :force => true do |t|
-    t.string  "name"
     t.string  "email"
     t.string  "phone_number"
     t.string  "password_digest"
     t.string  "handle"
-    t.boolean "can_cure",        :default => false
-    t.boolean "infected",        :default => false
-    t.integer "points",          :default => 0
-    t.integer "cures",           :default => 0
-    t.integer "infections",      :default => 0
+    t.string  "infected"
+    t.integer "points"
+    t.integer "cures"
+    t.integer "infections"
     t.integer "mod"
     t.integer "game_id"
   end

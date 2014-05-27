@@ -1,3 +1,10 @@
+=begin comment
+
+Here is where i think we're starting to see the design strain where a User is
+=== a Player.  Really this controller, it seems to me, should be a player
+Controller where a Player is a class which wraps a User?  Or maybe a Player has_one Player?
+=end
+
 class UsersController < ApplicationController
   def index
     if cookies[:user_id]

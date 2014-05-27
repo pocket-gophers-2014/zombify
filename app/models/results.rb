@@ -1,4 +1,3 @@
-
 class Results
   attr_reader :result, :end_game
 

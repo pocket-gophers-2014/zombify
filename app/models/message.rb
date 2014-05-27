@@ -3,6 +3,16 @@ class Message < ActiveRecord::Base
 
 	belongs_to :game
 
+  # nice!  although this might be a nice class where single table inheritance
+  # is called for. you have
+  #
+  # Message
+  #
+  # ZombieMessage < Message
+  # HumanMessage < Message
+  #
+  # They all live in `messages` with a `type` column which determines which
+  # class the row is cast into.
   def self.zombie_messages
     Message.where(audience: "zombie")
   end

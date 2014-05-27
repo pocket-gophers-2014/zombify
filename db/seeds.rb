@@ -8,8 +8,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# This is really an example of where a YML file can save a ton of readability.
+# You could create a yaml file which abstracts out the textual component of
+# this came from the data needed to make it possible
 
 
+# See, here if this were YAML you could have a human-readable comment to help
+# me understand what was where.  "EarthElementLocation" etc.
 locations_lats_long = [[ 37.784173, -122.408087],[37.776645, -122.394187],[40.761835, -73.977303],[40.723255, -73.986153],[37.784816, -122.397387]]
 
 cure_ingredients = ["fire", "earth", "wind", "water", "heart"]
@@ -18,6 +23,8 @@ locations = ["Market and Fifth", "633 Folsom", "MoMa", "Yerba Buena, behind the 
 locations.each_with_index do |location, index|
 	Ingredient.create(name: cure_ingredients[index],  code: rand(1000000), latitude: locations_lats_long[index][0], longitude: locations_lats_long[index][1], discovered: false, harvested: false, title: location, counter: 0, city: 'San Francisco', state: 'California', zip: 94122 )
 end
+
+# Oh man, please put this in YAML
 
 zombie_messages = [
 	["First Announcement","I am the hive-mind. You and all of my zombie children are an extension of my own self - my eyes and ears, my hands and feet. I will speak to you from time to time to tell you of events that affect the zombie horde.Your primary goal is to grow the zombie horde by consuming humans. Each human you convert increases the strength of the horde."],

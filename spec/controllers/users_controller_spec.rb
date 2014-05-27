@@ -38,6 +38,15 @@ describe UsersController do
 
     it "create a zombie 25% of the time" do
     # better test wanted - perhaps with seed
+      # interesting test...i've never seen probability tested...but i can't
+      # think of a much better way of handling this....
+      #
+      #
+      # On the other hand, we trust that sample works.  We also trust that the
+      # simple comparison used to determine a user's role (again!  see User
+      # migration, there's a role that differs from a User!) works.  So what
+      # are we testing here..  That sample works?  Maybe this test isn't
+      # useful?
       100.times{
         user = User.create(email: Faker::Internet.email, password: Faker::Number.number(6))
         num = (1..100).to_a.sample
