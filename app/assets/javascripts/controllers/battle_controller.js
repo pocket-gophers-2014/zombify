@@ -12,12 +12,10 @@ var BattleController = {
   },
   renderBattleForm: function(event, response) {
     this.stopPolling()
-    console.log("Sha Sha")
     $('#feed').empty()
     $('#feed').prepend(response)
   },
   battleAjaxRequest: function(opponent, result){
-    console.log("inferno")
     $.ajax({
       url: 'update',
       type: 'PUT',
