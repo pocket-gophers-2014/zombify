@@ -83,6 +83,10 @@ html a:hover {
     color: white;
 }
 
+html span {
+  font-family: tahoma;
+  font-size: 15px;
+}
 
 /*
 HOMEPAGE*/
@@ -111,8 +115,13 @@ HOMEPAGE*/
 
 /*/Users/*/
 
+#your_points {
+  font-family: tahoma;
+  font-size: 15px;
+}
+
 #feed {
-    margin-top: 15%;
+  margin-top: 10%;
 }
 
 #post_container {
@@ -171,6 +180,10 @@ HOMEPAGE*/
 }
 
 @media only screen and (min-width: 200px) and (max-device-width: 1136px){
+    html header {
+      height: 90px;
+    }
+
     #menu {
     font-family: 'Rock Salt', cursive;
     display: block; 
@@ -207,7 +220,12 @@ HOMEPAGE*/
     }
 
     #handle {
-      margin-bottom: 1%;
+      text-align: center;
+      margin-bottom: 5%;
+    }
+
+    #feed {
+      padding-bottom: 27%;
     }
  /*   html ul {
     }
