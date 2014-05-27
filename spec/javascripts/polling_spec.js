@@ -16,6 +16,12 @@ describe("pollingController", function() {
     expect(polling.pollingTimerId).toBeGreaterThan(0)
   })
 
+  it("updates pollingTimerId on stopPolling", function() {
+    polling.stopPolling()
+    expect(polling.pollingTimerId).toBe(1)
+  })
+
+
 
 })
 
