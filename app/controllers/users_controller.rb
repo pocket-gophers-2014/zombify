@@ -27,7 +27,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    @user = User.find(session[:id])
+    redirect_to root_path if @user != User.find(params[:id])
     @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
   end
 
