@@ -62,6 +62,8 @@ GEM
       railties (>= 3.1.0)
       sass (>= 3.2.0)
     hike (1.2.3)
+    hublot (0.0.6)
+      rails (> 3.0.0)
     i18n (0.6.9)
     jasmine-core (2.0.0)
     jasmine-jquery-rails (2.0.3)
@@ -172,6 +174,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   foundation-rails
+  hublot (~> 0.0.6)
   jasmine-jquery-rails
   jasmine-rails
   jquery-rails
