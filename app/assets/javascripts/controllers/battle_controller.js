@@ -1,37 +1,31 @@
 var BattleController = {
-  bindEvents: function(polling) {
-    $('#confront').on('ajax:success', this.renderBattleForm.bind(polling));
-    $('#feed').on('submit', 'form#new-battle', this.launchBattle.bind(this));
+  bindEvents: function() {
+    $('#battle_box').on('submit', 'form#new-battle', this.launchBattle.bind(this));
   },
   launchBattle: function(){
     event.preventDefault();
     var opponent = $( '#new-battle' ).serialize();
     var battle = new Battle();
     var result = battle.determineFate();
-    BattleController.battleAjaxRequest(opponent, result)
+    var user = $('#feed').data()["userId"]
+    BattleController.battleAjaxRequest(opponent, result, user)
   },
-  renderBattleForm: function(event, response) {
-    this.stopPolling()
-    console.log("Sha Sha")
-    $('#feed').empty()
-    $('#feed').prepend(response)
-  },
-  battleAjaxRequest: function(opponent, result){
-    console.log("inferno")
+    
+  battleAjaxRequest: function(opponent, result, user){
     $.ajax({
       url: 'update',
       type: 'PUT',
-      data: {opponent: opponent, result: result}
+      data: {opponent: opponent, result: result, id: user  }
     })
-
+    //hit a route in the users controller
     .done(this.renderBattleResults)
   },
   renderBattleResults: function(response){
     if (response["end"] == true ) {
       location.reload()
     } else {
-      $('#feed').empty()
-      $('#feed').prepend(response)
+      $('#battle_box').empty()
+      $('#battle_box').prepend(response)
       $('.confirm').on('click', BattleController.returnToFeed)
     }
   },

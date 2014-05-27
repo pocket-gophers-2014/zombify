@@ -17,70 +17,74 @@
 }
 
 html p {
-    font-family: tahoma;
-    }
+  font-family: tahoma;
+}
 
 
  html header {
-    background-color: #273519;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    height: 15%;
+  background-color: #273519;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  height: 17%;
  }
 
  html h1, html h2, html h3  {
-    font-family: 'Rock Salt', cursive; 
-    margin: 0;
-    padding: 0;
+  font-family: 'Rock Salt', cursive; 
+  margin: 0;
+  padding: 0;
+  color: white;
  }
 
+
 #footer {
-    background-color: #273519;
-    min-height: auto;
-    width: 100%;
-    position:fixed;
-    height: 15%;
-    bottom: 0px;
+  background-color: #273519;
+  min-height: auto;
+  width: 100%;
+  position:fixed;
+  height: 15%;
+  bottom: 0px;
  }
 
  footer p {
-    font-size: 10px;
-    text-align: center;
-    margin: 0;
+  font-size: 10px;
+  text-align: center;
+  margin: 0;
+  overflow:visible;
  }
 
- html button {
-    background-color: #949470;
-    border-radius: 5px;
-    border: 2px solid #273519;
-    color: black;
+ html button, #tempt-fate {
+  background-color: #949470;
+  border-radius: 5px;
+  border: 2px solid #273519;
+  color: black;
 }
 
 html button:hover {
-    background-color: #4D704D
+  background-color: #4D704D
 }
 
 html ul {
-    margin-right: 25%
+  /*margin-right: 25%*/
+  margin: 0 auto;
+  width: 90%;
 }
 
 html li {
-    list-style-type: none;
-    float: right;
-    margin-right: 5%;
-    /*margin: 2%;*/
+  list-style-type: none;
+  float: right;
+  margin-right: 2%;
 }
 
 html a {
-    color: black;
+  color: black;
 }
 
 html a:hover {
-    color: white;
+  color: white;
 }
 
 html span {
@@ -88,29 +92,32 @@ html span {
   font-size: 15px;
 }
 
+#battle_box label {
+  color: white;
+ }
 /*
 HOMEPAGE*/
 
 #login_signup {
-    background-image: url("Zombie_1.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 100%;
-    text-align: center;
-    padding-top: 20%;
-    padding-bottom: 20%;
+  background-image: url("Zombie_1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 20%;
+  padding-bottom: 20%;
 }
 
 #title {
-    color: white;
+  color: white;
 }
 
 #sign_up, #log_in {
-    opacity: .8;
+  opacity: .8;
 }
 
 #login, #signup {
-    margin-top: 15%;
+  margin-top: 15%;
 }
 
 /*/Users/*/
@@ -122,30 +129,35 @@ HOMEPAGE*/
 
 #feed {
   margin-top: 10%;
+  padding-bottom: 10%;
 }
 
 #post_container {
-    border-radius: 5px;
-    border: 2px solid gray;
-    background-color: #FF9900;
-    width: 80%;
-    text-align: center;
-    margin-left: 10%;
-    margin-top: 2%;
+  border-radius: 5px;
+  border: 2px solid gray;
+  background-color: #FF9900;
+  width: 80%;
+  text-align: center;
+  margin-left: 10%;
+  margin-top: 2%;
+}
+
+#post_container h3 {
+  color: black;
 }
 
 .black_overlay{
-    display: none;
+  display: none;
 /*    position: relative;*/
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    z-index:1001;
-    -moz-opacity: 0.8;
-    opacity:.80;
-    filter: alpha(opacity=80);
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  /*background-color: black;*/
+  z-index:1001;
+  /*-moz-opacity: 0.8;*/
+  /*opacity:.80;*/
+  /*filter: alpha(opacity=80);*/
 } 
 .white_content {
     /*text-align: center;*/
@@ -163,35 +175,40 @@ HOMEPAGE*/
 }
 
 #rules_list {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
 #handle {
-    color: white;
+  color: white;
 }
 
 #menu {
-    display:none;
-    margin-left: 25%;
-    width: 50%;
-    font-family: 'Rock Salt', cursive; 
+  display:none;
+  margin-left: 25%;
+  width: 50%;
+  font-family: 'Rock Salt', cursive; 
 }
 
-@media only screen and (min-width: 200px) and (max-device-width: 1136px){
-    html header {
-      height: 90px;
-    }
+@media only screen and (min-width: 500px) and (max-width: 930px){
+  html header {
+    height: 90px;
+  }
 
-    #menu {
+  h3 {
+    font-size: 60%;
+  }
+
+  #menu {
     font-family: 'Rock Salt', cursive;
     display: block; 
-    }
+  }
 
-    #feed {
-    margin-top: 30%;
-    }
+  #feed {
+    margin-top: 20%;
+    padding-bottom: 27%;
+  }
 
-    .white_content {
+  .white_content {
     /*text-align: center;*/
     display: none;
     position: fixed;
@@ -199,43 +216,43 @@ HOMEPAGE*/
     left: 2.5%;
     width: 95%;
     height: 85%;
-    }
+  }
 
-    ul {
-    width: 100%
-    }
+  #handle {
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 15px;
+  }
 
-    li {
-    width: 100%;
-    }
-
-    html button {
-     width: 100%; 
-     font-size: 11px;  
-    }
-
-    html a {
-      width: 100%;
-      font-size: 11px;
-    }
-
-    #handle {
-      text-align: center;
-      margin-bottom: 5%;
-      font-size: 15px;
-    }
-
-    #feed {
-      padding-bottom: 27%;
-    }
- /*   html ul {
-    }
-
-    html li {
-    list-style-type: none;
-    }*/
-
+  #feed {
+    padding-bottom: 27%;
+  }
 }
- 
 
+@media only screen and (min-width: 200px) and (max-width: 500px){
+  html header {
+    height: 90px;
+  }
 
+  #feed {
+    margin-top: 30%;
+  }
+
+  ul {
+    width: 100%
+  }
+
+  li {
+    width: 100%;
+  }
+
+  html button {
+   width: 100%; 
+   font-size: 11px;  
+  }
+
+  html a {
+    width: 100%;
+    font-size: 11px;
+  }
+}

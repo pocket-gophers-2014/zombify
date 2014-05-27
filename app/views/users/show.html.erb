@@ -20,15 +20,18 @@
     <button id ="menu" onclick = "$('#menu_box').toggle();
     document.getElementById('fade').style.display='block'">Menu</button>
   <!--                                     -->
-      <li><button><%= link_to "Battle!", new_battle_path, id: "confront", remote: "true" %></button></li>
-      <li><button id="checkin"><a href="#">Send Location</a></button></li>
+    <ul>
+      <li><button id="confront" onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; "><a href="#">Battle!</a></button></li>
+      <li><button id="checkin"><a href="#">Check-in</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
-      <li><h2 id = 'handle'>Code: <%= @user.handle%></h2></li>
+      <li><h3 id = 'handle'>Code: <%= @user.handle%></h3></li>
+    </ul>
   </div>
 
-<!-- Hidden light boxen below -->
+<!-- Hidden light boxes below -->
 
 <!-- Menu -->
 
@@ -37,7 +40,7 @@
       <li><h2 id = 'handle'>Code: <%= @user.handle%></h2></li>
       <li><button onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; " class = ".inner">Battle</button></li>
-      <li><button id="checkin" class = ".inner"><a href="#">Send Location</a></button></li>
+      <li><button id="checkin" class = ".inner"><a href="#">Check-in</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; " class = ".inner">View Rules</button></li>
       <li><button class = ".inner"><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
@@ -46,17 +49,14 @@
 <div id="fade" class="black_overlay"></div>
 
 <!-- Battle -->
-  <div id="battle_box" class="white_content"><h1>Rules</h1>
-    <p>Here is a new battle</p>
-    <form action="" method="post" id="new-battle">
+  <div id="battle_box" class="white_content"><h1>Battle</h1>
+    <p>Prepare to fight!</p>
+    <form action="" method="put" id="new-battle">
       <label for="opponent_id">Enter your opponent's secret code: </label>
       <input type="text" name="opponent_id">
-      <input type="submit">
+      <input id = "tempt-fate" type="submit" value="Tempt Fate">
     </form>
-    <button id = "hide_me" href = "javascript:void(0)" onclick = "document.getElementById('battle_box').style.display='none';
-    document.getElementById('menu_box').style.display='none';
-    document.getElementById('fade').style.display='none'">Battle!</button>
-    </div>
+  </div>
 <div id="fade" class="black_overlay"></div>
 
 <!-- Rules -->
@@ -64,8 +64,8 @@
     <ul id = "rules_list">
       <li>1. Humans wear your bandana clearly visible on your arm or leg. Zombies wear your bandana clearly on your head.</li>
       <li>2. If an opponent taps you to do battle, you must stop and allow him or her enter your code into their phone for battle. </li>
-      <li>3. Don't leave the city for the duration of the game</li>
-      <li>4. Don't communicate your location to the opposite team</li>
+      <li>3. Don't leave the city for the duration of the game.</li>
+      <li>4. Don't communicate your location to the opposite team.</li>
     </ul>
     <button id = "hide_me" href = "javascript:void(0)" onclick = "document.getElementById('rules_box').style.display='none';
     document.getElementById('fade').style.display='none'">I got it, thanks!</button>
