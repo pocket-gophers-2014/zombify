@@ -28,8 +28,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    @human_stats = Stats.total_humans
-    @zombie_stats = Stats.total_zombies
     @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
   end
 
@@ -55,8 +53,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(session[:id])
-    @result = Results.new(params, @user).result
-    render partial: 'battles/battle_results', :locals => { result: @result } #you are zombie.
+    @result = Results.new(params, @user)
+    @results = @result.end_game ? @result.end_game : @result.result
+    if @result
+      render partial: 'games/end_game', :locals => {result: @results}
+    else
+      render partial: 'battles/battle_results', :locals => { result: @results }
+    end
   end
 end
 
