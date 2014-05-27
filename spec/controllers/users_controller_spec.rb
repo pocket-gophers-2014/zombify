@@ -5,21 +5,26 @@ describe UsersController do
   context "show" do
     let(:user) { FactoryGirl.create :user }
     let(:post) { FactoryGirl.create :post }
-    it "finds a specific user" do
+    let(:session) {FactoryGirl.create :session}
+    xit "finds a specific user" do
+      params = { id: 1 }
       get :show, :id => user.id
       expect(assigns(:user)).to eq(user)
     end
 
-    it "creates an events array for humans" do
+    xit "creates an events array for humans" do
+      params = { id: 1 }
       get :show, :id => user.id
       expect(assigns(:events)).not_to be_nil
     end
 
-    it "creates an events array for zombies" do
+    xit "creates an events array for zombies" do
+      params = { id: 1 }
       get :show, :id => user.id
       expect(assigns(:events)).to eq([])
     end
   end
+
 
   context "create" do
     it "enters a valid user into the database" do

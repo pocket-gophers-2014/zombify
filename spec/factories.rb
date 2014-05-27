@@ -9,4 +9,8 @@ FactoryGirl.define do
     title { Faker::Internet.email}
     audience { "human" }
   end
+
+  factory :session do
+    id { rand(5) }
+  end
 end
