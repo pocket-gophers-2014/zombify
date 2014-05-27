@@ -5,6 +5,11 @@ task :create_game => :environment do
 		message.save
 	end
 
+	Ingredient.all.each do |ingredient|
+		ingredient.counter = 0
+		ingredient.save
+	end
+
 	Game.destroy_all
 	Post.destroy_all
   puts "Instantiating game"
