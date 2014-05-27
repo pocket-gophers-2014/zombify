@@ -27,9 +27,13 @@ var BattleController = {
     .done(this.renderBattleResults)
   },
   renderBattleResults: function(response){
-    $('#feed').empty()
-    $('#feed').prepend(response)
-    $('.confirm').on('click', BattleController.returnToFeed)
+    if (response["end"] == true ) {
+      location.reload()
+    } else {
+      $('#feed').empty()
+      $('#feed').prepend(response)
+      $('.confirm').on('click', BattleController.returnToFeed)
+    }
   },
   returnToFeed: function() {
     location.reload()

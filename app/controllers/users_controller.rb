@@ -53,8 +53,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(session[:id])
-    @result = Results.new(params, @user).result
-    render partial: 'battles/battle_results', :locals => { result: @result } #you are zombie.
+    @result = Results.new(params, @user)
+    @results = @result.end_game ? @result.end_game : @result.result
+    if @result.end_game
+      Game.current.update_attributes(game_active: false)
+      render :json => {
+        "end" => true,
+        "attachment_partial" => render_to_string('battles/battle_results', :layout => false,  :locals => { result: @results })
+      }
+    else
+      render partial: 'battles/battle_results', :locals => { result: @results }
+    end
   end
 end
 

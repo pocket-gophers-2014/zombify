@@ -1,7 +1,18 @@
 
   <div id="feed" data-user-infected = <%=@user.infected%>
                  data-user-id = <%= @user.id %>>
-  <%= render partial: "event", collection: @events %>
+
+  <% if Game.current %>
+    <%= render partial: "event", collection: @events %>
+    <script type="text/javascript">
+      $(function() {
+        polling.startPolling();
+      })
+    </script>
+  <% else %>
+    <%= render partial: "games/end_game" %>
+  <% end %>
+
   </div>
   <!-- <div class="sidebar2"></div> -->
   <div id="footer">

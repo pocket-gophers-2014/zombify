@@ -1,11 +1,12 @@
 
 class Results
-  attr_reader :result
+  attr_reader :result, :end_game
 
   def initialize(params, user)
     @winner = eval_string(params["result"])
     @opponent = determine_opponent(params["opponent"])
     @user = user
+    @end_game = false
     verify_results
   end
 
@@ -82,9 +83,11 @@ class Results
     if Stats.all_human?
       @message = Message.human_messages.last
       Post.create(title: @message[0], body: @message[1], audience: "human")
+      @end_game = true
     elsif Stats.all_zombie?
       @message = Message.zombie_messages.last
       Post.create(title: @message[0], body: @message[1], audience: "zombie")
+      @end_game = true
     else
       zombies_percentage = Stats.percent_zombies
       remaining_stats(zombies_percentage)
