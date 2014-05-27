@@ -6,29 +6,23 @@ class CheckinsController < ApplicationController
     @user = User.find(session[:id])
     ingredient_in_range? ? user_success_logic : show_failure_message
 
-    render :text => @response 
+    render :text => @response
+  end
+
+  def ingredient_in_range?
+    distance = DistanceCalculator.new(@current_ingredient.latlong, user_latlong).distance
+    distance < @constants[:meters_within_ingredient]
   end
 
   ## ONLY HELPER METHODS BELOW
   ## ===================================
 
-  def distance(a, b)
+  private
 
-    rad_per_deg = Math::PI/180  # PI / 180
-    rkm = 6371                  # Earth radius in kilometers
-    rm = rkm * 1000             # Radius in meters
-
-    dlon_rad = (b[1]-a[1]) * rad_per_deg  # Delta, converted to rad
-    dlat_rad = (b[0]-a[0]) * rad_per_deg
-
-    lat1_rad, lon1_rad = a.map! {|i| i * rad_per_deg }
-    lat2_rad, lon2_rad = b.map! {|i| i * rad_per_deg }
-
-    a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
-    c = 2 * Math.asin(Math.sqrt(a))
-
-    rm * c # Delta in meters
+  def user_latlong
+    [params[:userLat].to_f, params[:userLong].to_f]
   end
+
 
   def user_success_logic
     user_gains_points
@@ -38,9 +32,6 @@ class CheckinsController < ApplicationController
   end
 
 
-  def ingredient_in_range?
-    distance([@current_ingredient.latitude.to_f, @current_ingredient.longitude.to_f], [params[:userLat].to_f, params[:userLong].to_f]) < @constants[:meters_within_ingredient]
-  end
 
   def user_gains_points
     @user.update_attributes(points: @user.points += @constants[:pts_gained_find_ingredient])
