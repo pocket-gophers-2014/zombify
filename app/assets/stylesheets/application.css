@@ -162,6 +162,11 @@ HOMEPAGE*/
     text-align: center;
     margin-left: 10%;
     margin-top: 2%;
+    
+}
+
+#post_container_human h3, #post_container_zombie h3 {
+  color: black;
 }
 
 #post_container_zombie {
@@ -172,6 +177,7 @@ HOMEPAGE*/
     text-align: center;
     margin-left: 10%;
     margin-top: 2%;
+    color: black;
 }
 
 .black_overlay{
