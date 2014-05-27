@@ -17,6 +17,8 @@ task :create_game => :environment do
   puts "New game created: #{game}"
   game.messages << Message.all
   game.set_code_and_times
+
+  #reset users as well
 end
 
 # this whole task ought to be refactored.  Message.has_been_called
