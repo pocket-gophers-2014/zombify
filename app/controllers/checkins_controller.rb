@@ -1,6 +1,6 @@
 class CheckinsController < ApplicationController
   def new
-    @constants = {:meters_within_ingredient => 1000, :pts_gained_find_ingredient => 200, 
+    @constants = {:meters_within_ingredient => 1000, :pts_gained_find_ingredient => 200,
       :num_needed_to_harvest => 10}
     @current_ingredient = Ingredient.where(discovered: true, harvested: false).first
     @user = User.find(session[:id])
@@ -60,7 +60,7 @@ class CheckinsController < ApplicationController
       @current_ingredient.update_attributes(harvested: true)
 
       @zombie_message = Message.where(title: "#{@current_ingredient.name} gathered", audience: "zombie")[0]
-      @human_message = Message.where(title: "#{@current_ingredient.name} gathered", audience: "human")[0] 
+      @human_message = Message.where(title: "#{@current_ingredient.name} gathered", audience: "human")[0]
 
       Post.create(body: @zombie_message.description, title: @zombie_message.title, audience: "zombie")
       Post.create(body: @human_message.description, title: @human_message.title, audience: "human")
