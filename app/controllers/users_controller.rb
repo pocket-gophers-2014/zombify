@@ -52,6 +52,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    p params
     @user = User.find(session[:id])
     @result = Results.new(params, @user)
     @results = @result.end_game ? @result.end_game : @result.result
