@@ -36,7 +36,9 @@ html p {
   font-family: 'Rock Salt', cursive; 
   margin: 0;
   padding: 0;
+  color: white;
  }
+
 
 #footer {
   background-color: #273519;
@@ -51,6 +53,7 @@ html p {
   font-size: 10px;
   text-align: center;
   margin: 0;
+  overflow:visible;
  }
 
  html button {
@@ -89,6 +92,9 @@ html span {
   font-size: 15px;
 }
 
+#battle_box label {
+  color: white;
+ }
 /*
 HOMEPAGE*/
 
@@ -123,6 +129,7 @@ HOMEPAGE*/
 
 #feed {
   margin-top: 10%;
+  padding-bottom: 10%;
 }
 
 #post_container {
@@ -135,6 +142,10 @@ HOMEPAGE*/
   margin-top: 2%;
 }
 
+#post_container h3 {
+  color: black;
+}
+
 .black_overlay{
   display: none;
 /*    position: relative;*/
@@ -142,11 +153,11 @@ HOMEPAGE*/
   left: 0%;
   width: 100%;
   height: 100%;
-  background-color: black;
+  /*background-color: black;*/
   z-index:1001;
-  -moz-opacity: 0.8;
-  opacity:.80;
-  filter: alpha(opacity=80);
+  /*-moz-opacity: 0.8;*/
+  /*opacity:.80;*/
+  /*filter: alpha(opacity=80);*/
 } 
 .white_content {
     /*text-align: center;*/
@@ -178,9 +189,13 @@ HOMEPAGE*/
   font-family: 'Rock Salt', cursive; 
 }
 
-@media only screen and (min-width: 500px) and (max-width: 850px){
+@media only screen and (min-width: 500px) and (max-width: 930px){
   html header {
     height: 90px;
+  }
+
+  h3 {
+    font-size: 60%;
   }
 
   #menu {
@@ -190,6 +205,7 @@ HOMEPAGE*/
 
   #feed {
     margin-top: 20%;
+    padding-bottom: 27%;
   }
 
   .white_content {
@@ -200,6 +216,26 @@ HOMEPAGE*/
     left: 2.5%;
     width: 95%;
     height: 85%;
+  }
+
+  #handle {
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 15px;
+  }
+
+  #feed {
+    padding-bottom: 27%;
+  }
+}
+
+@media only screen and (min-width: 200px) and (max-width: 500px){
+  html header {
+    height: 90px;
+  }
+
+  #feed {
+    margin-top: 30%;
   }
 
   ul {
@@ -218,26 +254,5 @@ HOMEPAGE*/
   html a {
     width: 100%;
     font-size: 11px;
-  }
-
-  #handle {
-    text-align: center;
-    margin-bottom: 5%;
-    font-size: 15px;
-  }
-
-  #feed {
-    padding-bottom: 27%;
-  }
-
-}
-
-@media only screen and (min-width: 200px) and (max-width: 500px){
-  html header {
-    height: 90px;
-  }
-
-  #feed {
-    margin-top: 30%;
   }
 }

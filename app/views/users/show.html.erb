@@ -21,7 +21,8 @@
     document.getElementById('fade').style.display='block'">Menu</button>
   <!--                                     -->
     <ul>
-      <li><button id="confront"><a href="#">Battle!</a></button></li>
+      <li><button id="confront" onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; "><a href="#">Battle!</a></button></li>
       <li><button id="checkin"><a href="#">Check-in</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
@@ -48,12 +49,12 @@
 <div id="fade" class="black_overlay"></div>
 
 <!-- Battle -->
-  <div id="battle_box" class="white_content"><h1>Rules</h1>
-    <p>Here is a new battle</p>
+  <div id="battle_box" class="white_content"><h1>Battle</h1>
+    <p>Prepare to fight!</p>
     <form action="/battles" method="post" id="new-battle">
       <label for="opponent_id">Enter your opponent's secret code: </label>
       <input type="text" name="opponent_id">
-      <input type="submit">
+      <input type="submit" value="Tempt Fate">
     </form>
     <button id = "hide_me" href = "javascript:void(0)" onclick = "document.getElementById('battle_box').style.display='none';
     document.getElementById('menu_box').style.display='none';

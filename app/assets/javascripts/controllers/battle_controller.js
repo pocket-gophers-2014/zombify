@@ -1,7 +1,6 @@
 var BattleController = {
-  bindEvents: function(polling) {
-    $('#confront').on('ajax:success', this.renderBattleForm.bind(polling));
-    $('#feed').on('submit', 'form#new-battle', this.launchBattle.bind(this));
+  bindEvents: function() {
+    $('#new-battle').on('submit', this.launchBattle.bind(this));
   },
   launchBattle: function(){
     event.preventDefault();
@@ -9,11 +8,6 @@ var BattleController = {
     var battle = new Battle();
     var result = battle.determineFate();
     BattleController.battleAjaxRequest(opponent, result)
-  },
-  renderBattleForm: function(event, response) {
-    this.stopPolling()
-    $('#feed').empty()
-    $('#feed').prepend(response)
   },
   battleAjaxRequest: function(opponent, result){
     $.ajax({
@@ -28,8 +22,8 @@ var BattleController = {
     if (response["end"] == true ) {
       location.reload()
     } else {
-      $('#feed').empty()
-      $('#feed').prepend(response)
+      $('#battle_box').empty()
+      $('#battle_box').prepend(response)
       $('.confirm').on('click', BattleController.returnToFeed)
     }
   },

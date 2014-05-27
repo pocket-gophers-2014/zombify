@@ -1,5 +1,5 @@
 class BattlesController < ApplicationController
-  def new
+  def create
     @user = User.find(session[:id])
     render partial: "battles/new", :locals => { user: @user }
   end

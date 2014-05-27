@@ -38,6 +38,6 @@ $( document ).ready(function() {
   polling = new pollingController(view);
 
   CheckinController.bindEvents();
-  BattleController.bindEvents(polling);
+  BattleController.bindEvents();
 });
 
