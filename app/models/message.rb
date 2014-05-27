@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-	attr_accessible :title, :description, :audience
+	attr_accessible :title, :description, :audience, :has_been_called
 
 	belongs_to :game
 

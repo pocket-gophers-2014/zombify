@@ -1,7 +1,7 @@
 class CheckinsController < ApplicationController
   def new
     @constants = {:meters_within_ingredient => 1000, :pts_gained_find_ingredient => 200, 
-      :num_needed_to_harvest => 15}
+      :num_needed_to_harvest => 10}
     @current_ingredient = Ingredient.where(discovered: true, harvested: false).first
     @user = User.find(session[:id])
     ingredient_in_range? ? user_success_logic : show_failure_message
@@ -30,7 +30,6 @@ class CheckinsController < ApplicationController
   end
 
   def user_success_logic
-    p "SHIT"
     user_gains_points
     increment_ingredient_counter
     create_message_showing_personal_harvest
@@ -59,17 +58,14 @@ class CheckinsController < ApplicationController
     if @current_ingredient.counter == @constants[:num_needed_to_harvest]
       @current_ingredient.update_attributes(harvested: true)
 
-      p "#{@current_ingredient} gathered"
       @zombie_message = Message.where(title: "#{@current_ingredient.name} gathered", audience: "zombie")[0]
-      p 'FUCKERS'
-      p @zombie_message.title
       @human_message = Message.where(title: "#{@current_ingredient.name} gathered", audience: "human")[0] 
 
       Post.create(body: @zombie_message.description, title: @zombie_message.title, audience: "zombie")
       Post.create(body: @human_message.description, title: @human_message.title, audience: "human")
 
       @zombie_message.update_attributes(has_been_called: "true")
-      @human_message.update_attribues(has_been_called: "true")
+      @human_message.update_attributes(has_been_called: "true")
       #TODO: make next annoucement message dependent on this harvest
     end
   end
