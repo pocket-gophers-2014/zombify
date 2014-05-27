@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:id])
     @result = Results.new(params, @user)
     @results = @result.end_game ? @result.end_game : @result.result
-    if @result
+    if @result.end_game
       render partial: 'games/end_game', :locals => {result: @results}
     else
       render partial: 'battles/battle_results', :locals => { result: @results }
