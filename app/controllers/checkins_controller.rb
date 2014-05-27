@@ -75,4 +75,6 @@ class CheckinsController < ApplicationController
       @response = "Fire and desolation have affected this area. You cannot find the necessary type of #{@current_ingredient.name}."
   end
 
+
+
 end
