@@ -10,7 +10,7 @@ var BattleController = {
     var user = $('#feed').data()["userId"]
     BattleController.battleAjaxRequest(opponent, result, user)
   },
-    
+
   battleAjaxRequest: function(opponent, result, user){
     $.ajax({
       url: 'update',
