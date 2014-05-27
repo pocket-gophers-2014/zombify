@@ -16,8 +16,10 @@
   </div>
   <!-- <div class="sidebar2"></div> -->
   <div id="footer">
+  <!-- this button is hidden unless mobile -->
     <button id ="menu" onclick = "document.getElementById('menu_box').style.display='block';
     document.getElementById('fade').style.display='block'">Menu</button>
+  <!--                                     -->
       <li><button><%= link_to "Battle!", new_battle_path, id: "confront", remote: "true" %></button></li>
       <li><button id="checkin"><a href="#">Send Location</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
