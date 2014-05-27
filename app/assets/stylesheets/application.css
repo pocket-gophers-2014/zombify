@@ -151,19 +151,17 @@ HOMEPAGE*/
     /*text-align: center;*/
     display: none;
     position: fixed;
-    top: 25%%;
+/*    top: 25%%;*/
     left: 25%;
     width: 50%;
-    height: 50%;
+    height: 100%;
     padding: 16px;
     background-color: black;
     color: white;
     z-index:1002;
     overflow: auto;
 }
-#hide_me {
-    margin: 20% auto 0 auto;
-}
+
 #rules_list {
     margin-top: 5%;
 }
@@ -197,10 +195,10 @@ HOMEPAGE*/
     /*text-align: center;*/
     display: none;
     position: fixed;
-    top: 5%;
+    top: 1%;
     left: 2.5%;
     width: 95%;
-    height: 80%;
+    height: 85%;
     }
 
     ul {
@@ -212,16 +210,19 @@ HOMEPAGE*/
     }
 
     html button {
-     width: 100%;   
+     width: 100%; 
+     font-size: 11px;  
     }
 
     html a {
       width: 100%;
+      font-size: 11px;
     }
 
     #handle {
       text-align: center;
       margin-bottom: 5%;
+      font-size: 15px;
     }
 
     #feed {
