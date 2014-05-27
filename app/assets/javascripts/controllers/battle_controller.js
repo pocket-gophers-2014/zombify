@@ -1,20 +1,19 @@
 var BattleController = {
   bindEvents: function() {
-    $('#new-battle').on('submit', 'form#new-battle', this.launchBattle.bind(this));
-    console.log(this)
+    $('#battle_box').on('submit', 'form#new-battle', this.launchBattle.bind(this));
   },
   launchBattle: function(){
     event.preventDefault();
-    debugger
     var opponent = $( '#new-battle' ).serialize();
     var battle = new Battle();
     var result = battle.determineFate();
     var user = $('#feed').data()["userId"]
     BattleController.battleAjaxRequest(opponent, result, user)
   },
+    
   battleAjaxRequest: function(opponent, result, user){
     $.ajax({
-      url: 'users/update',
+      url: 'update',
       type: 'PUT',
       data: {opponent: opponent, result: result, id: user  }
     })
