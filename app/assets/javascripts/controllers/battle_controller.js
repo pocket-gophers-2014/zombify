@@ -27,11 +27,16 @@ var BattleController = {
     .done(this.renderBattleResults)
   },
   renderBattleResults: function(response){
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!")
     console.log(response)
-    $('#feed').empty()
-    $('#feed').prepend(response)
-    $('.confirm').on('click', BattleController.returnToFeed)
+    console.log(response["attachment_partial"])
+    console.log("!!!!!!!!!!!!!!!!!!")
+    if (response["end"] == true ) {
+      location.reload()
+    } else {
+      $('#feed').empty()
+      $('#feed').prepend(response)
+      $('.confirm').on('click', BattleController.returnToFeed)
+    }
   },
   returnToFeed: function() {
     location.reload()

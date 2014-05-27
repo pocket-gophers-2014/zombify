@@ -14,6 +14,11 @@ class Game < ActiveRecord::Base
 	# 	game_code
 	# end
 
+	def self.current
+		#assuming there is only one active game
+		Game.find_by_game_active(true)
+	end
+
 	def set_code_and_times
 		self.start_time = DateTime.current #+ 0.0069 # slightly under 10 minutes
 		self.end_time = DateTime.current + 1 # 1 day
@@ -74,17 +79,17 @@ class Game < ActiveRecord::Base
 			auth_token = '64f02d85badd951102329f750bc0bc8e'
 			if kind == 'game_starting'
 				message = 'The game is starting! Log in to your account at zomb.herokuapp.com to play!'
-	  	else 
+	  	else
 	  		message = 'The game is over. Thanks for joining us. You can check your stats on the website for the next two hours before the game resets in preparation for next week.'
 	  	end
 
 			begin
-				client = Twilio::REST::Client.new account_sid, auth_token 
+				client = Twilio::REST::Client.new account_sid, auth_token
 
 				client.account.messages.create({
-					:from => '+13147363622', 
-					:to => @user.phone.to_s, 
-					:body => message,  
+					:from => '+13147363622',
+					:to => @user.phone.to_s,
+					:body => message,
 				})
 			rescue Twilio::REST::RequestError => e
 				puts "Error: #{e.message}"

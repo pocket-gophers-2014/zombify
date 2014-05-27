@@ -56,7 +56,11 @@ class UsersController < ApplicationController
     @result = Results.new(params, @user)
     @results = @result.end_game ? @result.end_game : @result.result
     if @result.end_game
-      render partial: 'games/end_game', :locals => {result: @results}
+      Game.current.update_attributes(game_active: false)
+      render :json => {
+        "end" => true,
+        "attachment_partial" => render_to_string('battles/battle_results', :layout => false,  :locals => { result: @results })
+      }
     else
       render partial: 'battles/battle_results', :locals => { result: @results }
     end
