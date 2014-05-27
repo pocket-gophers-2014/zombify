@@ -1,7 +1,16 @@
 <div class="event">
-	<div id = 'post_container'>
+	<% if @user.infected == true %>
+	<div id = 'post_container_zombie'>
 		<h3><%= event.title %></h3>
 		<p><%= event.body %></p>
 		<p><%= event.created_at.in_time_zone("Pacific Time (US & Canada)").to_formatted_s(:long_ordinal)%>
+	<% end %>
+
+	<% if @user.infected == false %>
+	<div id = 'post_container_human'>
+		<h3><%= event.title %></h3>
+		<p><%= event.body %></p>
+		<p><%= event.created_at.in_time_zone("Pacific Time (US & Canada)").to_formatted_s(:long_ordinal)%>
+	<% end %>
 	</div>
 </div>

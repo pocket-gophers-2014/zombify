@@ -22,14 +22,14 @@ html p {
 
 
  html header {
-  background-color: #273519;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  width: 100%;
-  position: fixed;
-  top: 0px;
-  height: 17%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    height: 17%;
  }
 
  html h1, html h2, html h3  {
@@ -41,12 +41,12 @@ html p {
 
 
 #footer {
-  background-color: #273519;
-  min-height: auto;
-  width: 100%;
-  position:fixed;
-  height: 15%;
-  bottom: 0px;
+    background-color: black;
+    min-height: auto;
+    width: 100%;
+    position:fixed;
+    height: 15%;
+    bottom: 0px;
  }
 
  footer p {
@@ -98,6 +98,20 @@ html span {
 /*
 HOMEPAGE*/
 
+.error {
+    background-color: black;
+    width: 50%;
+    border-radius: 5%;
+    border: 2px solid gray;
+    opacity: .8;
+    color: red;
+    margin-left: 25%;
+}
+
+.error p, .error h4 {
+    color: red;
+}
+
 #login_signup {
   background-image: url("Zombie_1.jpg");
   background-repeat: no-repeat;
@@ -106,6 +120,14 @@ HOMEPAGE*/
   text-align: center;
   padding-top: 20%;
   padding-bottom: 20%;
+}
+
+.back_link a {
+    color: gray;
+}
+
+.back_link a:hover {
+    color: black;
 }
 
 #title {
@@ -132,32 +154,44 @@ HOMEPAGE*/
   padding-bottom: 10%;
 }
 
-#post_container {
-  border-radius: 5px;
-  border: 2px solid gray;
-  background-color: #FF9900;
-  width: 80%;
-  text-align: center;
-  margin-left: 10%;
-  margin-top: 2%;
+#post_container_human {
+    border-radius: 5px;
+    border: 3px solid #3366CC;
+    background-color: #99CCFF;
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 2%;
+    
 }
 
-#post_container h3 {
+#post_container_human h3, #post_container_zombie h3 {
   color: black;
 }
 
+#post_container_zombie {
+    border-radius: 5px;
+    border: 3px solid gray;
+    background-color: #70944D;
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 2%;
+    color: black;
+}
+
 .black_overlay{
-  display: none;
-/*    position: relative;*/
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  /*background-color: black;*/
-  z-index:1001;
-  /*-moz-opacity: 0.8;*/
-  /*opacity:.80;*/
-  /*filter: alpha(opacity=80);*/
+    display: none;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
 } 
 .white_content {
     /*text-align: center;*/

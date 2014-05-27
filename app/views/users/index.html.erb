@@ -1,12 +1,16 @@
 <div id = "center">
  <div id="login_signup">
   <% if flash[:error] -%>
-  <h4 class='error'>
+  <div class="error">
+  <h4>
     <% flash[:error].full_messages.each do |message| %>
-    <%= message %> <br>
+    <h4><%= message %></h4>
     <%end %>
-    Your SignIn Failed, try again.
+    <p>Your Sign In failed, please try again. </p> 
+    <p>Email addresses must contain an '@' and '.com' or similar domain-ending.</p> 
+    <p>Passwords must be 6 characters or longer.</p>
   </h4>
+  </div>
   <% end -%>
   <button id='log_in'>LogIn</button><br>
   <button id='sign_up'>SignUp</button>

@@ -21,7 +21,7 @@ class Results
   end
 
   def determine_response
-    return @result = "Bite yourself all you want, I guess..." if @opponent == @user
+    return @result = "Attack yourself all you want, I guess..." if @opponent == @user
     if @user.infected && @opponent.infected
       return @result = "Why are you biting each other, Children?"
     elsif !@user.infected && !@opponent.infected
