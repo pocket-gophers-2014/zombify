@@ -3,13 +3,13 @@
 
 <%= form_for @user, :html => { :id => "sign_up" } do |f| %>
   <%= f.label :name %>
-  <%= f.text_field(:name, placeholder: 'First Last') %>
+  <%= f.text_field(:name, placeholder: 'First Last', :required => true)%>
   <%= f.label :phone_number %>
-  <%= f.telephone_field(:phone_number, placeholder: 'XXX-XXX-XXXX') %>
+  <%= f.telephone_field(:phone_number, placeholder: 'XXX-XXX-XXXX', :required => true) %>
   <%= f.label :email %>
-  <%= f.email_field(:email, placeholder: 'ex: joe@joe.com')  %>
+  <%= f.email_field(:email, placeholder: 'ex: joe@joe.com', :required => true)  %>
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field(:password, :required => true) %>
   <%= f.submit("Sign Up") %>
 <% end %>
 </div>
