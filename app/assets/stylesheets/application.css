@@ -122,6 +122,14 @@ HOMEPAGE*/
   padding-bottom: 20%;
 }
 
+.back_link a {
+    color: gray;
+}
+
+.back_link a:hover {
+    color: black;
+}
+
 #title {
   color: white;
 }
