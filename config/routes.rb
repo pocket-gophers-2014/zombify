@@ -4,10 +4,10 @@ Zombify::Application.routes.draw do
 
   root :to => "users#index"
   resources :users
-  resources :sessions
-  resources :pages
-  resources :battles
-  resources :checkins
+  resources :sessions , only: [:new, :show, :create, :delete]
+  resources :pages, only: [:show]
+  resources :battles, only:  [:new, :create, :delete]
+  resources :checkins, only: [:new, :create, :delete]
 
 
   # The priority is based upon order of creation:
