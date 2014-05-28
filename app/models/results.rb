@@ -91,10 +91,6 @@ end
     Post.create(body: body, title: title, audience: audience)
   end
 
-  def eval_string(boolean_string)
-    boolean_string == 'true'
-  end
-
   def check_stats
     if Stats.all_human?
       @message = Message.human_messages.last
