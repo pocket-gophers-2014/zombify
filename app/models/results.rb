@@ -70,8 +70,8 @@ class Results
     end
   end
 
-  def create_post(body, title)
-    Post.create(body: body, title: title, audience: "both")
+  def create_post(body, title, audience = "both")
+    Post.create(body: body, title: title, audience: audience)
   end
 
   def parse_opponent_id(opponent)
@@ -86,11 +86,11 @@ class Results
   def check_stats
     if Stats.all_human?
       @message = Message.human_messages.last
-      Post.create(title: @message[0], body: @message[1], audience: "human")
+      create_post(@message[1], @message[0], "human")
       @end_game = true
     elsif Stats.all_zombie?
       @message = Message.zombie_messages.last
-      Post.create(title: @message[0], body: @message[1], audience: "zombie")
+      create_post(@message[1], @message[0], "zombie")
       @end_game = true
     else
       zombies_percentage = Stats.percent_zombies
@@ -103,11 +103,11 @@ class Results
     human_messages = Message.human_messages
     case zombie_percentage
       when 90..93
-        Post.create(title: zombie_messages[7][0], body: zombie_messages[7][1],audience: "zombie")
-        Post.create(title: human_messages[7][0], body: human_messages[7][1],audience: "human")
+        create_post(zombie_messages[7][1],zombie_messages[7][0],"human")
+        create_post(human_messages[7][1], human_messages[7][0], "zombie")
       when 50..53
-        Post.create(title: zombie_messages[6][0], body: zombie_messages[6][1],audience: "zombie")
-        Post.create(title: human_messages[6][0], body: human_messages[6][1], audience: "human")
+        create_post(zombie_messages[6][1],zombie_messages[6][0],"zombie")
+        create_post(human_messages[6][1],human_messages[6][0],"human")
     end
   end
 
