@@ -20,55 +20,53 @@ class Results
     determine_response
   end
 
+  def update_user(infected, points = 0)
+    @user.update_attributes(infected: infected, points: @user.points += points)
+  end
+
+  def update_opponent(infected, points = 0)
+    @opponent.update_attributes(infected: infected, points: @opponent.points += points)
+  end
+
   def determine_response
     return @result = "Attack yourself all you want, I guess..." if @opponent == @user
-    if @user.infected && @opponent.infected
-      return @result = "Why are you biting each other, Children?"
-    elsif !@user.infected && !@opponent.infected
-      return @result = "Why are you wasting precious cures?!"
-    elsif @user.infected && @winner ##zombie user bites human
+    return @result = "Why are you biting each other, Children?" if @user.infected && @opponent.infected
+    return @result = "Why are you wasting precious cures?!" if !@user.infected && !@opponent.infected
+    if @user.infected && @winner ##zombie user bites human
       Post.create(body:"#{@user.name} has bitten #{@opponent.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(points: @user.points += 300, handle: @user.generate_handle)
-      @opponent.update_attributes(infected: true, handle: @opponent.generate_handle)
+      update_user(@user.infected, 300)
+      update_opponent(true)
       check_stats
       return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
     elsif @user.infected && !@winner ##zombie user misses human
-      p @winner
       Post.create(body:"#{@opponent.name} has escaped #{@user.name}", title:"Near Miss", audience:"both")
       @user.update_attributes(handle: @user.generate_handle)
-      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
+      update_opponent(@opponent.infected, 100)
       check_stats
       return @result = "You are feeling dizzy. The human has escaped. You still crave brains... "
     elsif @user.can_cure && @winner ##human cures zombie
       Post.create(body:"#{@opponent.name} has been cured by #{@user.name}", title:"Human Reversion", audience:"both")
-      @user.update_attributes(points: @user.points += 500, handle: @user.generate_handle)
-      @opponent.update_attributes(infected: false, handle: @opponent.generate_handle)
+      update_user(@user.infected, 500)
+      update_opponent(false)
       check_stats
       return @result = "You have successfully applied the cure!"
     elsif @user.can_cure && !@winner ##human fails zombie cure
       Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
       Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(infected: true, handle: @user.generate_handle)
-      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
+      update_user(true)
+      update_opponent(@opponent.infected, 100)
       check_stats
       return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
     elsif !@user.can_cure
-      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
       Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
       Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(infected: true, handle: @user.generate_handle)
-      ##create new post, with audience of "both"
-      ##update both users if they have earned points
-      ##update people's secret codes?
-      ##update session?
-      ##check the conditonals in the rest of the game logic
-      ##return text to render to the battle result page
+      update_user(true)
+      update_opponent(@opponent.infected, 100)
       check_stats
       return @result = "You do not have the cure! You have been bitten. Brainsssss...."
     else
       return @result = "Something has gone wrong."
     end
-    #check conditional stats in each if branch?
   end
 
   def parse_opponent_id(opponent)

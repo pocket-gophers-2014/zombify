@@ -3,7 +3,6 @@
                  data-user-id = <%= @user.id %>>
 
   <% if Game.current %>
-    <%= render partial: "event", collection: @events %>
     <script type="text/javascript">
       $(function() {
         polling.startPolling();
