@@ -57,7 +57,10 @@ class UsersController < ApplicationController
                  "points" => @user.points,
                  "handle" => handle,
                  "game_active" => game_active,
-                 "game_over" => game_over}
+                 "game_over" => game_over,
+                 "infected_state" => @user.infected,
+                 "harvest_possible" => ??,
+                 "cure_found" => ??,}
   end
 
   def update
