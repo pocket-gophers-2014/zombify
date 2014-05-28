@@ -12,10 +12,11 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
+
   def generate_handle
     first_half = self.id.to_s + (1..9).to_a.sample.to_s
     letters = []
-    2. times do 
+    2. times do
       letters << ("A".."Z").to_a.sample
     end
     second_half = letters.join
