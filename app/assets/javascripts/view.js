@@ -12,9 +12,22 @@ View.prototype = {
 		$('#feed').prepend(posts)
 	},
 	appendForm: function(response){
-		console.log("in the append form")
 		$('#login_signup').remove()
     $('p').remove()
     $('#center').append(response)
-	}
+	},
+
+	updateOpponentCount: function (opponents){
+		$("#opponents_remaining").empty()
+		$("#opponents_remaining").text(opponents)
+	},
+	
+	updatePoints: function(points){
+		$('#your_points').empty()
+		$('#your_points').text(points)
+	},
+	updateHandle: function(handle){
+		$('#handle').empty()
+		$('#handle').text(handle)
+	},
 }

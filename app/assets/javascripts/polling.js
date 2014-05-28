@@ -27,8 +27,17 @@ pollingController.prototype = {
 			})
 
 			updateFeedAndStats.done(function(results){
-				posts = results["html_content"]
-				this.view.appendFeed(posts)
+				posts = results["html_content"];
+				opponentCount = results["opponents"]
+				points = results["points"]
+				handle = results["handle"]
+
+				console.log(opponentCount)
+
+				this.view.appendFeed(posts);
+				this.view.updateOpponentCount(opponentCount);
+				this.view.updatePoints(points);
+				this.view.updateHandle(handle);
 			}.bind(this))
 
 			updateFeedAndStats.fail(function(results){

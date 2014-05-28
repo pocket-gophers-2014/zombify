@@ -40,15 +40,19 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     if @user.infected == true
       @events = Post.latest_zombie_posts
-      stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
+      opponents = "Humans Remaining: #{Stats.total_humans}"
     elsif @user.infected == false
       @events = Post.latest_human_posts
-      stats = {humans: Stats.total_humans, zombies: Stats.total_zombies}
+      opponents = "Zombies Remaining: #{Stats.total_zombies}"
     else
       flash[:error] = @user.errors.full_messages[0]
     end
+    handle = "Code: #{@user.handle}"
     @html_content = render_to_string :partial => "event", :collection => @events
-    render json:{"html_content" => @html_content, 'stats'=> stats}
+    render json:{"html_content" => @html_content,  
+                 "opponents" => opponents,
+                 "points" => @user.points,
+                 "handle" => handle}
   end
 
   def update
