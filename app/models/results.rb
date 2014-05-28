@@ -20,6 +20,8 @@ class Results
     determine_response
   end
 
+  private
+
   def update_user(infected, points = 0)
     @user.update_attributes(infected: infected, points: @user.points += points)
   end
@@ -33,33 +35,32 @@ class Results
     return @result = "Why are you biting each other, Children?" if @user.infected && @opponent.infected
     return @result = "Why are you wasting precious cures?!" if !@user.infected && !@opponent.infected
     if @user.infected && @winner ##zombie user bites human
-      Post.create(body:"#{@user.name} has bitten #{@opponent.name}", title:"New Zombie", audience:"both")
+      create_post("#{@user.name} has bitten #{@opponent.name}","New Zombie")
       update_user(@user.infected, 300)
       update_opponent(true)
       check_stats
       return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
     elsif @user.infected && !@winner ##zombie user misses human
-      Post.create(body:"#{@opponent.name} has escaped #{@user.name}", title:"Near Miss", audience:"both")
-      @user.update_attributes(handle: @user.generate_handle)
+      create_post("#{@opponent.name} has escaped #{@user.name}","Near Miss")
       update_opponent(@opponent.infected, 100)
       check_stats
       return @result = "You are feeling dizzy. The human has escaped. You still crave brains... "
     elsif @user.can_cure && @winner ##human cures zombie
-      Post.create(body:"#{@opponent.name} has been cured by #{@user.name}", title:"Human Reversion", audience:"both")
+      create_post("#{@opponent.name} has been cured by #{@user.name}","Human Reversion")
       update_user(@user.infected, 500)
       update_opponent(false)
       check_stats
       return @result = "You have successfully applied the cure!"
     elsif @user.can_cure && !@winner ##human fails zombie cure
-      Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
-      Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
+      create_post("#{@user.name} failed a cure attempt on #{@opponent.name}","Cure Failed")
+      create_post("#{@opponent.name} has bitten #{@user.name}","New Zombie")
       update_user(true)
       update_opponent(@opponent.infected, 100)
       check_stats
       return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
     elsif !@user.can_cure
-      Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
-      Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
+      create_post("#{@user.name} failed a cure attempt on #{@opponent.name}","Cure Failed")
+      create_post("#{@opponent.name} has bitten #{@user.name}", "New Zombie")
       update_user(true)
       update_opponent(@opponent.infected, 100)
       check_stats
@@ -67,6 +68,10 @@ class Results
     else
       return @result = "Something has gone wrong."
     end
+  end
+
+  def create_post(body, title)
+    Post.create(body: body, title: title, audience: "both")
   end
 
   def parse_opponent_id(opponent)
