@@ -34,6 +34,8 @@ task :start_game => :environment do
 	game.game_active = true
 	game.save
 
+	# FLAW HERE - possible	3rd announcement came before 2nd, wtf?  I don't think so - error in how I implemented in rails c, check tomorrow anyway.
+
 	if game.ready_for_3rd_announcement?
 		game.show_third_location_message
 		Ingredient.find(3).discovered = true
@@ -50,13 +52,13 @@ task :start_game => :environment do
 	end
 
 	if Ingredient.where(harvested: true).count == 3
-		User.where(infected: false).each do |human|
-			human.can_cure = true
-			human.save
-			Post.create(title: "Cure Found!", body: "America, fuck yeh!")
+		User.all.each do |user|
+			user.can_cure = true
+			user.save
 			#make sure to set brittany game variable here to 
 			# cure found
 		end
+		Post.create(title: "Cure Found!", body: "America, fuck yeh!", audience: "both")
 	end
 end
 
