@@ -1,29 +1,27 @@
 
 class Battle
-  attr_reader :response
+  attr_reader :response, :game_over
 
   def initialize(params, user)
     @user = user
+    p "*"*50
+    p params
     @opponent = determine_opponent(params["opponent"])
     @user_win = win?
     @response = calculate_results_and_respond
   end
 
-  def game_over(end_game)
-    end_game ? true : false
+  def end_game?(end_game)
+    @game_over = end_game ? true : false
   end
+
 
   private
 
   def calculate_results_and_respond
-    p "*"*50
-    p "#{@user} USER USER USER USER"
-    p "#{@opponent} OPPONENT OPPONENT OPPONENET"
-    p "#{@user_win} USER WIN USER WIN USER WIN"
     result = Results.new(@user, @opponent, @user_win)
-    p "="*50
+    end_game?(result.end_game)
     result.response
-    game_over(result.end_game)
   end
 
   def determine_opponent(opponent)

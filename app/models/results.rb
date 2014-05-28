@@ -1,14 +1,7 @@
-class Results
-  attr_reader :response, :end_game
 
-  def initialize(user, opponent, user_win)
-    p "!"*50
-    @user = user
-    @opponent = opponent
-    @win = user_win
-    @end_game = false
-    verify_opponent
-    @RESPONSE_MESSAGES = {
+
+class Results
+    RESPONSE_MESSAGES = {
       human_attack_self: "Attack yourself all you want, I guess...",
       human_attack_human: "Why are you wasting precious cures?!",
       zombie_attack_zombie: "Why are you biting each other, Children?",
@@ -20,20 +13,27 @@ class Results
       invalid_user_code: "invalid user code"
     }
 
-    @POST_MESSAGES = {
-      user_converts_H_to_Z: ["#{@user.name} has bitten #{@opponent.name}","New Zombie"],
-      user_fail_converts_H_to_Z: ["#{@opponent.name} has escaped #{@user.name}","Near Miss"],
-      successful_cure: ["#{@opponent.name} has been cured by #{@user.name}","Human Reversion"],
-      failed_cure: ["#{@user.name} failed a cure attempt on #{@opponent.name}","Cure Failed"],
-      new_zombie: ["#{@opponent.name} has bitten #{@user.name}","New Zombie"]
+    POST_MESSAGES = {
+      user_converts_H_to_Z: ["%s has bitten %s","New Zombie"],
+      user_fail_converts_H_to_Z: ["%s has escaped %s","Near Miss"],
+      successful_cure: ["%s has been cured by %s","Human Reversion"],
+      failed_cure: ["%s failed a cure attempt on %s","Cure Failed"],
+      new_zombie: ["%s has bitten %s","New Zombie"]
     }
+  attr_reader :response, :end_game
 
-
+  def initialize(user, opponent, user_win)
+    p "!"*50
+    @user = user
+    @opponent = opponent
+    @win = user_win
+    @end_game = false
+    verify_opponent
 end
 
   def verify_opponent
     if @opponent == "invalid"
-      @response = @RESPONSE_MESSAGES[:invalid_user_code]
+      @response = RESPONSE_MESSAGES[:invalid_user_code]
     p "IN VERYIFY OPPONENT"
       return @response
     end
@@ -51,41 +51,44 @@ end
   end
 
   def determine_response
-    return @response = @RESPONSE_MESSAGES[:human_attack_self] if @opponent == @user
-    return @response = @RESPONSE_MESSAGES[:human_attack_human] if @user.infected && @opponent.infected
-    return @response =  @RESPONSE_MESSAGES[:zombie_attack_zombie]if !@user.infected && !@opponent.infected
+    return @response = RESPONSE_MESSAGES[:human_attack_self] if @opponent == @user
+    return @response = RESPONSE_MESSAGES[:human_attack_human] if @user.infected && @opponent.infected
+    return @response =  RESPONSE_MESSAGES[:zombie_attack_zombie]if !@user.infected && !@opponent.infected
 
     if @user.infected && @win ##zombie user bites human
-      create_post(@POST_MESSAGES[:user_converts_H_to_Z])
+      create_post(sprintf(POST_MESSAGES[:user_converts_H_to_Z][0], @user.name, @opponent.name), POST_MESSAGES[:user_converts_H_to_Z][1])
       update_user(@user.infected, 300)
       update_opponent(true)
       check_stats
-      return @response = @RESPONSE_MESSAGES[:user_converts_H_to_Z]
+      return @response = RESPONSE_MESSAGES[:user_converts_H_to_Z]
     elsif @user.infected && !@win ##zombie user misses human
-      create_post(@POST_MESSAGES[:user_fail_converts_H_to_Z])
+      create_post(sprintf(POST_MESSAGES[:user_fail_converts_H_to_Z][0], @opponent.name, @user.name), POST_MESSAGES[:user_fail_converts_H_to_Z][1])
       update_opponent(@opponent.infected, 100)
       check_stats
-      return @response = @RESPONSE_MESSAGES[:user_fail_converts_H_to_Z]
+      return @response = RESPONSE_MESSAGES[:user_fail_converts_H_to_Z]
     elsif @user.can_cure && @win ##human cures zombie
-      create_post(@POST_MESSAGES[:successful_cure])
+      create_post(sprintf(POST_MESSAGES[:successful_cure][0], @opponent.name, @user.name), POST_MESSAGES[:successful_cure][1])
       update_user(@user.infected, 500)
       update_opponent(false)
       check_stats
-      return @response = @RESPONSE_MESSAGES[:successful_cure]
+      return @response = RESPONSE_MESSAGES[:successful_cure]
     elsif @user.can_cure && !@win ##human fails zombie cure
-      create_post(@POST_MESSAGES[:failed_cure])
-      create_post(@POST_MESSAGES[:new_zombie])
+      create_post(sprintf(POST_MESSAGES[:failed_cure][0], @user.name, @opponent.name), POST_MESSAGES[:failed_cure][1])
+      create_post(sprintf(POST_MESSAGES[:new_zombie][0], @opponent.name, @user.name), POST_MESSAGES[:new_zombie][1])
       update_user(true)
       update_opponent(@opponent.infected, 100)
       check_stats
-      return @response = @RESPONSE_MESSAGES[:failed_cure]
+      return @response = RESPONSE_MESSAGES[:failed_cure]
     else ## user can't cure and loses
-      create_post(@POST_MESSAGES[:failed_cure])
-      create_post(@POST_MESSAGES[:new_zombie])
+      p "*******"
+      yay = sprintf(POST_MESSAGES[:failed_cure][0], @user.name, @opponent.name)
+      p yay
+      create_post(sprintf(POST_MESSAGES[:failed_cure][0], @user.name, @opponent.name), POST_MESSAGES[:failed_cure][1])
+      create_post(sprintf(POST_MESSAGES[:new_zombie][0], @opponent.name, @user.name), POST_MESSAGES[:new_zombie[1]])
       update_user(true)
       update_opponent(@opponent.infected, 100)
       check_stats
-      return @response = @RESPONSE_MESSAGES[:no_cure_attempt]
+      return @response = RESPONSE_MESSAGES[:no_cure_attempt]
     end
   end
 
@@ -125,13 +128,3 @@ end
   end
 
 end
-
-  # def parse_opponent_id(opponent)
-  #   opponent_id = opponent.match(/=(.*)/)
-  #   return $1
-  # end
-
-  # def determine_opponent(opponent)
-  #   handle = parse_opponent_id(opponent)
-  #   User.find_by_handle(handle) || "invalid"
-  # end
