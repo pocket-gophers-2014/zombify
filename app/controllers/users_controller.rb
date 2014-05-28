@@ -60,6 +60,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    p "IN USERCONTROLLERUPDATE WOOOOOO"
     @user = User.find(session[:id])
     battle = Battle.new(params, @user)
 

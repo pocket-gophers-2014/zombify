@@ -16,7 +16,12 @@ class Battle
   private
 
   def calculate_results_and_respond
-    result = new Results(@user, @opponent, @user_win)
+    p "*"*50
+    p "#{@user} USER USER USER USER"
+    p "#{@opponent} OPPONENT OPPONENT OPPONENET"
+    p "#{@user_win} USER WIN USER WIN USER WIN"
+    result = Results.new(@user, @opponent, @user_win)
+    p "="*50
     result.response
     game_over(result.end_game)
   end
