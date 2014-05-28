@@ -59,10 +59,6 @@ html p {
   overflow:visible;
  }
 
- #confront, #checkin {
-  display: none;
- }
-
  html button, #tempt-fate {
   background-color: #949470;
   border-radius: 5px;

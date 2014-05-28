@@ -35,7 +35,7 @@ pollingController.prototype = {
 					this.stopPolling()
 					this.view.appendFeed(game_over);
 				} else {
-					this.handleGameLogic(results)
+					this.handleStatsUpdates(results)
 				}
 			}.bind(this))
 			checkGameState.fail(function(results){
@@ -43,7 +43,7 @@ pollingController.prototype = {
 		}
 	},
 
-	handleGameLogic: function(results){
+	handleStatsUpdates: function(results){
 		// console.log(results)
 		// debugger
 		gameState  = results["game_state"]
@@ -54,17 +54,20 @@ pollingController.prototype = {
 		handle = results["handle"]
 
 		this.view.updateStatsAndHandle(posts,opponentCount,points,handle)
-		
-		if (infectedState == true) {
+		this.determineView(infectedState,gameState)
+	},
+
+	determineView: function(infectedState, gameState) {
+		if (infectedState == "true") {
 			this.view.renderZombie()
-		} else if (infectedState == false && gameState == "harvest") {
+		} else if (infectedState == "false" && gameState == "harvest") {
 			this.view.renderHumanHarvest()
-		} else if (infectedState == false && gameState == "cure") {
+		} else if (infectedState == "false" && gameState == "cure") {
 			this.view.renderHumanCure()
 		} else {// player is human and game_state is "waiting to harvest"
 			this.view.renderHumanWaiting()
 		}
-	},
+	}
 
 
 }

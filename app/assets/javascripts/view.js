@@ -41,20 +41,20 @@ View.prototype = {
 		this.updateHandle(handle);
 	},
 
-	renderZombie: function(posts,opponentCount,points,handle){
+	renderZombie: function(){
 		console.log("I am a zombie")
 		$("#checkin").css('display', 'none')
 		$("#confront").css('display', 'block')
 	},
 
-	renderHumanHarvest: function(posts,opponentCount,points,handle){
+	renderHumanHarvest: function(){
 		console.log("I am a human who can harvest")
 		$("#confront").css('display', 'none')
 		$("#checkin").css('display', 'block')
 		$('button').css("background-color", "white")
 	},
 
-	renderHumanCure: function(posts,opponentCount,points,handle){
+	renderHumanCure: function(){
 		console.log("I am a human who can cure")
 		$("#confront").css('display', 'block')
 		$("#confront").text("Cure")
@@ -62,7 +62,7 @@ View.prototype = {
 		$('button').css("background-color", "white")
 	},
 
-	renderHumanWaiting: function(posts,opponentCount,points,handle){
+	renderHumanWaiting: function(){
 		console.log("I am a human who is waiting to harvest")
 		$("#confront").css('display', 'none')
 		$("#checkin").css('display', 'none')

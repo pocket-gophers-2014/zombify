@@ -13,10 +13,10 @@ class Game < ActiveRecord::Base
 		Game.find_by_game_active(true)
 	end
 
-<<<<<<< HEAD
 	def self.end
 		Game.current.update_attributes(game_active: false)
-=======
+	end
+
 	def current_game_state
 		if possible_to_harvest?
 			return "harvest"
@@ -33,7 +33,6 @@ class Game < ActiveRecord::Base
 
 	def cure_available?
 		Game.current.cure_found
->>>>>>> adds dynamic removal/addition of buttons on view and includes a complete rewrite of pollingAjax. Adds new handleGameLogic function.
 	end
 
 	def set_code_and_times

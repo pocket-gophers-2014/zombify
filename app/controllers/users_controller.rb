@@ -59,7 +59,7 @@ class UsersController < ApplicationController
                  "handle" => handle,
                  "game_active" => game_active,
                  "game_over" => game_over,
-                 "infected_state" => @user.infected,
+                 "infected_state" => @user.infected.to_s,
                  "game_state" => @game.current_game_state}
   end
 

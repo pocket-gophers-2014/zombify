@@ -27,6 +27,12 @@ UserAuthenticationAjax.prototype = {
     getSignUp.done(function(results){
       this.view.appendForm(results)}.bind(this))
   },
+
+  setUserState: function(polling) {
+    infectedState = $("#feed").attr('data-user-infected')
+    gameState = $("#feed").attr('data-game-state')
+    polling.determineView(infectedState, gameState)
+  },
 }
 
 $( document ).ready(function() {
@@ -36,8 +42,11 @@ $( document ).ready(function() {
   userAuth.bindEvents();
 
   polling = new pollingController(view);
+  userAuth.setUserState(polling);
 
   CheckinController.bindEvents();
   BattleController.bindEvents();
+
+
 });
 

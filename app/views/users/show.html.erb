@@ -1,6 +1,7 @@
 
   <div id="feed" data-user-infected = <%=@user.infected%>
-                 data-user-id = <%= @user.id %>>
+                 data-user-id = <%= @user.id %>
+                 data-game-state = <%= Game.current.current_game_state %>>
 
   <% if Game.current %>
     <script type="text/javascript">
