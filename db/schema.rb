@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20140528062649) do
 
+
   create_table "games", :force => true do |t|
     t.string   "city",        :default => "San Francisco"
     t.string   "game_code"

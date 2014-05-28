@@ -29,7 +29,6 @@ class Results
     verify_results
   end
 
-
   def verify_opponent
     return @response = RESPONSE_MESSAGES[:invalid_user_code] if @opponent.match("invalid")
     determine_response
@@ -102,8 +101,7 @@ class Results
       create_post(@message[1], @message[0], "zombie")
       @end_game = true
     else
-      zombies_percentage = Stats.percent_zombies
-      remaining_stats(zombies_percentage)
+      remaining_stats(Stats.percent_zombies)
     end
   end
 
