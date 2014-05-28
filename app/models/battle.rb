@@ -4,8 +4,6 @@ class Battle
 
   def initialize(params, user)
     @user = user
-    p "*"*50
-    p params
     @opponent = determine_opponent(params["opponent"])
     @user_win = win?
     @response = calculate_results_and_respond
