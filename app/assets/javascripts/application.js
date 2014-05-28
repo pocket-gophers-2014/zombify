@@ -20,6 +20,8 @@
 //= require models/battle
 //= require users
 //= require_self
+//=require_tree .
+
 
 $(function() {
   $(document).foundation();
