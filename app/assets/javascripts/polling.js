@@ -31,15 +31,20 @@ pollingController.prototype = {
 				opponentCount = results["opponents"]
 				points = results["points"]
 				handle = results["handle"]
+				game_active = results["game_active"] || false
+				game_over = results["game_over"] || false
 
-				console.log(opponentCount)
-
-				this.view.appendFeed(posts);
-				this.view.updateOpponentCount(opponentCount);
-				this.view.updatePoints(points);
-				this.view.updateHandle(handle);
+				if (game_active == false){
+					$('#footer').css('visibility', 'hidden')
+					this.stopPolling()
+					this.view.appendFeed(game_over);
+				} else {
+					this.view.appendFeed(posts);
+					this.view.updateOpponentCount(opponentCount);
+					this.view.updatePoints(points);
+					this.view.updateHandle(handle);
+				}
 			}.bind(this))
-
 			updateFeedAndStats.fail(function(results){
 			})
 		}
