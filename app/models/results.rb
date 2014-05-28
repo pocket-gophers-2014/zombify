@@ -79,7 +79,7 @@ end
       return @response = RESPONSE_MESSAGES[:failed_cure]
     else ## user can't cure and loses
       create_post(sprintf(POST_MESSAGES[:failed_cure][0], @user.name, @opponent.name), POST_MESSAGES[:failed_cure][1])
-      create_post(sprintf(POST_MESSAGES[:new_zombie][0], @opponent.name, @user.name), POST_MESSAGES[:new_zombie[1]])
+      create_post(sprintf(POST_MESSAGES[:new_zombie][0], @opponent.name, @user.name), POST_MESSAGES[:new_zombie][1])
       update_user(true)
       update_opponent(@opponent.infected, 100)
       check_stats
