@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
-    if cookies[:user_id]
-      @user = User.find(cookies[:user_id])
+    if session[:id]
+      @user = User.find(session[:id])
       redirect_to user_path(@user)
     end
   end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(session[:id])
     redirect_to root_path if @user != User.find(params[:id])
     @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
   end
