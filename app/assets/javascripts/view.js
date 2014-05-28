@@ -29,4 +29,43 @@ View.prototype = {
 		$('#handle').empty()
 		$('#handle').text(handle)
 	},
+
+	hideFooter: function(){
+		$('#footer').css('visibility', 'hidden')
+	},
+
+	updateStatsAndHandle: function(posts,opponentCount,points,handle) {
+		this.appendFeed(posts);
+		this.updateOpponentCount(opponentCount);
+		this.updatePoints(points);
+		this.updateHandle(handle);
+	},
+
+	renderZombie: function(){
+		console.log("I am a zombie")
+		$("#checkin").css('display', 'none')
+		$("#confront").css('display', 'block')
+	},
+
+	renderHumanHarvest: function(){
+		console.log("I am a human who can harvest")
+		$("#confront").css('display', 'none')
+		$("#checkin").css('display', 'block')
+		$('button').css("background-color", "white")
+	},
+
+	renderHumanCure: function(){
+		console.log("I am a human who can cure")
+		$("#confront").css('display', 'block')
+		$("#confront").text("Cure")
+		$("#checkin").css('display', 'none')
+		$('button').css("background-color", "white")
+	},
+
+	renderHumanWaiting: function(){
+		console.log("I am a human who is waiting to harvest")
+		$("#confront").css('display', 'none')
+		$("#checkin").css('display', 'none')
+		$('button').css("background-color", "white")
+	}
 }

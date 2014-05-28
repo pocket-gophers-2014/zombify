@@ -17,6 +17,24 @@ class Game < ActiveRecord::Base
 		Game.current.update_attributes(game_active: false)
 	end
 
+	def current_game_state
+		if possible_to_harvest?
+			return "harvest"
+		elsif cure_available?
+			return "cure"
+		else
+			return "waiting to harvest"
+		end
+	end
+
+	def possible_to_harvest?
+		Ingredient.where(discovered: true, harvested: false).any?
+	end
+
+	def cure_available?
+		Game.current.cure_found
+	end
+
 	def set_code_and_times
 		self.start_time = DateTime.current + TIME_BETWEEN_GAME_CREATE_AND_GAME_START
 		self.end_time = DateTime.current + LENGTH_OF_GAME # 1 day
@@ -117,11 +135,4 @@ class Game < ActiveRecord::Base
 			end
 		end
 	end
-
-
-
-
-
-
-
 end

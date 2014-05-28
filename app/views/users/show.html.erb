@@ -1,6 +1,7 @@
 
   <div id="feed" data-user-infected = <%=@user.infected%>
-                 data-user-id = <%= @user.id %>>
+                 data-user-id = <%= @user.id %>
+                 data-game-state = <%= Game.current.current_game_state %>>
 
   <% if Game.current %>
     <script type="text/javascript">
@@ -21,13 +22,13 @@
   <!--                                     -->
     <ul>
       <li><button id="confront" onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
-      style = "font-family: 'Rock Salt', cursive; "><a href="#">Battle!</a></button></li>
+      style = "font-family: 'Rock Salt', cursive; "><a href="#">Bite!</a></button></li>
       <li><button id="checkin" onclick = "document.getElementById('checkin_box').style.display='block';document.getElementById('fade').style.display='block'"
-      style = "font-family: 'Rock Salt', cursive; "><a href="#">Check-in</a></button></li>
+      style = "font-family: 'Rock Salt', cursive; "><a href="#">Harvest</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
-      <li><h3 id = 'handle'>Code: <%= @user.handle%></h3></li>
+      <li><h4 id = 'handle'>Code: <%= @user.handle%></h4></li>
     </ul>
   </div>
 
@@ -38,10 +39,10 @@
 <div id="menu_box" class="white_content">
     <ul>
       <li><h2 id = 'handle'>Code: <%= @user.handle%></h2></li>
-      <li><button onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
-      style = "font-family: 'Rock Salt', cursive; " class = ".inner">Battle</button></li>
+      <li><button id="confront" onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; " class = ".inner">Bite!</button></li>
       <li><button id="checkin" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
-      style = "font-family: 'Rock Salt', cursive; "class = ".inner"><a href="#">Check-in</a></button></li>
+      style = "font-family: 'Rock Salt', cursive; "class = ".inner"><a href="#">Harvest</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; " class = ".inner">View Rules</button></li>
       <li><button class = ".inner"><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
