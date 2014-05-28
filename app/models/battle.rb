@@ -33,7 +33,7 @@ class Battle
   end
 
   def human_chances
-    Game.current.cure_found ? [8,1]: [8,6]
+    Game.current.cure_found ? [8,6]: [8,2]
   end
 
   def calculate_win(human_win_ratio)

@@ -41,11 +41,11 @@ end
   private
 
   def update_user(infected, points = 0)
-    @user.update_attributes(infected: infected, points: @user.points += points)
+    @user.update_attributes(infected: infected, points: @user.points += points, handle: @user.generate_handle)
   end
 
   def update_opponent(infected, points = 0)
-    @opponent.update_attributes(infected: infected, points: @opponent.points += points)
+    @opponent.update_attributes(infected: infected, points: @opponent.points += points, handle: @opponent.generate_handle)
   end
 
   def determine_response
