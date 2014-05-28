@@ -1,41 +1,17 @@
-describe("mocking ajax", function() {
-  describe("suite wide usage", function() {
-    beforeEach(function() {
-      jasmine.Ajax.install();
-    });
+describe("BattleController Namespace", function() {
+  it("is defined", function(){
+    expect(BattleController).toBeDefined()
+  });
 
-    afterEach(function() {
-      jasmine.Ajax.uninstall();
-    })
-
-    xit("specifying response when you need it", function() {
-      var doneFn = jasmine.createSpy("success");
-
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function(arguments) {
-        if (this.readyState == this.DONE) {
-          doneFn(this.responseText);
-        }
-      };
-
-      xhr.open('PUT', "update");
-      xhr.send();
-
-      expect(jasmine.Ajax.requests.mostRecent().url).toBe("update");
-      expect(doneFn).not.toHaveBeenCalled();
-
-      jasmine.Ajax.requests.mostRecent().response({
-        "status": 200,
-        "contentType": 'text/plain',
-        "responseText": 'awesome response'
-      })
-
-      expect(doneFn).toHaveBeenCalledWith('awesome response')
-    })
+  it ("it has a launch battle function", function() {
+    expect(BattleController.launchBattle).toBeDefined()
   })
+
+  it ("calls battleAjaxRequest function",function() {
+    // jasmine ajax not working!
+    // jasmine.stub()
+    // expect(BattleController.launchBattle.user).toBe(1)
+  })
+
 })
 
-
-
-
-//enter number, check against database,  display result, send info to server, your view updates stats,

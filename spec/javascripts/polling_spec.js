@@ -21,7 +21,9 @@ describe("pollingController", function() {
     expect(polling.pollingTimerId).toBe(1)
   })
 
+  it("calls an ajax function in pollAjax", function() {
 
+  })
 
 })
 
