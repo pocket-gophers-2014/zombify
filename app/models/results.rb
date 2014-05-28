@@ -1,22 +1,37 @@
+RESPONSE_MESSAGES = {
+  human_attack_self: "Attack yourself all you want, I guess...",
+  human_attack_human: "Why are you wasting precious cures?!",
+  zombie_attack_zombie: "Why are you biting each other, Children?",
+  user_converts_H_to_Z: "Mmmmmm....Brainsssss.....You have added to the horde.",
+  user_fail_converts_H_to_Z: "You are feeling dizzy. The human has escaped. You still crave brains... ",
+  successful_cure: "You have successfully applied the cure!",
+  failed_cure: "Your cure has failed. You feel your blood rising and crave delicious brains...",
+  no_cure_attempt: "You do not have the cure! You have been bitten. Brainsssss....",
+  invalid_user_code: "invalid user code"
+}
+
+POST_MESSAGES = {
+  user_converts_H_to_Z: ["#{@user.name} has bitten #{@opponent.name}","New Zombie"],
+  user_fail_converts_H_to_Z: ["#{@opponent.name} has escaped #{@user.name}","Near Miss"],
+  successful_cure: ["#{@opponent.name} has been cured by #{@user.name}","Human Reversion"],
+  failed_cure: ["#{@user.name} failed a cure attempt on #{@opponent.name}","Cure Failed"],
+  new_zombie: ["#{@opponent.name} has bitten #{@user.name}","New Zombie"]
+}
 
 class Results
-  attr_reader :result, :end_game
+  attr_reader :response, :end_game
 
-  def initialize(params, user)
-    @winner = eval_string(params["result"])
-    @opponent = determine_opponent(params["opponent"])
+  def initialize(user, opponent, user_win)
     @user = user
+    @opponent = opponent
+    @win = user_win
     @end_game = false
     verify_results
   end
 
-  def determine_opponent(opponent)
-    handle = parse_opponent_id(opponent)
-    User.find_by_handle(handle) || "invalid"
-  end
 
-  def verify_results
-    return @result = "invalid user code" if @opponent == "invalid"
+  def verify_opponent
+    return @response = RESPONSE_MESSAGES[:invalid_user_code] if @opponent.match("invalid")
     determine_response
   end
 
@@ -31,52 +46,46 @@ class Results
   end
 
   def determine_response
-    return @result = "Attack yourself all you want, I guess..." if @opponent == @user
-    return @result = "Why are you biting each other, Children?" if @user.infected && @opponent.infected
-    return @result = "Why are you wasting precious cures?!" if !@user.infected && !@opponent.infected
-    if @user.infected && @winner ##zombie user bites human
-      create_post("#{@user.name} has bitten #{@opponent.name}","New Zombie")
+    return @response = RESPONSE_MESSAGES[:human_attack_self] if @opponent == @user
+    return @response = RESPONSE_MESSAGES[:human_attack_human] if @user.infected && @opponent.infected
+    return @response =  RESPONSE_MESSAGES[:zombie_attack_zombie]if !@user.infected && !@opponent.infected
+
+    if @user.infected && @win ##zombie user bites human
+      create_post(POST_MESSAGES[:user_converts_H_to_Z])
       update_user(@user.infected, 300)
       update_opponent(true)
       check_stats
-      return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
-    elsif @user.infected && !@winner ##zombie user misses human
-      create_post("#{@opponent.name} has escaped #{@user.name}","Near Miss")
+      return @response = RESPONSE_MESSAGES[:user_converts_H_to_Z]
+    elsif @user.infected && !@win ##zombie user misses human
+      create_post(POST_MESSAGES[:user_fail_converts_H_to_Z])
       update_opponent(@opponent.infected, 100)
       check_stats
-      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... "
-    elsif @user.can_cure && @winner ##human cures zombie
-      create_post("#{@opponent.name} has been cured by #{@user.name}","Human Reversion")
+      return @response = RESPONSE_MESSAGES[:user_fail_converts_H_to_Z]
+    elsif @user.can_cure && @win ##human cures zombie
+      create_post(POST_MESSAGES[:successful_cure])
       update_user(@user.infected, 500)
       update_opponent(false)
       check_stats
-      return @result = "You have successfully applied the cure!"
-    elsif @user.can_cure && !@winner ##human fails zombie cure
-      create_post("#{@user.name} failed a cure attempt on #{@opponent.name}","Cure Failed")
-      create_post("#{@opponent.name} has bitten #{@user.name}","New Zombie")
+      return @response = RESPONSE_MESSAGES[:successful_cure]
+    elsif @user.can_cure && !@win ##human fails zombie cure
+      create_post(POST_MESSAGES[:failed_cure])
+      create_post(POST_MESSAGES[:new_zombie])
       update_user(true)
       update_opponent(@opponent.infected, 100)
       check_stats
-      return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
-    elsif !@user.can_cure
-      create_post("#{@user.name} failed a cure attempt on #{@opponent.name}","Cure Failed")
-      create_post("#{@opponent.name} has bitten #{@user.name}", "New Zombie")
+      return @response = RESPONSE_MESSAGES[:failed_cure]
+    else ## user can't cure and loses
+      create_post(POST_MESSAGES[:failed_cure])
+      create_post(POST_MESSAGES[:new_zombie])
       update_user(true)
       update_opponent(@opponent.infected, 100)
       check_stats
-      return @result = "You do not have the cure! You have been bitten. Brainsssss...."
-    else
-      return @result = "Something has gone wrong."
+      return @response = RESPONSE_MESSAGES[:no_cure_attempt]
     end
   end
 
   def create_post(body, title, audience = "both")
     Post.create(body: body, title: title, audience: audience)
-  end
-
-  def parse_opponent_id(opponent)
-    opponent_id = opponent.match(/=(.*)/)
-    return $1
   end
 
   def eval_string(boolean_string)
@@ -112,3 +121,13 @@ class Results
   end
 
 end
+
+  # def parse_opponent_id(opponent)
+  #   opponent_id = opponent.match(/=(.*)/)
+  #   return $1
+  # end
+
+  # def determine_opponent(opponent)
+  #   handle = parse_opponent_id(opponent)
+  #   User.find_by_handle(handle) || "invalid"
+  # end
