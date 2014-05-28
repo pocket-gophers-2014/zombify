@@ -23,7 +23,8 @@
     <ul>
       <li><button id="confront" onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; "><a href="#">Battle!</a></button></li>
-      <li><button id="checkin"><a href="#">Check-in</a></button></li>
+      <li><button id="checkin" onclick = "document.getElementById('checkin_box').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; "><a href="#">Check-in</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
@@ -40,7 +41,8 @@
       <li><h2 id = 'handle'>Code: <%= @user.handle%></h2></li>
       <li><button onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; " class = ".inner">Battle</button></li>
-      <li><button id="checkin" class = ".inner"><a href="#">Check-in</a></button></li>
+      <li><button id="checkin" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; "class = ".inner"><a href="#">Check-in</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; " class = ".inner">View Rules</button></li>
       <li><button class = ".inner"><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
@@ -54,8 +56,9 @@
     <form action="" method="put" id="new-battle">
       <label for="opponent_id">Enter your opponent's secret code: </label>
       <input type="text" name="opponent_id" maxlength="5">
-      <input id = "tempt-fate" type="submit" value="Tempt Fate">
+      <input id = "tempt-fate" type="submit" value="Tempt Fate"><span class = "back_link_battle" ><a href="/">      Nevermind!</a></span>
     </form>
+
   </div>
 <div id="fade" class="black_overlay"></div>
 
@@ -69,5 +72,16 @@
     </ul>
     <button id = "hide_me" href = "javascript:void(0)" onclick = "document.getElementById('rules_box').style.display='none';
     document.getElementById('fade').style.display='none'">I got it, thanks!</button>
+    </div>
+<div id="fade" class="black_overlay"></div>
+
+
+<!-- Checkins-->
+<div id="checkin_box" class="white_content">
+    You look everywhere - you're desperate to find that cure ingredient....
+    <br>
+    <br>
+    <button id = "hide_me" href = "javascript:void(0)" onclick = "document.getElementById('checkin_box').style.display='none';
+    document.getElementById('fade').style.display='none'">There it is!</button>
     </div>
 <div id="fade" class="black_overlay"></div>
