@@ -48,8 +48,9 @@ class UsersController < ApplicationController
     else
       flash[:error] = @user.errors.full_messages[0]
     end
-    handle = "Code: #{@user.handle}"
+    @game = Game.current
     game_active = Game.current ? Game.current.game_active : false
+    handle = "Code: #{@user.handle}"
     @html_content = render_to_string :partial => "event", :collection => @events
     game_over = render_to_string :partial => "games/end_game"
     render json:{"html_content" => @html_content,
@@ -59,8 +60,7 @@ class UsersController < ApplicationController
                  "game_active" => game_active,
                  "game_over" => game_over,
                  "infected_state" => @user.infected,
-                 "harvest_possible" => ??,
-                 "cure_found" => ??,}
+                 "game_state" => @game.current_game_state}
   end
 
   def update
