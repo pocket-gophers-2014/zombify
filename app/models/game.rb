@@ -4,15 +4,9 @@ class Game < ActiveRecord::Base
 
 	attr_accessible :start_time, :game_active
 
-	# after_initialize :set_code_and_times
-
-	# def set_code
-	# 	game_code = self.game_code = SecureRandom.hex(3)
-	# 	while Game.find_by_game_code(game_code) != nil
-	# 		game_code = self.game_code = SecureRandom.hex(3)
-	# 	end
-	# 	game_code
-	# end
+	TIME_BETWEEN_GAME_CREATE_AND_GAME_START = 0 #in days
+	LENGTH_OF_GAME = 1 													#in days
+	TIME_INTERVAL_BETWEEN_ANNOUNCEMENTS = 90 		#in seconds
 
 	def self.current
 		#assuming there is only one active game
@@ -20,13 +14,41 @@ class Game < ActiveRecord::Base
 	end
 
 	def set_code_and_times
-		self.start_time = DateTime.current #+ 0.0069 # slightly under 10 minutes
-		self.end_time = DateTime.current + 1 # 1 day
+		self.start_time = DateTime.current + TIME_BETWEEN_GAME_CREATE_AND_GAME_START
+		self.end_time = DateTime.current + LENGTH_OF_GAME # 1 day
 		self.save
 	end
 
+	def ready_for_1st_announcement? 
+		self.game_active == true && self.after_start_time
+	end
+
+	def ready_for_2nd_announcement?
+		second_announcement_time_condition? && first_ingredient_found?
+	end
+
+	def ready_for_3rd_announcement?
+		third_announcement_time_condition? && second_ingredient_found?
+	end
+
+	def second_announcement_time_condition?
+		DateTime.current >= self.start_time + TIME_INTERVAL_BETWEEN_ANNOUNCEMENTS
+	end
+
+	def third_announcement_time_condition?
+		DateTime.current >= self.start_time + (2 * TIME_INTERVAL_BETWEEN_ANNOUNCEMENTS)
+	end
+
+	def first_ingredient_found?
+		Ingredient.find(1).harvested
+	end
+
+	def second_ingredient_found?
+		Ingredient.find(2).harvested
+	end
+
 	def show_first_message # Game.first MVP ONLY BUG BUG BUG
-		messages = find_message("First Announcement")
+		find_message("First Announcement")
 	end
 
 	def show_first_location_message
@@ -37,14 +59,9 @@ class Game < ActiveRecord::Base
 		find_message("Second Location Announcement")
 	end
 
-	# def show_first_location_message
-	# 	p Time.now
-	# 	p Game.first.start_time + 180
-	# 	p Time.now >= Game.first.start_time + 180000
-	# 	if Time.now >= Game.first.start_time + 180000
-	# 		find_message("First Location Announcement")
-	# 	end
-	# end
+	def show_third_location_message
+		find_message("Third Location Announcement")
+	end
 
 	def find_message(title)
 		messages = Game.first.messages.where(title: title)

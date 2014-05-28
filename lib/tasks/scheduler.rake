@@ -7,6 +7,8 @@ task :create_game => :environment do
 
 	Ingredient.all.each do |ingredient|
 		ingredient.counter = 0
+		ingredient.discovered = false
+		ingredient.harvested = false
 		ingredient.save
 	end
 
@@ -24,17 +26,23 @@ end
 # this whole task ought to be refactored.  Message.has_been_called
 task :start_game => :environment do
 	game = Game.first
-	if game.after_start_time && game.game_active == false
+	game.game_active = true
+	game.save
 
-		game.game_active = true
-		game.save
-
+	if game.ready_for_3rd_announcement?
+		game.show_third_location_message
+		Ingredient.find(3).discovered = true
+		Ingredient.find(3).save
+	elsif game.ready_for_2nd_announcement?
+		p "WTF"
+		game.show_second_location_message
+		Ingredient.find(2).discovered = true
+		Ingredient.find(2).save
+	elsif game.ready_for_1st_announcement?
 		game.show_first_message
 		game.show_first_location_message
-	end
-	 
-	if DateTime.current >= game.start_time + 60 # 10 minutes
-		game.show_second_location_message
+		Ingredient.find(1).discovered = true
+		Ingredient.find(1).save
 	end
 end
 
