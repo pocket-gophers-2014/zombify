@@ -7,13 +7,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# 	3rd ingredient, put proper message in
 
 
+locations_lats_long = [[ 37.784173, -122.408087],[40.761835, -73.977303],[37.776645, -122.394187],[40.723255, -73.986153],[37.784816, -122.397387]]
 
-locations_lats_long = [[ 37.784173, -122.408087],[37.776645, -122.394187],[40.761835, -73.977303],[40.723255, -73.986153],[37.784816, -122.397387]]
-
-cure_ingredients = ["fire", "earth", "wind", "water", "heart"]
-locations = ["Market and Fifth", "633 Folsom", "MoMa", "Yerba Buena, behind the waterfall", "Fourth and King"]
+cure_ingredients = ["fire", "wind", "earth", "water", "heart"]
+locations = ["Market and Fifth", "MoMa", "633 Folsom", "Yerba Buena, behind the waterfall", "Fourth and King"]
 
 locations.each_with_index do |location, index|
 	Ingredient.create(name: cure_ingredients[index],  code: rand(1000000), latitude: locations_lats_long[index][0], longitude: locations_lats_long[index][1], discovered: false, harvested: false, title: location, counter: 0, city: 'San Francisco', state: 'California', zip: 94122 )
@@ -33,7 +33,7 @@ zombie_messages = [
 	["#{cure_ingredients[2]} gathered","Yarghh! My children, how can you disappoint me so? The humans have collected another ingredient. Soon their weapon will be complete. We must not allow that to come to pass."],
 	["#{cure_ingredients[3]} gathered","Rauugh! The humans only lack one ingredient to complete their weapon. I order you to destroy them immediately!"],
 	["#{cure_ingredients[4]} gathered","Noooo! The humans have collected all of the ingredients they need. We can still destroy them before they destroy us. Kill them all quickly! For the good of the horde!"],
-	["Cure created","Nooooooooooooo! The humans have completed their vile brew. Kill them all before they can destroy us!"],
+	["Cure created","Nooooooooooooo! The humans have completed their vile brew. Avoid them if at all possible!"],
 	["All Humans converted","Rejoice my children! There are no humans remaining. Game Over."]
 ]
 

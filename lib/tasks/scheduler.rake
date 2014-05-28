@@ -1,5 +1,6 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :create_game => :environment do
+
 	Message.all.each do |message|
 		message.has_been_called = false
 		message.save
@@ -14,18 +15,15 @@ task :create_game => :environment do
 
 	Game.destroy_all
 	Post.destroy_all
+	User.destroy_all
   puts "Instantiating game"
   game = Game.create
   puts "New game created: #{game}"
   game.messages << Message.all
   game.set_code_and_times
 
-  User.all.each do |user|
-  	user.can_cure = false
-  	user.save
-  end
-
   #reset users as well
+  #users reset human/zombiepp
 end
 
 # this whole task ought to be refactored.  Message.has_been_called
@@ -38,17 +36,20 @@ task :start_game => :environment do
 
 	if game.ready_for_3rd_announcement?
 		game.show_third_location_message
-		Ingredient.find(3).discovered = true
-		Ingredient.find(3).save
+		ingredient = Ingredient.find(3)
+		ingredient.discovered = true
+		ingredient.save
 	elsif game.ready_for_2nd_announcement?
 		game.show_second_location_message
-		Ingredient.find(2).discovered = true
-		Ingredient.find(2).save
+		ingredient = Ingredient.find(2)
+		ingredient.discovered = true
+		ingredient.save
 	elsif game.ready_for_1st_announcement?
 		game.show_first_message
 		game.show_first_location_message
-		Ingredient.find(1).discovered = true
-		Ingredient.find(1).save
+		ingredient = Ingredient.find(1)
+		ingredient.discovered = true
+		ingredient.save
 	end
 
 	if Ingredient.where(harvested: true).count == 3
@@ -57,11 +58,15 @@ task :start_game => :environment do
 			user.save
 			game.cure_found = true
 			game.save
-			#make sure to set brittany game variable here to 
-			# cure found
 		end
-		Post.create(title: "Cure Found!", body: "America, fuck yeh!", audience: "both")
+		cure_zombie = Message.where(title: "Cure created", audience: "zombie")[0]
+		cure_human = Message.where(title: "Cure created", audience: "human")[0]
+		Post.create(title: cure_zombie.title, body: cure_zombie.description, audience: "zombie")
+		Post.create(title: cure_human.title, body: cure_human.description, audience: "human")
 	end
+
+	# once Time.current > game.end_time
+	# game inactive for 2 hrs, then create_new_game
 end
 
 #Adding to DateTime.current 1 results in adding one day.  When adding to a DateTime in the database, adding 1 adds 1 second.  Weird.
