@@ -3,9 +3,14 @@ class CheckinsController < ApplicationController
 
   def new
     @user = User.find(session[:id])
-    ingredient = Ingredient.where(discovered: true, harvested: false).first #add error for ingredient == nil
+    ingredient = Ingredient.where(discovered: true, harvested: false).first
 
-    render :text => ingredient_in_range?(ingredient) ?  log_success(ingredient) : log_failure(ingredient)
+    if ingredient
+      render :text => ingredient_in_range?(ingredient) ?  log_success(ingredient) : log_failure(ingredient)
+    else 
+      render :text => "How can one harvest an ingredrent if is not yet discovered?  Central Command has no more ingredients for you to harvest at this time."
+    end
+
   end
 
   private
