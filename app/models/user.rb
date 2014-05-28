@@ -17,7 +17,13 @@ class User < ActiveRecord::Base
 
 
   def generate_handle
-    self.id + 999
+    first_half = self.id.to_s + (1..9).to_a.sample.to_s
+    letters = []
+    2. times do 
+      letters << ("a".."z").to_a.sample
+    end
+    second_half = letters.join
+    whole = first_half.to_s + second_half.to_s
   end
 
   def should_be_infected
