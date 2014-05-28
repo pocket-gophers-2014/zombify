@@ -125,12 +125,16 @@ HOMEPAGE*/
   padding-bottom: 20%;
 }
 
-.back_link a {
+.back_link a, .back_link_battle a {
     color: gray;
 }
 
 .back_link a:hover {
     color: black;
+}
+
+.back_link_battle a:hover {
+    color: white;
 }
 
 #title {
