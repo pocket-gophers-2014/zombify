@@ -27,7 +27,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    @user = current_user
+    redirect_to root_path if @user != User.find(params[:id])
     @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
   end
 
@@ -51,7 +52,7 @@ class UsersController < ApplicationController
     game_active = Game.current ? Game.current.game_active : false
     @html_content = render_to_string :partial => "event", :collection => @events
     game_over = render_to_string :partial => "games/end_game"
-    render json:{"html_content" => @html_content,  
+    render json:{"html_content" => @html_content,
                  "opponents" => opponents,
                  "points" => @user.points,
                  "handle" => handle,
