@@ -22,7 +22,7 @@ class Checkin
   end
 
   def self.complete_group_harvest_if_possible(ingredient)
-    if ingredient.counter == CHECKINS_REQUIRED_TO_HARVEST
+    if ingredient.counter == self.checkins_required_to_harvest
       ingredient.update_attributes(harvested: true)
 
       @zombie_message = Message.where(title: "#{ingredient.name} gathered", audience: "zombie")[0]
@@ -35,5 +35,13 @@ class Checkin
       @human_message.update_attributes(has_been_called: "true")
       #TODO: make next announcement message dependent on this harvest
     end
+  end
+
+  def checkins_required_to_harvest
+    humans = Users.where(infected: false)
+    if humans.count > CHECKINS_REQUIRED_TO_HARVEST 
+      CHECKINS_REQUIRED_TO_HARVEST
+    else
+      humans.count
   end
 end

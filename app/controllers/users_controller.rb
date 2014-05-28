@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       handle = @user.generate_handle
       @user.update_attributes(handle: handle)
       session[:id] = @user.id
-      cookies[:user_id] = { value: @user.id, expires: 6.days.from_now }
+      # cookies[:user_id] = { value: @user.id, expires: 6.days.from_now }
       if @user.should_be_infected ###TEST ONCE CREATE CONTROLLER WORKING
         @user.infected = true
         @user.save

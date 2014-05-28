@@ -2,6 +2,7 @@ class CheckinsController < ApplicationController
   ACCEPTABLE_RANGE_TO_INGREDIENT = 1000
 
   def new
+    p "WTF"
     @user = User.find(session[:id])
     ingredient = Ingredient.where(discovered: true, harvested: false).first
 
@@ -13,7 +14,7 @@ class CheckinsController < ApplicationController
 
   end
 
-  private
+    private
 
     def ingredient_in_range?(ingredient)
       distance = DistanceCalculator.new(ingredient.latlong, user_latlong).distance
