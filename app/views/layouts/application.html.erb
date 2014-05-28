@@ -17,17 +17,14 @@
   <header>
     <h1 id = "title">Zombify</h1>
     <% if @user %>
-      <% if @user.infected == false %>
         <span><%="Your Points: "%></span><span id = "your_points"><%=@user.points%></span>
-        <span><%="Zombies Remaining: "%></span><span id = "zombies_remaining"><%=Stats.total_zombies%></span>
-    <!--     <span><%="total humans:"%></span><spanid = "humans_stats"><%=Stats.total_humans%></span> -->
-      <% end %>
-
-      <% if @user.infected == true %>
-        <span><%="Your Points: "%></span><span id = "your_points"><%=@user.points%></span>
-        <span><%="Humans Remaining: "%></span><span id = "zombies_remaining"><%=Stats.total_humans%></span>
-    <!--     <span><%="total humans:"%></span><spanid = "humans_stats"><%=Stats.total_humans%></span> -->
-      <% end %>
+        <span id = "opponents_remaining">
+        <% if @user.infected == false %>
+          <span><%="Zombies Remaining: "%></span><span><%=Stats.total_zombies%></span>
+        <% end %>
+        <% if @user.infected == true %>
+          <span><%="Humans Remaining: "%></span><span><%=Stats.total_humans%></span>
+        <% end %>
     <% end %>
   </header>
     <%= yield %>
