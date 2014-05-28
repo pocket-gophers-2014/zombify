@@ -28,34 +28,35 @@ class Results
       return @result = "Why are you wasting precious cures?!"
     elsif @user.infected && @winner ##zombie user bites human
       Post.create(body:"#{@user.name} has bitten #{@opponent.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(points: @user.points += 300)
-      @opponent.update_attributes(infected: true)
+      @user.update_attributes(points: @user.points += 300, handle: @user.generate_handle)
+      @opponent.update_attributes(infected: true, handle: @opponent.generate_handle)
       check_stats
       return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
     elsif @user.infected && !@winner ##zombie user misses human
       p @winner
       Post.create(body:"#{@opponent.name} has escaped #{@user.name}", title:"Near Miss", audience:"both")
-      @opponent.update_attributes(points: @opponent.points += 100)
+      @user.update_attributes(handle: @user.generate_handle)
+      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
       check_stats
       return @result = "You are feeling dizzy. The human has escaped. You still crave brains... "
     elsif @user.can_cure && @winner ##human cures zombie
       Post.create(body:"#{@opponent.name} has been cured by #{@user.name}", title:"Human Reversion", audience:"both")
-      @user.update_attributes(points: @user.points += 500)
-      @opponent.update_attributes(infected: false)
+      @user.update_attributes(points: @user.points += 500, handle: @user.generate_handle)
+      @opponent.update_attributes(infected: false, handle: @opponent.generate_handle)
       check_stats
       return @result = "You have successfully applied the cure!"
     elsif @user.can_cure && !@winner ##human fails zombie cure
       Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
       Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(infected: true)
-      @opponent.update_attributes(points: @opponent.points += 100)
+      @user.update_attributes(infected: true, handle: @user.generate_handle)
+      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
       check_stats
       return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
     elsif !@user.can_cure
-      @opponent.update_attributes(points: @opponent.points += 100)
+      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
       Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
       Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(infected: true)
+      @user.update_attributes(infected: true, handle: @user.generate_handle)
       ##create new post, with audience of "both"
       ##update both users if they have earned points
       ##update people's secret codes?
