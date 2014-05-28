@@ -55,6 +55,8 @@ task :start_game => :environment do
 		User.all.each do |user|
 			user.can_cure = true
 			user.save
+			game.cure_found = true
+			game.save
 			#make sure to set brittany game variable here to 
 			# cure found
 		end
