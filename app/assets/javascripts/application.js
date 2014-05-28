@@ -17,7 +17,6 @@
 //= require polling
 //= require controllers/battle_controller
 //= require controllers/user_event_controller
-//= require models/battle
 //= require users
 //= require_self
 //=require_tree .
