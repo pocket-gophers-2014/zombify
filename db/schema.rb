@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140526021125) do
+ActiveRecord::Schema.define(:version => 20140528062649) do
 
   create_table "games", :force => true do |t|
     t.string   "city",        :default => "San Francisco"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20140526021125) do
     t.datetime "end_time"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
+    t.boolean  "cure_found",  :default => false
   end
 
   create_table "ingredients", :force => true do |t|
