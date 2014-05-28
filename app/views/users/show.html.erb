@@ -28,7 +28,7 @@
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
-      <li><h3 id = 'handle'>Code: <%= @user.handle%></h3></li>
+      <li><h4 id = 'handle'>Code: <%= @user.handle%></h4></li>
     </ul>
   </div>
 

@@ -22,17 +22,32 @@ html p {
 
 
  html header {
+    background-image: url("banner.jpg");
+    background-position: center top;
     background-color: black;
+    background-repeat: no-repeat;
+    background: fill;
     color: white;
     text-align: center;
     padding: 10px;
     width: 100%;
     position: fixed;
     top: 0px;
-    height: 17%;
+    height: 20%;
+    border: 2px solid black;
  }
 
- html h1, html h2, html h3  {
+/* #title {
+  background-image: url("logo.jpg");
+  height: 50%;
+  margin-left: 25%;
+  background-repeat: no-repeat;
+  max-width: 50%;
+  padding: 25%;
+  background-size: 53%;
+}*/
+
+ html h1, html h2, html h3, html h4 {
   font-family: 'Rock Salt', cursive; 
   margin: 0;
   padding: 0;
@@ -48,7 +63,7 @@ html p {
   min-height: auto;
   width: 100%;
   position:fixed;
-  height: 15%;
+  height: 10%;
   bottom: 0px;
  }
 
@@ -59,10 +74,12 @@ html p {
   overflow:visible;
  }
 
+
+
  html button, #tempt-fate {
-  background-color: #949470;
+  background: radial-gradient(yellow, orange,#8F2400, #260000, black);
   border-radius: 5px;
-  border: 2px solid #273519;
+  /*border: 2px solid #273519;*/
   color: black;
 }
 
@@ -73,13 +90,14 @@ html button:hover {
 html ul {
   /*margin-right: 25%*/
   margin: 0 auto;
-  width: 90%;
+  width: 50%;
+  margin-left: 25%
 }
 
 html li {
   list-style-type: none;
   float: right;
-  margin-right: 2%;
+  margin-right: 5%;
 }
 
 html a {
@@ -137,10 +155,6 @@ HOMEPAGE*/
     color: white;
 }
 
-#title {
-  color: white;
-}
-
 #sign_up, #log_in {
   opacity: .8;
 }
@@ -163,8 +177,8 @@ HOMEPAGE*/
 
 #post_container_human {
     border-radius: 5px;
-    border: 3px solid #3366CC;
-    background-color: #99CCFF;
+    border: 3px solid black;
+    background: radial-gradient(#AFC8E0,#7AA3CC, black);
     width: 80%;
     text-align: center;
     margin-left: 10%;
@@ -178,8 +192,8 @@ HOMEPAGE*/
 
 #post_container_zombie {
     border-radius: 5px;
-    border: 3px solid gray;
-    background-color: #70944D;
+    border: 3px solid black;
+    background: radial-gradient(#949470,#6B6B47, black);
     width: 80%;
     text-align: center;
     margin-left: 10%;
@@ -270,7 +284,8 @@ HOMEPAGE*/
   
 
   html header {
-    height: 90px;
+    height: 110px;
+    border: 7px solid black;
   }
 
   #feed {
@@ -282,7 +297,7 @@ HOMEPAGE*/
     min-height: 10%;
     width: 100%;
     position:fixed;
-    height: 15%;
+    height: 12%;
     bottom: 0px;
  }
 
@@ -294,6 +309,10 @@ HOMEPAGE*/
     left: 2.5%;
     width: 95%;
     height: 85%;
+  }
+
+  #post_container_human, #post_container_zombie {
+    padding: 5px;
   }
 
   #handle {
