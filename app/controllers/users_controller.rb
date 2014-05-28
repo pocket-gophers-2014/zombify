@@ -60,12 +60,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    p params
+    p "IN USERCONTROLLERUPDATE WOOOOOO"
     @user = User.find(session[:id])
-    @result = Results.new(params, @user)
-    @results = @result.end_game ? @result.end_game : @result.result
-    if @result.end_game
-      Game.current.update_attributes(game_active: false)
+    battle = Battle.new(params, @user)
+
+    @results = battle.game_over ? battle.game_over : battle.response
+    if battle.game_over
+      Game.end
       render :json => {
         "end" => true,
         "attachment_partial" => render_to_string('battles/battle_results', :layout => false,  :locals => { result: @results })
@@ -75,6 +76,8 @@ class UsersController < ApplicationController
     end
   end
 end
+
+
 
 
 

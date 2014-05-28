@@ -12,10 +12,6 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
-  def password
-  end
-
-
   def generate_handle
     first_half = self.id.to_s + (1..9).to_a.sample.to_s
     letters = []
@@ -29,6 +25,9 @@ class User < ActiveRecord::Base
   def should_be_infected
     num = (1..100).to_a.sample
     num > 75
+  end
+
+  def password
   end
 
 

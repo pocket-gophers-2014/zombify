@@ -1,79 +1,94 @@
 
+
 class Results
-  attr_reader :result, :end_game
+    RESPONSE_MESSAGES = {
+      human_attack_self: "Attack yourself all you want, I guess...",
+      human_attack_human: "Why are you wasting precious cures?!",
+      zombie_attack_zombie: "Why are you biting each other, Children?",
+      user_converts_H_to_Z: "Mmmmmm....Brainsssss.....You have added to the horde.",
+      user_fail_converts_H_to_Z: "You are feeling dizzy. The human has escaped. You still crave brains... ",
+      successful_cure: "You have successfully applied the cure!",
+      failed_cure: "Your cure has failed. You feel your blood rising and crave delicious brains...",
+      no_cure_attempt: "You do not have the cure! You have been bitten. Brainsssss....",
+      invalid_user_code: "invalid user code"
+    }
 
-  def initialize(params, user)
-    @winner = eval_string(params["result"])
-    @opponent = determine_opponent(params["opponent"])
+    POST_MESSAGES = {
+      user_converts_H_to_Z: ["%s has bitten %s","New Zombie"],
+      user_fail_converts_H_to_Z: ["%s has escaped %s","Near Miss"],
+      successful_cure: ["%s has been cured by %s","Human Reversion"],
+      failed_cure: ["%s failed a cure attempt on %s","Cure Failed"],
+      new_zombie: ["%s has bitten %s","New Zombie"]
+    }
+  attr_reader :response, :end_game
+
+  def initialize(user, opponent, user_win)
     @user = user
+    @opponent = opponent
+    @win = user_win
     @end_game = false
-    verify_results
-  end
+    verify_opponent
+end
 
-  def determine_opponent(opponent)
-    handle = parse_opponent_id(opponent)
-    User.find_by_handle(handle) || "invalid"
-  end
-
-  def verify_results
-    return @result = "invalid user code" if @opponent == "invalid"
+  def verify_opponent
+    if @opponent == "invalid"
+      @response = RESPONSE_MESSAGES[:invalid_user_code]
+      return @response
+    end
     determine_response
   end
 
-  def determine_response
-    return @result = "Attack yourself all you want, I guess..." if @opponent == @user
-    if @user.infected && @opponent.infected
-      return @result = "Why are you biting each other, Children?"
-    elsif !@user.infected && !@opponent.infected
-      return @result = "Why are you wasting precious cures?!"
-    elsif @user.infected && @winner ##zombie user bites human
-      Post.create(body:"#{@user.name} has bitten #{@opponent.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(points: @user.points += 300, handle: @user.generate_handle)
-      @opponent.update_attributes(infected: true, handle: @opponent.generate_handle)
-      check_stats
-      return @result = "Mmmmmm....Brainsssss.....You have added to the horde."
-    elsif @user.infected && !@winner ##zombie user misses human
-      p @winner
-      Post.create(body:"#{@opponent.name} has escaped #{@user.name}", title:"Near Miss", audience:"both")
-      @user.update_attributes(handle: @user.generate_handle)
-      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
-      check_stats
-      return @result = "You are feeling dizzy. The human has escaped. You still crave brains... "
-    elsif @user.can_cure && @winner ##human cures zombie
-      Post.create(body:"#{@opponent.name} has been cured by #{@user.name}", title:"Human Reversion", audience:"both")
-      @user.update_attributes(points: @user.points += 500, handle: @user.generate_handle)
-      @opponent.update_attributes(infected: false, handle: @opponent.generate_handle)
-      check_stats
-      return @result = "You have successfully applied the cure!"
-    elsif @user.can_cure && !@winner ##human fails zombie cure
-      Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
-      Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(infected: true, handle: @user.generate_handle)
-      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
-      check_stats
-      return @result = "Your cure has failed. You feel your blood rising and crave delicious brains..."
-    elsif !@user.can_cure
-      @opponent.update_attributes(points: @opponent.points += 100, handle: @opponent.generate_handle)
-      Post.create(body:"#{@user.name} failed a cure attempt on #{@opponent.name}", title:"Cure Failed", audience:"both")
-      Post.create(body:"#{@opponent.name} has bitten #{@user.name}", title:"New Zombie", audience:"both")
-      @user.update_attributes(infected: true, handle: @user.generate_handle)
-      ##create new post, with audience of "both"
-      ##update both users if they have earned points
-      ##update people's secret codes?
-      ##update session?
-      ##check the conditonals in the rest of the game logic
-      ##return text to render to the battle result page
-      check_stats
-      return @result = "You do not have the cure! You have been bitten. Brainsssss...."
-    else
-      return @result = "Something has gone wrong."
-    end
-    #check conditional stats in each if branch?
+  private
+
+  def update_user(infected, points = 0)
+    @user.update_attributes(infected: infected, points: @user.points += points, handle: @user.generate_handle)
   end
 
-  def parse_opponent_id(opponent)
-    opponent_id = opponent.match(/=(.*)/)
-    return $1
+  def update_opponent(infected, points = 0)
+    @opponent.update_attributes(infected: infected, points: @opponent.points += points, handle: @opponent.generate_handle)
+  end
+
+  def determine_response
+    return @response = RESPONSE_MESSAGES[:human_attack_self] if @opponent == @user
+    return @response = RESPONSE_MESSAGES[:zombie_attack_zombie] if @user.infected && @opponent.infected
+    return @response =  RESPONSE_MESSAGES[:human_attack_human]if !@user.infected && !@opponent.infected
+
+    if @user.infected && @win ##zombie user bites human
+      create_post(sprintf(POST_MESSAGES[:user_converts_H_to_Z][0], @user.name, @opponent.name), POST_MESSAGES[:user_converts_H_to_Z][1])
+      update_user(@user.infected, 300)
+      update_opponent(true)
+      check_stats
+      return @response = RESPONSE_MESSAGES[:user_converts_H_to_Z]
+    elsif @user.infected && !@win ##zombie user misses human
+      create_post(sprintf(POST_MESSAGES[:user_fail_converts_H_to_Z][0], @opponent.name, @user.name), POST_MESSAGES[:user_fail_converts_H_to_Z][1])
+      update_opponent(@opponent.infected, 100)
+      check_stats
+      return @response = RESPONSE_MESSAGES[:user_fail_converts_H_to_Z]
+    elsif @user.can_cure && @win ##human cures zombie
+      create_post(sprintf(POST_MESSAGES[:successful_cure][0], @opponent.name, @user.name), POST_MESSAGES[:successful_cure][1])
+      update_user(@user.infected, 500)
+      update_opponent(false)
+      check_stats
+      return @response = RESPONSE_MESSAGES[:successful_cure]
+    elsif @user.can_cure && !@win ##human fails zombie cure
+      create_post(sprintf(POST_MESSAGES[:failed_cure][0], @user.name, @opponent.name), POST_MESSAGES[:failed_cure][1])
+      create_post(sprintf(POST_MESSAGES[:new_zombie][0], @opponent.name, @user.name), POST_MESSAGES[:new_zombie][1])
+      update_user(true)
+      update_opponent(@opponent.infected, 100)
+      check_stats
+      return @response = RESPONSE_MESSAGES[:failed_cure]
+    else ## user can't cure and loses
+      create_post(sprintf(POST_MESSAGES[:failed_cure][0], @user.name, @opponent.name), POST_MESSAGES[:failed_cure][1])
+      create_post(sprintf(POST_MESSAGES[:new_zombie][0], @opponent.name, @user.name), POST_MESSAGES[:new_zombie[1]])
+      update_user(true)
+      update_opponent(@opponent.infected, 100)
+      check_stats
+      return @response = RESPONSE_MESSAGES[:no_cure_attempt]
+    end
+  end
+
+  def create_post(body, title, audience = "both")
+    Post.create(body: body, title: title, audience: audience)
   end
 
   def eval_string(boolean_string)
@@ -83,15 +98,14 @@ class Results
   def check_stats
     if Stats.all_human?
       @message = Message.human_messages.last
-      Post.create(title: @message[0], body: @message[1], audience: "human")
+      create_post(@message[1], @message[0], "human")
       @end_game = true
     elsif Stats.all_zombie?
       @message = Message.zombie_messages.last
-      Post.create(title: @message[0], body: @message[1], audience: "zombie")
+      create_post(@message[1], @message[0], "zombie")
       @end_game = true
     else
-      zombies_percentage = Stats.percent_zombies
-      remaining_stats(zombies_percentage)
+      remaining_stats(Stats.percent_zombies)
     end
   end
 
@@ -100,11 +114,11 @@ class Results
     human_messages = Message.human_messages
     case zombie_percentage
       when 90..93
-        Post.create(title: zombie_messages[7][0], body: zombie_messages[7][1],audience: "zombie")
-        Post.create(title: human_messages[7][0], body: human_messages[7][1],audience: "human")
+        create_post(zombie_messages[7][1],zombie_messages[7][0],"human")
+        create_post(human_messages[7][1], human_messages[7][0], "zombie")
       when 50..53
-        Post.create(title: zombie_messages[6][0], body: zombie_messages[6][1],audience: "zombie")
-        Post.create(title: human_messages[6][0], body: human_messages[6][1], audience: "human")
+        create_post(zombie_messages[6][1],zombie_messages[6][0],"zombie")
+        create_post(human_messages[6][1],human_messages[6][0],"human")
     end
   end
 

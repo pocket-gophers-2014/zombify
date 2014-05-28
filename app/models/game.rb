@@ -13,6 +13,10 @@ class Game < ActiveRecord::Base
 		Game.find_by_game_active(true)
 	end
 
+	def self.end
+		Game.current.update_attributes(game_active: false)
+	end
+
 	def set_code_and_times
 		self.start_time = DateTime.current + TIME_BETWEEN_GAME_CREATE_AND_GAME_START
 		self.end_time = DateTime.current + LENGTH_OF_GAME # 1 day
