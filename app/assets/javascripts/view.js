@@ -7,16 +7,15 @@ function View(){
 }
 
 View.prototype = {
-	appendFeed: function(posts){
+	appendFeed: function(html){
 		$('#feed').empty()
-		$('#feed').prepend(posts)
+		$('#feed').prepend(html)
 	},
 	appendForm: function(response){
 		$('#login_signup').remove()
     $('p').remove()
     $('#center').append(response)
 	},
-
 	updateOpponentCount: function (opponents){
 		$("#opponents_remaining").empty()
 		$("#opponents_remaining").text(opponents)

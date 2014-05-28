@@ -39,14 +39,17 @@ html p {
   color: white;
  }
 
+#game-over h1, #game-over h3{
+  color: black;
+}
 
 #footer {
-    background-color: black;
-    min-height: auto;
-    width: 100%;
-    position:fixed;
-    height: 15%;
-    bottom: 0px;
+  background-color: black;
+  min-height: auto;
+  width: 100%;
+  position:fixed;
+  height: 15%;
+  bottom: 0px;
  }
 
  footer p {

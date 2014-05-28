@@ -48,11 +48,15 @@ class UsersController < ApplicationController
       flash[:error] = @user.errors.full_messages[0]
     end
     handle = "Code: #{@user.handle}"
+    game_active = Game.current ? Game.current.game_active : false
     @html_content = render_to_string :partial => "event", :collection => @events
+    game_over = render_to_string :partial => "games/end_game"
     render json:{"html_content" => @html_content,  
                  "opponents" => opponents,
                  "points" => @user.points,
-                 "handle" => handle}
+                 "handle" => handle,
+                 "game_active" => game_active,
+                 "game_over" => game_over}
   end
 
   def update
