@@ -20,6 +20,11 @@ task :create_game => :environment do
   game.messages << Message.all
   game.set_code_and_times
 
+  User.all.each do |user|
+  	user.can_cure = false
+  	user.save
+  end
+
   #reset users as well
 end
 
@@ -34,7 +39,6 @@ task :start_game => :environment do
 		Ingredient.find(3).discovered = true
 		Ingredient.find(3).save
 	elsif game.ready_for_2nd_announcement?
-		p "WTF"
 		game.show_second_location_message
 		Ingredient.find(2).discovered = true
 		Ingredient.find(2).save
@@ -43,6 +47,16 @@ task :start_game => :environment do
 		game.show_first_location_message
 		Ingredient.find(1).discovered = true
 		Ingredient.find(1).save
+	end
+
+	if Ingredient.where(harvested: true).count == 3
+		User.where(infected: false).each do |human|
+			human.can_cure = true
+			human.save
+			Post.create(title: "Cure Found!", body: "America, fuck yeh!")
+			#make sure to set brittany game variable here to 
+			# cure found
+		end
 	end
 end
 
