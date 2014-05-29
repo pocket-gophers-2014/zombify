@@ -1,14 +1,20 @@
 class Checkin < ActiveRecord::Base
-  validates :user, uniqueness: {scope: ingredient_id}
+
+  attr_accessible :user_id, :ingredient_id
+
+  validates :user_id, uniqueness: {scope: :ingredient_id, message: "One harvest per player. You can only carry so much!"}
   belongs_to :user
-  belongs to :ingredient
+  belongs_to :ingredient
   
   POINTS_GAINED_FOR_FINDING_AN_INGREDIENT = 200
   CHECKINS_REQUIRED_TO_HARVEST = 10
 
+
+
   def self.log_individual_checkin(user, ingredient)
     user_gains_points(user)
     increment_ingredient_counter(ingredient)
+    log_checkin_to_database(user, ingredient)
     create_message_showing_individual_harvest(user, ingredient)
     complete_group_harvest_if_possible(ingredient)
   end
@@ -19,6 +25,16 @@ class Checkin < ActiveRecord::Base
 
   def self.increment_ingredient_counter(ingredient)
     ingredient.update_attribute(:counter, ingredient.counter += 1)
+  end
+
+  def self.log_checkin_to_database(user, ingredient)
+    # checkin = Checkin.new(user_id: user.id, ingredient_id: ingredient.id)
+    user.ingredients << ingredient
+    # if checkin.save
+    #    return
+    # else  
+    #   flash[:error] = checkin.errors
+    # end
   end
 
   def self.create_message_showing_individual_harvest(user, ingredient)
