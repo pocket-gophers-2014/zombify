@@ -27,6 +27,7 @@
     document.getElementById('fade').style.display='block'">Menu</button>
   <!--                                     -->
     <ul>
+      <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
       <li><button id="confront" onclick = "document.getElementById('battle_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; "><a href="#">Bite!</a></button></li>
       <li><button id="checkin" onclick = "document.getElementById('checkin_box').style.display='block';document.getElementById('fade').style.display='block'"
@@ -35,7 +36,6 @@
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
       <li><button id="stats" onclick = "document.getElementById('stats_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Stats</button></li>
-      <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
       <li><span id = 'handle'>Code: <%= @user.handle%></span></li>
     </ul>
   </div>
@@ -112,6 +112,9 @@
       <li>3. Don't leave the city for the duration of the game.</li>
       <li>4. Don't communicate your location to the opposite team.</li>
     </ul>
+    <br>
+    <br>
+    <br>
     <button id = "hide_me" href = "javascript:void(0)" onclick = "document.getElementById('rules_box').style.display='none';
     document.getElementById('fade').style.display='none'">I got it, thanks!</button>
     </div>
