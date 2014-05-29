@@ -21,10 +21,10 @@ class Stats
 	end
 
 	def self.all_human?
-		User.where(infected: false) == User.count
+		User.where(infected: false).count == User.count
 	end
 
 	def self.all_zombie?
-		User.where(infected: true) == User.count
+		User.where(infected: true).count == User.count
 	end
 end

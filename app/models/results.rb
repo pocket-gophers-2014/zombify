@@ -92,17 +92,14 @@ end
 
   def check_stats
     if Stats.all_human?
-      p "ALLLL HUMMMANNNN SHOULD BE GAME OVER"
       @message = Message.human_messages.last
       create_post(@message[1], @message[0], "human")
       Game.end
     elsif Stats.all_zombie?
-      p "ALLLLLL ZOMBIIEEEE SHOULD BE GAME OVER"
       @message = Message.zombie_messages.last
       create_post(@message[1], @message[0], "zombie")
       Game.end
     else
-      p "REMAINING STATTTSSSSSSSSSSSSSS"
       remaining_stats(Stats.percent_zombies)
     end
   end
