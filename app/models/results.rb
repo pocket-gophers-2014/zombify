@@ -20,13 +20,12 @@ class Results
       failed_cure: ["%s failed a cure attempt on %s","Cure Failed"],
       new_zombie: ["%s has bitten %s","New Zombie"]
     }
-  attr_reader :response, :end_game
+  attr_reader :response
 
   def initialize(user, opponent, user_win)
     @user = user
     @opponent = opponent
     @win = user_win
-    @end_game = false
     verify_opponent
 end
 
@@ -95,11 +94,11 @@ end
     if Stats.all_human?
       @message = Message.human_messages.last
       create_post(@message[1], @message[0], "human")
-      @end_game = true
+      Game.end
     elsif Stats.all_zombie?
       @message = Message.zombie_messages.last
       create_post(@message[1], @message[0], "zombie")
-      @end_game = true
+      Game.end
     else
       remaining_stats(Stats.percent_zombies)
     end
