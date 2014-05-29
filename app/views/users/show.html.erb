@@ -33,8 +33,10 @@
       style = "font-family: 'Rock Salt', cursive; "><a href="#">Harvest</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; ">View Rules</button></li>
+      <li><button id="stats" onclick = "document.getElementById('stats_box').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; ">View Stats</button></li>
       <li><button><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
-      <li><h4 id = 'handle'>Code: <%= @user.handle%></h4></li>
+      <li><span id = 'handle'>Code: <%= @user.handle%></span></li>
     </ul>
   </div>
 
@@ -51,9 +53,43 @@
       style = "font-family: 'Rock Salt', cursive; "class = ".inner"><a href="#">Harvest</a></button></li>
       <li><button id="rules" onclick = "document.getElementById('rules_box').style.display='block';document.getElementById('fade').style.display='block'"
       style = "font-family: 'Rock Salt', cursive; " class = ".inner">View Rules</button></li>
+      <li><button id="stats" onclick = "document.getElementById('stats_box').style.display='block';document.getElementById('fade').style.display='block'"
+      style = "font-family: 'Rock Salt', cursive; ">View Stats</button></li>
       <li><button class = ".inner"><%= link_to "logout", session_path(@user), :method => 'DELETE' %></button></li>
+      <button id = "hide_me_menu" href = "javascript:void(0)" onclick = "document.getElementById('menu_box').style.display='none';
+      document.getElementById('fade').style.display='none'">Menu</button>
     </ul>
     </div>
+<div id="fade" class="black_overlay"></div>
+
+<!-- Stats -->
+
+<div id="stats_box" class="white_content">
+<% if @user %>
+  <div class = "user_stats">
+    <br>
+    <br>
+    <br>
+    <span><%="Your Points: "%></span><span id = "your_points"><%=@user.points%></span><br>
+    <br>
+    <br>
+    <br>
+    <span id = "opponents_remaining">
+    <% if @user.infected == false %>
+      <span><%="Zombies Remaining: "%></span><span><%=Stats.total_zombies%></span>
+    <% end %>
+    <% if @user.infected == true %>
+      <span><%="Humans Remaining: "%></span><span><%=Stats.total_humans%></span>
+    <% end %>
+    </span>
+    <br>
+    <br>
+    <br>
+  </div>
+<% end %>
+    <button id = "hide_me_stats" href = "javascript:void(0)" onclick = "document.getElementById('stats_box').style.display='none';
+    document.getElementById('fade').style.display='none'">Back</button>
+</div>
 <div id="fade" class="black_overlay"></div>
 
 <!-- Battle -->

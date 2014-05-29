@@ -77,8 +77,6 @@ html p {
   overflow:visible;
  }
 
-
-
  html button, #tempt-fate {
   background: radial-gradient(yellow, orange,#8F2400, #260000, black);
   border-radius: 5px;
@@ -168,10 +166,23 @@ HOMEPAGE*/
 
 /*/Users/*/
 
-#your_points {
-  font-family: tahoma;
-  font-size: 15px;
+html .user_stats span{
+  margin-top: 10%;
+  font-size: 30px;
+  font-family: 'Rock Salt', cursive;
+  width: 50%;
+  margin-left: 25%;
 }
+
+#your_points {
+  margin-left: 0px;
+}
+
+#hide_me_stats {
+  margin-top: 10px;
+  margin-left: 25%;
+}
+
 
 #feed {
   margin-top: 10%;
@@ -239,8 +250,9 @@ HOMEPAGE*/
 #handle {
   height: 50%;
   margin-top: 18%;
-  font-size: 21px;
+  font-size: 14px;
   color: white;
+  font-family: 'Rock Salt', cursive;
 }
 
 #menu {
@@ -311,12 +323,16 @@ HOMEPAGE*/
   }
 
   #log_in {
-    margin-top: 60%;
+    margin-top: 45%;
     width: 50%;
+    opacity: .9;
+    border: 2px solid black;
   }
 
   #sign_up {
     width: 50%;
+    opacity: .9;
+    border: 2px solid black;
   }
 
   #login {
@@ -336,7 +352,7 @@ HOMEPAGE*/
   }*/
 
   #feed {
-    margin-top: 30%;
+    margin-top: 35%;
   }
 
   #footer {
@@ -387,10 +403,12 @@ HOMEPAGE*/
     margin-right: 0;
   }
 
-  html button {
-   width: 100%; 
-   font-size: 18px;
-   font-weight: bold;  
+  html button, #hide_me_stats, #hide_me_menu{
+    margin-left: 0px;
+    width: 100%; 
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Rock Salt', cursive;  
   }
 
   html a {
