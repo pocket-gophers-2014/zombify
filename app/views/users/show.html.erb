@@ -9,14 +9,14 @@
 
   <% if Game.pending? %>
     <%= render partial: 'games/pending' %>
-  <% elsif Game.current %>
+  <% elsif Game.completed? %>
+    <%= render partial: "games/end_game" %>
+  <% else %>
     <script type="text/javascript">
       $(function() {
         polling.startPolling();
       })
     </script>
-  <% elsif Game.completed? %>
-    <%= render partial: "games/end_game" %>
   <% end %>
 
   </div>
