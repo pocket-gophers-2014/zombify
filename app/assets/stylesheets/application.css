@@ -53,9 +53,16 @@ html p {
   margin-top: 20%;
 }
 
-#game-over h1, #game-over h3 #pending_game h1, #pending_game h3 {
+#game-over h1, #game-over h3 #pending_game h1, #pending_game h4, #end_game_stats h3 {
   color: black;
 }
+
+#end_game_stats ul li{
+  list-style-type: none;
+  display: block;
+  clear: both;
+}
+
 
 #pending_game {
   margin-top: 20%;
