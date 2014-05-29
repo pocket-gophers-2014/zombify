@@ -24,7 +24,7 @@ task :create_game => :environment do
   puts "New game created: #{game}"
   game.messages << Message.all
   game.set_code_and_times
-  
+
   #users reset human/zombie - fatalistic
 end
 

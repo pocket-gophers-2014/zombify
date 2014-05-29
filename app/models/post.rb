@@ -8,4 +8,12 @@ class Post < ActiveRecord::Base
   def self.latest_human_posts
     Post.where("audience = ? or audience = ?", "human", "both").order('created_at DESC')
   end
+
+  def self.delete_empty_posts(posts)
+  	posts.each do |post|
+  		if post.title == "" || post.body == ""
+  			post.destroy
+  		end
+  	end
+  end
 end
