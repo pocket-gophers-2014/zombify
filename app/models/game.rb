@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
 
 	TIME_BETWEEN_GAME_CREATE_AND_GAME_START = 0 #in days
 	LENGTH_OF_GAME = 1 													#in days
-	TIME_INTERVAL_BETWEEN_ANNOUNCEMENTS = 20 		#in seconds
+	TIME_INTERVAL_BETWEEN_ANNOUNCEMENTS = 0 		#in seconds
 
 	def self.current
 		#assuming there is only one active game

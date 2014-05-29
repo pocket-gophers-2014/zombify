@@ -1,3 +1,5 @@
+# EXAMPLE OF TECHNICAL DEBT - NEEDS REFACTORING
+
 desc "This task is called by the Heroku scheduler add-on"
 task :create_game => :environment do
 
@@ -26,23 +28,20 @@ task :create_game => :environment do
 end
 
 task :create_demo => :environment do
-	zombies = User.where(infection: true)
-	humans = User.where(infection: false)
-	#assumes 4 users, and must be part of game after create_game, but before create_demo
-	while zombies.count > 1
-		zombie = zombies.first
-		zombie.infected = false
-		zombie.save
-	end
-
-	if humans.count > 3
-		human = humans.first
-		human.infected = true
-		human.save
-	end
+	Rake::Task["start_game"].execute
+	ingredient = Ingredient.find(1)
+	ingredient.harvested = true
+	ingredient.save
+	Rake::Task["start_game"].execute
+	ingredient = Ingredient.find(2)
+	ingredient.harvested = true
+	ingredient.save
+	Rake::Task["start_game"].execute
 end
 
-task :start_game => :environment do
+
+
+task :start_game => :environment do #ewwww needs refactor
 	game = Game.first
 	game.game_active = true
 	#game.started = true
@@ -75,8 +74,17 @@ task :start_game => :environment do
 		end
 		cure_zombie = Message.where(title: "Cure created", audience: "zombie")[0]
 		cure_human = Message.where(title: "Cure created", audience: "human")[0]
+
+		if Message.where(title: "Cure created")[0].has_been_called == false && Message.where(title: "Cure created")[1].has_been_called == false
+
 		Post.create(title: cure_zombie.title, body: cure_zombie.description, audience: "zombie")
 		Post.create(title: cure_human.title, body: cure_human.description, audience: "human")
+
+		cure_zombie.has_been_called = true
+		cure_zombie.save
+		cure_human.has_been_called = true
+		cure_human.save
+		end
 	end
 
 	# once Time.current > game.end_time
