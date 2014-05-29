@@ -1,8 +1,9 @@
 
   <div id="feed" data-user-infected = <%=@user.infected%>
                  data-user-id = <%= @user.id %>
-                 data-game-state = <%= Game.current.current_game_state %>>
-
+                 <% if Game.current %>
+                    data-game-state = <%= Game.current.current_game_state %>>
+                 <% end %>
   <% if Game.current %>
     <script type="text/javascript">
       $(function() {
