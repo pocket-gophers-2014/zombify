@@ -23,7 +23,7 @@ task :create_game => :environment do
   puts "New game created: #{game}"
   game.messages << Message.all
   game.set_code_and_times
-  
+
   #users reset human/zombie - fatalistic
 end
 
@@ -44,7 +44,7 @@ end
 task :start_game => :environment do #ewwww needs refactor
 	game = Game.first
 	game.game_active = true
-	#game.started = true
+	game.started = true
 	game.save
 
 	if game.ready_for_3rd_announcement?
