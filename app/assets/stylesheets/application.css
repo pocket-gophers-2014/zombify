@@ -354,13 +354,11 @@ html .user_stats span{
     margin-top: 45%;
     width: 50%;
     opacity: .9;
-    border: 2px solid black;
   }
 
   #sign_up {
     width: 50%;
     opacity: .9;
-    border: 2px solid black;
   }
 
   #login {
