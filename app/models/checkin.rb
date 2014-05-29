@@ -1,4 +1,8 @@
-class Checkin
+class Checkin < ActiveRecord::Base
+  validates :user, uniqueness: {scope: ingredient_id}
+  belongs_to :user
+  belongs to :ingredient
+  
   POINTS_GAINED_FOR_FINDING_AN_INGREDIENT = 200
   CHECKINS_REQUIRED_TO_HARVEST = 10
 
