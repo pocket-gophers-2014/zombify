@@ -29,16 +29,17 @@ pollingController.prototype = {
 			checkGameState.done(function(results){
 				game_active = results["game_active"] || false
 				game_over = results["game_over"] || false
-				
+
 				if (game_active == false){
 					$('#footer').css('visibility', 'hidden')
-					this.stopPolling()
 					this.view.appendFeed(game_over);
+					// this.stopPolling()
 				} else {
 					this.handleStatsUpdates(results)
 				}
 			}.bind(this))
 			checkGameState.fail(function(results){
+				console.log('FAIL')
 			})
 		}
 	},

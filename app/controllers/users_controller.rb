@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     handle = "Code: #{@user.handle}"
     @html_content = render_to_string :partial => "event", :collection => @events
     game_over = render_to_string :partial => "games/end_game"
+     game_state = @game ? @game.current_game_state : game_state = "inactive"
     render json:{"html_content" => @html_content,
                  "opponents" => opponents,
                  "points" => @user.points,
@@ -61,7 +62,8 @@ class UsersController < ApplicationController
                  "game_active" => game_active,
                  "game_over" => game_over,
                  "infected_state" => @user.infected.to_s,
-                 "game_state" => @game.current_game_state}
+                 "game_state" => game_state
+               }
   end
 
   def update
