@@ -12,6 +12,7 @@ class Battle
 
   def end_game?(end_game)
     @game_over = end_game ? true : false
+    Game.end if @game_over
   end
 
 

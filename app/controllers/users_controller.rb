@@ -66,6 +66,8 @@ class UsersController < ApplicationController
   def update
     if Game.pending?
       render partial: 'games/pending'
+    elsif Game.completed?
+      render partial: 'games/no_more_battling'
     else
       @user = User.find(session[:id])
       battle = Battle.new(params, @user)
