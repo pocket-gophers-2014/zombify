@@ -18,6 +18,7 @@ task :create_game => :environment do
 	Game.destroy_all
 	Post.destroy_all
 	User.destroy_all
+	Checkin.destroy_all
   puts "Instantiating game"
   game = Game.create
   puts "New game created: #{game}"
@@ -44,7 +45,7 @@ end
 task :start_game => :environment do #ewwww needs refactor
 	game = Game.first
 	game.game_active = true
-	#game.started = true
+	game.started = true
 	game.save
 
 	if game.ready_for_3rd_announcement?
