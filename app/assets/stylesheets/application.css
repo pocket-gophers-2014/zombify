@@ -77,13 +77,17 @@ html p {
   overflow:visible;
  }
 
-
-
- html button, #tempt-fate {
+ html button, #tempt-fate, #hide_me {
   background: radial-gradient(yellow, orange,#8F2400, #260000, black);
   border-radius: 5px;
-  /*border: 2px solid #273519;*/
+  border: 2px solid black;
   color: black;
+  font-family: 'Rock Salt', cursive;
+}
+
+#hide_me {
+  width: 50%;
+  margin-left: 25%;
 }
 
 html button:hover {
@@ -93,8 +97,8 @@ html button:hover {
 html ul {
   /*margin-right: 25%*/
   margin: 0 auto;
-  width: 50%;
-  margin-left: 25%
+  width: 80%;
+  margin-left: 10%
 }
 
 html li {
@@ -159,7 +163,7 @@ HOMEPAGE*/
 }
 
 #sign_up, #log_in {
-  opacity: .8;
+/*  opacity: .8;*/
 }
 
 #login, #signup {
@@ -168,10 +172,23 @@ HOMEPAGE*/
 
 /*/Users/*/
 
-#your_points {
-  font-family: tahoma;
-  font-size: 15px;
+html .user_stats span{
+  margin-top: 10%;
+  font-size: 30px;
+  font-family: 'Rock Salt', cursive;
+  width: 50%;
+  margin-left: 25%;
 }
+
+#your_points {
+  margin-left: 0px;
+}
+
+#hide_me_stats {
+  margin-top: 10px;
+  margin-left: 25%;
+}
+
 
 #feed {
   margin-top: 10%;
@@ -239,8 +256,9 @@ HOMEPAGE*/
 #handle {
   height: 50%;
   margin-top: 18%;
-  font-size: 21px;
+  font-size: 22px;
   color: white;
+  font-family: 'Rock Salt', cursive;
 }
 
 #menu {
@@ -282,20 +300,65 @@ HOMEPAGE*/
   #handle {
     text-align: center;
     margin-bottom: 5%;
-    font-size: 15px;
+    font-size: 30px;
   }
 }
 
 @media only screen and (min-device-width: 200px) and (max-device-width: 900px){
 
 
+  #center {
+    overflow: hidden;
+  }
+
+
   html header {
     height: 110px;
     border: 7px solid black;
+    position: fixed;
   }
 
+  #login_signup {
+    background-image: url("zombie_phone.jpg");
+    text-align: center;
+    height: auto;
+    bottom: 0px;
+    overflow: hidden;
+    padding-bottom: 0px;
+    margin-top: 100px;
+  }
+
+  #log_in {
+    margin-top: 45%;
+    width: 50%;
+    opacity: .9;
+    border: 2px solid black;
+  }
+
+  #sign_up {
+    width: 50%;
+    opacity: .9;
+    border: 2px solid black;
+  }
+
+  #login {
+    margin: 40% 10% 10% 10%;
+  } 
+
+  #signup {
+    margin: 20% 10% 10% 10%;
+  }
+
+  #signup input {
+    width: 230px;
+  }
+
+/*  #login h1 {
+    color: black;
+  }*/
+
   #feed {
-    margin-top: 30%;
+    margin-top: 35%;
   }
 
   #footer {
@@ -311,10 +374,11 @@ HOMEPAGE*/
     /*text-align: center;*/
     display: none;
     position: fixed;
-    top: 1%;
-    left: 2.5%;
-    width: 95%;
-    height: 85%;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index:1002;
   }
 
   #post_container_human, #post_container_zombie {
@@ -324,7 +388,7 @@ HOMEPAGE*/
   #handle {
     text-align: center;
     margin-bottom: 5%;
-    font-size: 15px;
+    font-size: 18px;
   }
   #menu {
     font-family: 'Rock Salt', cursive;
@@ -333,21 +397,28 @@ HOMEPAGE*/
     display: block;
   }
 
-  ul {
-    width: 100%
-  }
-
-  li {
+  html ul {
     width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  html button {
-   width: 100%;
-   font-size: 11px;
+  html li {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  html button, #hide_me_stats, #hide_me_menu{
+    margin-left: 0px;
+    width: 100%; 
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Rock Salt', cursive;  
   }
 
   html a {
     width: 100%;
-    font-size: 11px;
+    font-size: 18px;
   }
 }

@@ -16,16 +16,6 @@
   <body>
   <header>
     <div id = "title"></div>
-    <% if @user %>
-        <span><%="Your Points: "%></span><span id = "your_points"><%=@user.points%></span>
-        <span id = "opponents_remaining">
-        <% if @user.infected == false %>
-          <span><%="Zombies Remaining: "%></span><span><%=Stats.total_zombies%></span>
-        <% end %>
-        <% if @user.infected == true %>
-          <span><%="Humans Remaining: "%></span><span><%=Stats.total_humans%></span>
-        <% end %>
-    <% end %>
   </header>
     <%= yield %>
   </body>
