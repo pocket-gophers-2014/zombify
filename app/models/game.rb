@@ -78,19 +78,19 @@ class Game < ActiveRecord::Base
 	end
 
 	def show_first_message # Game.first MVP ONLY BUG BUG BUG
-		find_message("First Announcement")
+		find_message("Incoming Communication")
 	end
 
 	def show_first_location_message
-		find_message("First Location Announcement")
+		find_message("You Must Go...")
 	end
 
 	def show_second_location_message
-		find_message("Second Location Announcement")
+		find_message("Another Ingredient!")
 	end
 
 	def show_third_location_message
-		find_message("Third Location Announcement")
+		find_message("It Is Time!")
 	end
 
 	def find_message(title)
