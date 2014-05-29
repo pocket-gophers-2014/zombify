@@ -20,10 +20,10 @@ locations.each_with_index do |location, index|
 end
 
 zombie_messages = [
-	["A voice from everywhere:","I am the Hive Queen. You and all of my children are an extension of my self - my eyes and ears, my hands and feet. Your primary goal is to grow the zombie horde by consuming and converting humans."],
-	["Humans Detected!","There are great pulses of life coming from an area the humans call #{locations[0]}. Go there - feed and increase our numbers. For the good of the horde!"],
-	["Humans Detected!","I feel the warmth of life from the direction of #{locations[1]}. They seek to destroy us with the weapon they are building. We must stop them and increase our numbers. For the good of the horde!"],
-	["Humans Detected!","The livestock are gathering at a place they call #{locations[2]}. We must stop them once and for all before they complete their vile brew! For the good of the horde!"],
+	["Incoming Communication","I am the Hive Queen. You and all of my children are an extension of my self - my eyes and ears, my hands and feet. Your primary goal is to grow the zombie horde by consuming and converting humans."],
+	["You Must Go...","There are great pulses of life coming from an area the humans call #{locations[0]}. Go there - feed and increase our numbers. For the good of the horde!"],
+	["Another Ingredient!","I feel the warmth of life from the direction of #{locations[1]}. They seek to destroy us with the weapon they are building. We must stop them and increase our numbers. For the good of the horde!"],
+	["It Is Time!","The livestock are gathering at a place they call #{locations[2]}. We must stop them once and for all before they complete their vile brew! For the good of the horde!"],
 	["Humans Detected!","My children, I sense a gathering of humans at #{locations[3]}. Travel there and consume them! For the good of the horde!"],
 	["Humans Detected!","There is a final gathering of humans at #{locations[4]}. Feed! Increase our numbers! For the good of the horde!"],
 	["Half humans converted","Excellent, my children. Half of the humans have been turned. The hive queen is pleased."],
@@ -38,10 +38,10 @@ zombie_messages = [
 ]
 
 human_messages = [
-	["Over the CB Radio:","To any who can hear this transmission, we are the last surviving humans in the city. We have an update on the state of the ongoing research into this troubling infection. Our scientists tell us that a cure is in progress, but that several steps remain to complete it. We will let you know as soon as we can how you can help."],
-	["Attention Survivors!","We need at least 10 humans to travel to #{locations[0]}, to harvest a cure ingredient, #{cure_ingredients[0]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run. Zombies tend to gather where cure ingredients can be found."],
-	["Attention Survivors!","We need at least 10 humans to travel to #{locations[1]}, to harvest a cure ingredient, #{cure_ingredients[1]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run!"],
-	["Attention Survivors!","We need at least 10 humans to travel to #{locations[2]}, to harvest a cure ingredient, #{cure_ingredients[2]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run. The Zombie threat is always present."],
+	["Incoming Communication","To any who can hear this transmission, we are the last surviving humans in the city. We have an update on the state of the ongoing research into this troubling infection. Our scientists tell us that a cure is in progress, but that several steps remain to complete it. We will let you know as soon as we can how you can help."],
+	["You Must Go...","We need at least 10 humans to travel to #{locations[0]}, to harvest a cure ingredient, #{cure_ingredients[0]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run. Zombies tend to gather where cure ingredients can be found."],
+	["Another Ingredient!","We need at least 10 humans to travel to #{locations[1]}, to harvest a cure ingredient, #{cure_ingredients[1]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run!"],
+	["It Is Time!","We need at least 10 humans to travel to #{locations[2]}, to harvest a cure ingredient, #{cure_ingredients[2]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run. The Zombie threat is always present."],
 	["Attention Survivors!","We need at least 10 humans to travel to #{locations[3]}, to harvest a cure ingredient, #{cure_ingredients[3]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run. As you know, Zombies tend to gather where cure ingredients can be found."],
 	["Attention Survivors!","We need at least 10 humans to travel to #{locations[4]}, to harvest a cure ingredient, #{cure_ingredients[4]}. When you arrive, please look for a code and check in to let us know that you gathered it, then run!"],
 	["Half humans converted","Despair! Half of the remaining humans have been infected by the Zombie disease."],
