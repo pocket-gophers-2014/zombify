@@ -45,7 +45,7 @@ end
 task :start_game => :environment do
 	game = Game.first
 	game.game_active = true
-	game.started = true
+	#game.started = true
 	game.save
 
 	if game.ready_for_3rd_announcement?

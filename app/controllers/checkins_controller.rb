@@ -1,15 +1,15 @@
 class CheckinsController < ApplicationController
   ACCEPTABLE_RANGE_TO_INGREDIENT = 1000
 
+
   def new
-    p "WTF"
     @user = User.find(session[:id])
     ingredient = Ingredient.where(discovered: true, harvested: false).first
 
     if ingredient
       render :text => ingredient_in_range?(ingredient) ?  log_success(ingredient) : log_failure(ingredient)
     else 
-      render :text => "How can one harvest an ingredrent if is not yet discovered?  Central Command has no more ingredients for you to harvest at this time."
+      render :text => "Scientists have not determined any cure ingredients to harvest at this time."
     end
 
   end
