@@ -28,13 +28,7 @@ class Checkin < ActiveRecord::Base
   end
 
   def self.log_checkin_to_database(user, ingredient)
-    # checkin = Checkin.new(user_id: user.id, ingredient_id: ingredient.id)
     user.ingredients << ingredient
-    # if checkin.save
-    #    return
-    # else  
-    #   flash[:error] = checkin.errors
-    # end
   end
 
   def self.create_message_showing_individual_harvest(user, ingredient)
