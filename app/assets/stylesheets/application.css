@@ -189,6 +189,8 @@ HOMEPAGE*/
 
 #login, #signup {
   margin-top: 15%;
+  width: 50%;
+  margin-left: 25%;
 }
 
 /*/Users/*/
@@ -275,11 +277,11 @@ html .user_stats span{
 }
 
 #handle {
+  padding-top: 20%;
   height: 50%;
   margin-top: 18%;
   font-size: 22px;
   color: white;
-  font-family: 'Rock Salt', cursive;
 }
 
 #menu {
@@ -353,13 +355,11 @@ html .user_stats span{
     margin-top: 45%;
     width: 50%;
     opacity: .9;
-    border: 2px solid black;
   }
 
   #sign_up {
     width: 50%;
     opacity: .9;
-    border: 2px solid black;
   }
 
   #login {
