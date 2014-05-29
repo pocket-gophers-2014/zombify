@@ -1,5 +1,5 @@
 class CheckinsController < ApplicationController
-  ACCEPTABLE_RANGE_TO_INGREDIENT = 1000
+  ACCEPTABLE_RANGE_TO_INGREDIENT = 10000
 
 
   def new
