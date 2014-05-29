@@ -1,21 +1,26 @@
 
   <div id="feed" data-user-infected = <%=@user.infected%>
                  data-user-id = <%= @user.id %>
+
                  <% if Game.current %>
-                    data-game-state = <%= Game.current.current_game_state %>>
+                    data-game-state = <%= Game.current.current_game_state %>
                  <% end %>
-  <% if Game.current %>
+                 >
+
+  <% if Game.pending? %>
+    <%= render partial: 'games/pending' %>
+  <% elsif Game.completed? %>
+    <%= render partial: "games/end_game" %>
+  <% else %>
     <script type="text/javascript">
       $(function() {
         polling.startPolling();
       })
     </script>
-  <% else %>
-    <%= render partial: "games/end_game" %>
   <% end %>
 
   </div>
-  <!-- <div class="sidebar2"></div> -->
+
   <div id="footer">
   <!-- this button is hidden unless mobile -->
     <button id ="menu" onclick = "$('#menu_box').toggle();

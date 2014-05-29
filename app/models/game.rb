@@ -2,7 +2,7 @@ class Game < ActiveRecord::Base
 	has_many :users
 	has_many :messages
 
-	attr_accessible :start_time, :game_active
+	attr_accessible :start_time, :game_active, :started
 
 	TIME_BETWEEN_GAME_CREATE_AND_GAME_START = 0 #in days
 	LENGTH_OF_GAME = 1 													#in days
@@ -11,6 +11,10 @@ class Game < ActiveRecord::Base
 	def self.current
 		#assuming there is only one active game
 		Game.find_by_game_active(true)
+	end
+
+	def self.completed?
+		Game.where(started: true, game_active: false).length > 0 ? true : false
 	end
 
 	def self.end
@@ -35,13 +39,17 @@ class Game < ActiveRecord::Base
 		Game.current.cure_found
 	end
 
+	def self.pending?
+		Game.where(game_active: false, started: false ).length > 0 ? true : false
+	end
+
 	def set_code_and_times
 		self.start_time = DateTime.current + TIME_BETWEEN_GAME_CREATE_AND_GAME_START
 		self.end_time = DateTime.current + LENGTH_OF_GAME # 1 day
 		self.save
 	end
 
-	def ready_for_1st_announcement? 
+	def ready_for_1st_announcement?
 		self.game_active == true && self.after_start_time
 	end
 

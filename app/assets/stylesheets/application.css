@@ -13,7 +13,7 @@
  *= require_tree .
  */
 * {
-  font-family: 'Rock Salt', cursive; 
+  font-family: 'Rock Salt', cursive;
 }
 
 html p {
@@ -42,14 +42,23 @@ html p {
 }
 
  html h1, html h2, html h3, html h4 {
-  font-family: 'Rock Salt', cursive; 
+  font-family: 'Rock Salt', cursive;
+
   margin: 0;
   padding: 0;
   color: white;
  }
 
-#game-over h1, #game-over h3{
+#game-over {
+  margin-top: 20%;
+}
+
+#game-over h1, #game-over h3 #pending_game h1, #pending_game h3 {
   color: black;
+}
+
+#pending_game {
+  margin-top: 20%;
 }
 
 #footer {
@@ -177,7 +186,7 @@ HOMEPAGE*/
     text-align: center;
     margin-left: 10%;
     margin-top: 2%;
-    
+
 }
 
 #post_container_human h3, #post_container_zombie h3 {
@@ -207,7 +216,7 @@ HOMEPAGE*/
     -moz-opacity: 0.8;
     opacity:.80;
     filter: alpha(opacity=80);
-} 
+}
 .white_content {
     /*text-align: center;*/
     display: none;
@@ -238,7 +247,7 @@ HOMEPAGE*/
   display:none;
   margin-left: 25%;
   width: 50%;
-  font-family: 'Rock Salt', cursive; 
+  font-family: 'Rock Salt', cursive;
 }
 
 @media only screen and (min-device-width: 901px) and (max-device-width: 930px){
@@ -252,7 +261,7 @@ HOMEPAGE*/
 
   #menu {
     font-family: 'Rock Salt', cursive;
-    display: block; 
+    display: block;
   }
 
   #feed {
@@ -278,7 +287,7 @@ HOMEPAGE*/
 }
 
 @media only screen and (min-device-width: 200px) and (max-device-width: 900px){
-  
+
 
   html header {
     height: 110px;
@@ -321,7 +330,7 @@ HOMEPAGE*/
     font-family: 'Rock Salt', cursive;
     margin-top:1%;
     margin-bottom: 7%;
-    display: block; 
+    display: block;
   }
 
   ul {
@@ -333,8 +342,8 @@ HOMEPAGE*/
   }
 
   html button {
-   width: 100%; 
-   font-size: 11px;  
+   width: 100%;
+   font-size: 11px;
   }
 
   html a {

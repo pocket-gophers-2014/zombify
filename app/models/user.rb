@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   belongs_to :game
   belongs_to :battle
+  has_many :user_ingredients
+  has_many :ingredients, through: :user_ingredients
 
   validates :email, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }

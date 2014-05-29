@@ -64,19 +64,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    p "IN USERCONTROLLERUPDATE WOOOOOO"
-    @user = User.find(session[:id])
-    battle = Battle.new(params, @user)
-
-    @results = battle.game_over ? battle.game_over : battle.response
-    if battle.game_over
-      Game.end
-      render :json => {
-        "end" => true,
-        "attachment_partial" => render_to_string('battles/battle_results', :layout => false,  :locals => { result: @results })
-      }
+    if Game.pending?
+      render partial: 'games/pending'
+    elsif Game.completed?
+      render partial: 'games/no_more_battling'
     else
-      render partial: 'battles/battle_results', :locals => { result: @results }
+      @user = User.find(session[:id])
+      battle = Battle.new(params, @user)
+
+      @results = battle.game_over ? battle.game_over : battle.response
+      if battle.game_over
+        Game.end
+        render :json => {
+          "end" => true,
+          "attachment_partial" => render_to_string('battles/battle_results', :layout => false,  :locals => { result: @results })
+        }
+      else
+        render partial: 'battles/battle_results', :locals => { result: @results }
+      end
     end
   end
 end

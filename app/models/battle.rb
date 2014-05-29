@@ -7,10 +7,12 @@ class Battle
     @opponent = determine_opponent(params["opponent"])
     @user_win = win?
     @response = calculate_results_and_respond
+    @game_over = false
   end
 
   def end_game?(end_game)
     @game_over = end_game ? true : false
+    Game.end if @game_over
   end
 
 
