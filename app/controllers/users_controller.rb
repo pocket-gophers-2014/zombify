@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    if session[:id]
+    if User.find_by_id(session[:id])
       @user = User.find(session[:id])
       redirect_to user_path(@user)
     end
@@ -27,9 +27,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:id])
+    @user = User.find_by_id(session[:id])
     redirect_to root_path if @user != User.find(params[:id])
     @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
+  end
+
+  def invalid(params_id, user_session)
+    params_user = User.find(params[:id])
+    return true if params_user != user_session
+    return true if @user == nil
   end
 
   def new
