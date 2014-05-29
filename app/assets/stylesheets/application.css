@@ -275,6 +275,7 @@ html .user_stats span{
 }
 
 #handle {
+  padding-top: 20%;
   height: 50%;
   margin-top: 18%;
   font-size: 22px;
