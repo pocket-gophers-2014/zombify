@@ -44,14 +44,17 @@ View.prototype = {
 	renderZombie: function(){
 		console.log("I am a zombie")
 		$("#checkin").css('display', 'none')
+		$("#checkin_mobile").css('display', 'none')
 		$("#confront").css('display', 'block')
+		$("#confront_mobile").css('display', 'block')
 	},
 
 	renderHumanHarvest: function(){
 		console.log("I am a human who can harvest")
 		$("#confront").css('display', 'none')
 		$("#checkin").css('display', 'block')
-		$('button').css("background-color", "white")
+		$("#confront_mobile").css('display', 'none')
+		$("#checkin_mobile").css('display', 'block')
 	},
 
 	renderHumanCure: function(){
@@ -59,13 +62,16 @@ View.prototype = {
 		$("#confront").css('display', 'block')
 		$("#confront").text("Cure")
 		$("#checkin").css('display', 'none')
-		$('button').css("background-color", "white")
+		$("#confront_mobile").css('display', 'block')
+		$("#confront_mobile").text("Cure")
+		$("#checkin_mobile").css('display', 'none')
 	},
 
 	renderHumanWaiting: function(){
 		console.log("I am a human who is waiting to harvest")
 		$("#confront").css('display', 'none')
 		$("#checkin").css('display', 'none')
-		$('button').css("background-color", "white")
-	}
+		$("#confront_mobile").css('display', 'none')
+		$("#checkin_mobile").css('display', 'none')
+	},
 }

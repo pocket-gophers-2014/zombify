@@ -159,7 +159,7 @@ HOMEPAGE*/
 }
 
 #sign_up, #log_in {
-  opacity: .8;
+/*  opacity: .8;*/
 }
 
 #login, #signup {
@@ -289,10 +289,51 @@ HOMEPAGE*/
 @media only screen and (min-device-width: 200px) and (max-device-width: 900px){
 
 
+  #center {
+    overflow: hidden;
+  }
+
+
   html header {
     height: 110px;
     border: 7px solid black;
+    position: fixed;
   }
+
+  #login_signup {
+    background-image: url("zombie_phone.jpg");
+    text-align: center;
+    height: auto;
+    bottom: 0px;
+    overflow: hidden;
+    padding-bottom: 0px;
+    margin-top: 100px;
+  }
+
+  #log_in {
+    margin-top: 60%;
+    width: 50%;
+  }
+
+  #sign_up {
+    width: 50%;
+  }
+
+  #login {
+    margin: 40% 10% 10% 10%;
+  } 
+
+  #signup {
+    margin: 20% 10% 10% 10%;
+  }
+
+  #signup input {
+    width: 230px;
+  }
+
+/*  #login h1 {
+    color: black;
+  }*/
 
   #feed {
     margin-top: 30%;
@@ -311,10 +352,11 @@ HOMEPAGE*/
     /*text-align: center;*/
     display: none;
     position: fixed;
-    top: 1%;
-    left: 2.5%;
-    width: 95%;
-    height: 85%;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index:1002;
   }
 
   #post_container_human, #post_container_zombie {
@@ -324,7 +366,7 @@ HOMEPAGE*/
   #handle {
     text-align: center;
     margin-bottom: 5%;
-    font-size: 15px;
+    font-size: 18px;
   }
   #menu {
     font-family: 'Rock Salt', cursive;
@@ -333,21 +375,26 @@ HOMEPAGE*/
     display: block;
   }
 
-  ul {
-    width: 100%
+  html ul {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  li {
+  html li {
     width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   html button {
-   width: 100%;
-   font-size: 11px;
+   width: 100%; 
+   font-size: 18px;
+   font-weight: bold;  
   }
 
   html a {
     width: 100%;
-    font-size: 11px;
+    font-size: 18px;
   }
 }
