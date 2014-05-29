@@ -352,7 +352,7 @@ html .user_stats span{
   }
 
   #log_in {
-    margin-top: 45%;
+    margin-top: 15%;
     width: 50%;
     opacity: .9;
   }
@@ -373,6 +373,10 @@ html .user_stats span{
   #signup input {
     width: 230px;
   }
+
+/*  #signup button {
+    margin-top: 20%
+  }*/
 
 /*  #login h1 {
     color: black;
