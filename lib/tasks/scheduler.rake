@@ -21,18 +21,32 @@ task :create_game => :environment do
   puts "New game created: #{game}"
   game.messages << Message.all
   game.set_code_and_times
-
-  #reset users as well
-  #users reset human/zombiepp
+  
+  #users reset human/zombie - fatalistic
 end
 
-# this whole task ought to be refactored.  Message.has_been_called
+task :create_demo => :environment do
+	zombies = User.where(infection: true)
+	humans = User.where(infection: false)
+	#assumes 4 users, and must be part of game after create_game, but before create_demo
+	while zombies.count > 1
+		zombie = zombies.first
+		zombie.infected = false
+		zombie.save
+	end
+
+	if humans.count > 3
+		human = humans.first
+		human.infected = true
+		human.save
+	end
+end
+
 task :start_game => :environment do
 	game = Game.first
 	game.game_active = true
+	game.started = true
 	game.save
-
-	# FLAW HERE - possible	3rd announcement came before 2nd, wtf?  I don't think so - error in how I implemented in rails c, check tomorrow anyway.
 
 	if game.ready_for_3rd_announcement?
 		game.show_third_location_message
@@ -70,8 +84,3 @@ task :start_game => :environment do
 end
 
 #Adding to DateTime.current 1 results in adding one day.  When adding to a DateTime in the database, adding 1 adds 1 second.  Weird.
-
-task :check_events => :environment do 
-  puts "Checking for fate events"
-  #something goes here
-end

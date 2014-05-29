@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      cookies[:user_id] = { value: @user.id, expires: 6.days.from_now }
+      # cookies[:user_id] = { value: @user.id, expires: 6.days.from_now }
       redirect_to user_path(@user)
     else
       redirect_to root_path

@@ -22,7 +22,7 @@ class Checkin
   end
 
   def self.complete_group_harvest_if_possible(ingredient)
-    if ingredient.counter == CHECKINS_REQUIRED_TO_HARVEST
+    if ingredient.counter == checkins_required_to_harvest
       ingredient.update_attributes(harvested: true)
 
       @zombie_message = Message.where(title: "#{ingredient.name} gathered", audience: "zombie")[0]
@@ -36,4 +36,41 @@ class Checkin
       #TODO: make next announcement message dependent on this harvest
     end
   end
+
+  def self.checkins_required_to_harvest
+    humans = User.where(infected: false)
+    if humans.count > CHECKINS_REQUIRED_TO_HARVEST 
+      CHECKINS_REQUIRED_TO_HARVEST
+    else
+      humans.count
+    end
+  end
+
+   # def alert_users(kind)
+# + #     User.all.each do |user|
+# +       #       puts "---------------------"
+# +       #       p "Would send alert to #{user.phone.to_s}"
+# +       #       account_sid = 'ACabd565c09d3a7ac29013e490baf50742'
+# +       #               auth_token = '64f02d85badd951102329f750bc0bc8e'
+# +       #               if kind == 'game_starting'
+# +       #                       message = 'The game is starting! Log in to your account 
+# +       #       else
+# +       #               message = 'The game is over. Thanks for joining us. You can chec
+# +       #       end
+# +
+# +       #               begin
+# +       #                       client = Twilio::REST::Client.new account_sid, auth_toke
+# +
+# +       #                       client.account.messages.create({
+# +       #                               :from => '+13147363622',
+# +       #                               :to => @user.phone.to_s,
+# +       #                               :body => message,
+# +       #                       })
+# +       #               rescue Twilio::REST::RequestError => e
+# +       #                       puts "Error: #{e.message}"
+# +       #               end
+# +       #       end
+# +       # end
+ 
+
 end
