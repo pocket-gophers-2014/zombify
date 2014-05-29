@@ -32,12 +32,6 @@ class UsersController < ApplicationController
     @events = @user.infected ? Post.latest_zombie_posts : Post.latest_human_posts
   end
 
-  def invalid(params_id, user_session)
-    params_user = User.find(params[:id])
-    return true if params_user != user_session
-    return true if @user == nil
-  end
-
   def new
     @user = User.new
     render partial: "signup", :locals => { user: @user }
