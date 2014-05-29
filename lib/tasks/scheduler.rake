@@ -26,20 +26,16 @@ task :create_game => :environment do
 end
 
 task :create_demo => :environment do
-	zombies = User.where(infection: true)
-	humans = User.where(infection: false)
-	#assumes 4 users, and must be part of game after create_game, but before create_demo
-	while zombies.count > 1
-		zombie = zombies.first
-		zombie.infected = false
-		zombie.save
-	end
+	Demo.set_human_zombies
 
-	if humans.count > 3
-		human = humans.first
-		human.infected = true
-		human.save
-	end
+	ingredient_1 = Ingredient.find(1)
+	ingredient_2 = Ingredient.find(2)
+
+	ingredient_1.discovered = true
+	ingredient_1.harvested = true
+	ingredient_2.discovered = true
+	ingredient_2.harvested = true
+
 end
 
 task :start_game => :environment do
