@@ -39,7 +39,6 @@ pollingController.prototype = {
 				}
 			}.bind(this))
 			checkGameState.fail(function(results){
-				console.log('FAIL')
 			})
 		}
 	},

@@ -22,7 +22,6 @@ class Game < ActiveRecord::Base
 	end
 
 	def current_game_state
-		return "game inactive" if self == nil
 		if possible_to_harvest?
 			return "harvest"
 		elsif cure_available?
