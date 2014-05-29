@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = @user.errors.full_messages[0]
     end
+    Post.delete_empty_posts(@events)
     @game = Game.current
     game_active = Game.current ? Game.current.game_active : false
     handle = "Code: #{@user.handle}"
