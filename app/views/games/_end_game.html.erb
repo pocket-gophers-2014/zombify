@@ -1,9 +1,11 @@
 <div id="game-over" >
   <h1>GAME OVER</h1>
-  <p>Please join us again every day at 6pm. Signups begin at 8am daily.</p>
-<!-- if @game_finished  -->
-  <div id= "stats">
-    <%= render partial: "statistics/stats" %>
-  </div>
-
+  <br>
+    <div id="end_game_stats">
+      <ul>
+        <% User.points.each do |user| %>
+        <li>name: <%= user.name %> points: <%= user.points %></li>
+        <% end %>
+      </ul>
+    </div>
 </div>

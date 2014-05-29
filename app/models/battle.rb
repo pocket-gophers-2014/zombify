@@ -10,9 +10,8 @@ class Battle
     @game_over = false
   end
 
-  def end_game?(end_game)
-    @game_over = end_game ? true : false
-    Game.end if @game_over
+  def end_game?
+    @game_over = Game.completed? ? true : false
   end
 
 
@@ -20,7 +19,7 @@ class Battle
 
   def calculate_results_and_respond
     result = Results.new(@user, @opponent, @user_win)
-    end_game?(result.end_game)
+    end_game?
     result.response
   end
 
@@ -35,7 +34,7 @@ class Battle
   end
 
   def human_chances
-    Game.current.cure_found ? [8,6]: [8,2]
+    Game.current.cure_found ? [8,3]: [8,5]
   end
 
   def calculate_win(human_win_ratio)

@@ -50,12 +50,33 @@ html p {
  }
 
 #game-over {
-  margin-top: 20%;
+  margin: 20% auto 0 auto;
+  width:50%;
 }
 
-#game-over h1, #game-over h3 #pending_game h1, #pending_game h3 {
+#game-over h1{
+  margin: 0 auto;
+}
+
+#end_game_stats ul{
+  width: 50%;
+  margin: 0;
+}
+
+#end_game_stats ul li{
+  margin: 0;
+}
+
+#game-over h1, #game-over h3 #pending_game h1, #pending_game h4, #end_game_stats h3 {
   color: black;
 }
+
+#end_game_stats ul li{
+  list-style-type: none;
+  display: block;
+  clear: both;
+}
+
 
 #pending_game {
   margin-top: 20%;
@@ -343,7 +364,7 @@ html .user_stats span{
 
   #login {
     margin: 40% 10% 10% 10%;
-  } 
+  }
 
   #signup {
     margin: 20% 10% 10% 10%;
@@ -411,10 +432,10 @@ html .user_stats span{
 
   html button, #hide_me_stats, #hide_me_menu{
     margin-left: 0px;
-    width: 100%; 
+    width: 100%;
     font-size: 18px;
     font-weight: bold;
-    font-family: 'Rock Salt', cursive;  
+    font-family: 'Rock Salt', cursive;
   }
 
   html a {

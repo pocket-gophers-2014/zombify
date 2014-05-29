@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :ingredients, through: :checkins
 	has_secure_password
 
+  def self.points
+    User.order("points desc")
+  end
 
   def generate_handle
     first_half = self.id.to_s + (1..9).to_a.sample.to_s
