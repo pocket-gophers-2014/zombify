@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
 
   def self.delete_empty_posts(posts)
   	posts.each do |post|
-  		if post.title == "" || post.body == ""
+  		if post.title == nil || post.body == nil
   			post.destroy
   		end
   	end
