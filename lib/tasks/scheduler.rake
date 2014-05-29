@@ -18,6 +18,7 @@ task :create_game => :environment do
 	Game.destroy_all
 	Post.destroy_all
 	User.destroy_all
+	Checkin.destroy_all
   puts "Instantiating game"
   game = Game.create
   puts "New game created: #{game}"
