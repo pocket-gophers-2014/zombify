@@ -30,7 +30,7 @@ class Battle
 
   def parse_opponent_id(opponent)
     opponent_id = opponent.match(/=(.*)/)
-    return $1
+    return $1.upcase
   end
 
   def human_chances

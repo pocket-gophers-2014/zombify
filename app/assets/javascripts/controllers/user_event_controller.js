@@ -2,6 +2,7 @@ var CheckinController = {
 
   bindEvents: function(){
     $("#checkin").click(this.initiate_geolocation);
+    $("#checkin_mobile").click(this.initiate_geolocation);
   },
   initiate_geolocation: function() {
     navigator.geolocation.getCurrentPosition(CheckinController.handle_geolocation_query, CheckinController.handle_errors);
